@@ -1,0 +1,24 @@
+
+    .atas-login{
+        background-color: black;
+        height: 200px;
+        width: 100%;
+        /* position: absolute; */
+        /* left: 0px;
+        top: 0px; */
+    }
+    .logo-nama{
+         color: white;
+         padding-top: 30px;
+     }
+     .logo-atas{
+         width: 100px;
+     }
+     .nama-atas{
+         margin-left: 10px;
+         width: 180px;
+         text-align: left;
+         margin-top: auto;
+         margin-bottom: auto;
+         font-size: 14px;
+     }

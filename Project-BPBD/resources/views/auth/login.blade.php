@@ -1,12 +1,12 @@
 @extends('layout\main')
 
 @section('style')
-    <link rel="stylesheet" type="text/css" href={!! resource('css/login.css') !!}></link>
-
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/login.css') }}"></link>
 @endsection
 
 @section('content')
-        
+        <x-header />
+
         <!-- form login  -->
         <div class="d-flex flex-column align-items-center login-tengah container">
             <div class='form-login' id="form-login">
@@ -25,5 +25,5 @@
             <div class="mt-4 text-regis">Tidak memiliki akun? <a class="a-regis" href="/register">Registrasi</a> </div>
         </div>
 
-
+        <x-footer />
 @endsection
