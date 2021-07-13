@@ -5,47 +5,21 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Register') }}</div>
+                <div class="card-header">{{ __('Reset Password') }}</div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('register') }}">
-                        @csrf                     
+                    <form method="POST" action="{{ route('password.update') }}">
+                        @csrf
+
+                        <input type="hidden" name="token" value="{{ $token }}">
 
                         <div class="form-group row">
                             <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
 
                             <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
+                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ $email ?? old('email') }}" required autocomplete="email" autofocus>
 
                                 @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="nama_instansi" class="col-md-4 col-form-label text-md-right">{{ __('Nama Instansi') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="nama_instansi" type="text" class="form-control @error('nama_instansi') is-invalid @enderror" name="nama_instansi" value="{{ old('nama_instansi') }}" required autocomplete="nama_instansi" autofocus>
-
-                                @error('nama_instansi')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="no_telepon" class="col-md-4 col-form-label text-md-right">{{ __('No. Telp') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="no_telepon" type="text" class="form-control @error('no_telepon') is-invalid @enderror" name="no_telepon" value="{{ old('no_telepon') }}" required autocomplete="no_telepon" autofocus>
-
-                                @error('no_telepon')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
@@ -78,7 +52,7 @@
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-primary">
-                                    {{ __('Register') }}
+                                    {{ __('Reset Password') }}
                                 </button>
                             </div>
                         </div>
