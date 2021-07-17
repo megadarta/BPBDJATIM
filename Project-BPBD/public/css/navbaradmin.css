@@ -1,0 +1,45 @@
+.navbar{
+    height: 80px;
+    background-color: black;
+    padding: 0px 60px 0px 0px;
+    /* margin-bottom: 30px; */
+}
+.logo-atas-navbar{
+    width: 50px;
+}
+.gambar-atas-navbar{
+    width: 20px;
+    margin-right: 5px;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+.text-menu-navbar, .text-menu-navbar:hover{
+    margin-left: 5px;
+    margin-right: 5px;
+    color: white;
+    text-decoration: none;
+}
+.nama-atas-navbar{
+    font-size: 8px;
+    text-align: start;
+    margin: auto 0px auto 10px;
+    font-family: IBM Plex Sans;
+    font-style: normal;
+    font-weight: normal;
+}
+.navbar-kiri{
+    color: white;
+    margin-left: 30px;
+}
+.navbar-kanan{
+    color: white;
+}
+.nav-link-p{
+    color: white!important;
+    padding: 0px!important;
+    margin-bottom: 0px!important;
+    margin-right: 20px;
+}
+.menu-navbar-admin{
+    color: white;
+}

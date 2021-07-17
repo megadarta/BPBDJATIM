@@ -1,0 +1,151 @@
+/* nambahsendiri */
+.icon-btn-menu{
+    width: 30px!important;
+}
+
+.btn-menu, .btn-menu:hover{
+    padding: 10px;
+    border: none;
+}
+
+.bg-light{
+    background-color: black!important;
+}
+
+.wrapper {
+    display: flex;
+    align-items: stretch;
+}
+
+#sidebar {
+    min-width: 250px;
+    max-width: 250px;
+    min-height: 100vh;
+}
+
+
+a[data-toggle="collapse"] {
+    position: relative;
+}
+
+.dropdown-toggle::after {
+    /* top: 50%; */
+    transform: translateY(-50%);
+    display: none!important;
+}
+
+.menu{
+    padding: 0px 15px;
+}
+
+@media (max-width: 768px) {
+    #sidebar {
+        margin-left: -250px;
+    }
+    #sidebar.active {
+        margin-left: 0;
+    }
+}
+
+.text-sidebar{
+    color: #FE5E32!important;
+    width: 100%!important;
+}
+
+
+#sidebar {
+    background: white;
+    color: #fff;
+    transition: all 0.3s;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+
+#sidebar ul.components {
+    padding: 20px 0;
+    border-bottom: 1px solid white;
+}
+
+#sidebar ul p {
+    color: #fff;
+    padding: 3px 0px 5px 15px!important;
+}
+
+#sidebar ul li a {
+    padding: 10px;
+    font-size: 0.9em;
+    display: block;
+    text-decoration: none;
+    color: #FE5E32;
+}
+#sidebar ul li a:hover {
+    color: #FE5E32;
+    background: #fff;
+}
+
+.pilihan-menu{
+    color: white!important;
+    background: black;
+}
+
+.pilihan-menu:hover{
+    background: #FE5E32!important;
+}
+
+#sidebar ul li.active > a, a[aria-expanded="true"] {
+    color: #FE5E32;
+    /* background: #FE5E32; */
+}
+ul ul a {
+    font-size: 0.7em !important;
+    padding-left: 30px !important;
+    background: #FE5E32;
+}
+
+/* Shrinking the sidebar from 250px to 80px and center aligining its content*/
+#sidebar.active {
+    min-width: 80px;
+    max-width: 80px;
+    text-align: center;
+}
+
+/* Toggling the sidebar header content, hide the big heading [h3] and showing the small heading [strong] and vice versa*/
+#sidebar .sidebar-header strong {
+    display: none;
+}
+#sidebar.active .sidebar-header h3 {
+    display: none;
+}
+#sidebar.active .sidebar-header strong {
+    display: block;
+}
+
+#sidebar ul li a {
+    text-align: left;
+}
+
+#sidebar.active ul li a {
+    padding: 20px 10px;
+    text-align: center;
+    font-size: 0.7em;
+}
+
+
+#sidebar.active ul li p {
+    display: none;
+}
+
+
+/* Same dropdown links padding*/
+#sidebar.active ul ul a {
+    padding: 10px !important;
+}
+
+#sidebar.active .dropdown-toggle::after {
+    top: auto;
+    bottom: 10px;
+    display: none;
+    -webkit-transform: translateX(50%);
+    -ms-transform: translateX(50%);
+    transform: translateX(50%);
+}
