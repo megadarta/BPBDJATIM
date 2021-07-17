@@ -1,0 +1,40 @@
+.judul-detail{
+    font-family: IBM Plex Sans;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 30px;
+    line-height: 62px;
+
+    color: #000000;
+}
+
+.info-detail{
+    margin-left: 10px;
+    margin-bottom: 20px;
+    font-family: IBM Plex Sans;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 12px;
+    line-height: 23px;
+    
+    color: #595959;
+}
+
+.table-bencana{
+    margin-top: 30px;
+}
+
+.table-bencana th{
+    color: #FE5E32;
+}
+
+.table>:not(:last-child)>:last-child>*{
+    border-bottom-color: #707070!important;
+    border-top-color:#707070!important;
+}
+
+.table-bencana thead{
+    border-top: 1px solid #707070!important;
+    border-left: 0px!important;
+    border-right: 0px!important;
+}

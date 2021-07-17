@@ -1,13 +1,13 @@
 @extends('dashboard-admin\layout\main')
 
 @section('style')
-    <link rel="stylesheet" type="text/css" href="{{ asset('css/menu-data-admin.css') }}"></link>
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/admin-home.css') }}"></link>
 @endsection
 
 @section('sidebar-admin')
 <ul class="list-unstyled components">
             <li class="active">
-                <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false">
+                <a href="/admin/data/home" data-toggle="collapse" aria-expanded="false">
                     <div class="d-flex menu">
                         <div><img class="icon-btn-menu" src="{{ asset('assets/menu-sidebar-active.png') }}"></div>
                         <div><p  class="text-sidebar true">Home</p></div>  
@@ -23,15 +23,15 @@
                 </a>
                 <ul class="collapse list-unstyled" id="pageSubmenu">
                     <li>
-                        <a href="#" class="pilihan-menu">Data Bencana</a>
+                        <a href="/admin/data/history/data-bencana" class="pilihan-menu">Data Bencana</a>
                     </li>
                     <li>
-                        <a href="#" class="pilihan-menu">Data Elemen</a>
+                        <a href="/admin/data/history/data-elemen" class="pilihan-menu">Data Elemen</a>
                     </li>
                    
                 </ul>
 
-                <a href="" data-toggle="collapse" aria-expanded="false">
+                <a href="/admin/data/data-akun" data-toggle="collapse" aria-expanded="false">
                     <div class="d-flex menu">
                         <div><img class="icon-btn-menu" src="{{ asset('assets/akun.png') }}"></div>
                         <div><p  class="text-sidebar">Data Akun</p></div>   
@@ -43,95 +43,38 @@
 
 @section('dashboard-admin')
   <div class="row row-cols-auto">
+    
+    <a href="/detail-bencana" style="text-decoration: none;">
     <div class="col card-home">
         <div class="card-text1">Tanah Longsor</div>
         <div class="card-text2">Kamis, 22 April 2021</div>
         <div class="card-text3">Desa Tamansari, Ampelgading, kabupaten Malang</div>
     </div>
+    </a>
+    
+    <a href="/detail-bencana" style="text-decoration: none;">
     <div class="col card-home">
         <div class="card-text1">Tanah Longsor</div>
         <div class="card-text2">Kamis, 22 April 2021</div>
         <div class="card-text3">Desa Tamansari, Ampelgading, kabupaten Malang</div>
     </div>
+    </a>
+    
+    <a href="/detail-bencana" style="text-decoration: none;">
     <div class="col card-home">
         <div class="card-text1">Tanah Longsor</div>
         <div class="card-text2">Kamis, 22 April 2021</div>
         <div class="card-text3">Desa Tamansari, Ampelgading, kabupaten Malang</div>
     </div>
+    </a>
+    
+    <a href="/detail-bencana" style="text-decoration: none;">
     <div class="col card-home">
         <div class="card-text1">Tanah Longsor</div>
         <div class="card-text2">Kamis, 22 April 2021</div>
         <div class="card-text3">Desa Tamansari, Ampelgading, kabupaten Malang</div>
     </div>
-    <div class="col card-home">
-        <div class="card-text1">Tanah Longsor</div>
-        <div class="card-text2">Kamis, 22 April 2021</div>
-        <div class="card-text3">Desa Tamansari, Ampelgading, kabupaten Malang</div>
-    </div>
-    <div class="col card-home">
-        <div class="card-text1">Tanah Longsor</div>
-        <div class="card-text2">Kamis, 22 April 2021</div>
-        <div class="card-text3">Desa Tamansari, Ampelgading, kabupaten Malang</div>
-    </div>
-    <div class="col card-home">
-        <div class="card-text1">Tanah Longsor</div>
-        <div class="card-text2">Kamis, 22 April 2021</div>
-        <div class="card-text3">Desa Tamansari, Ampelgading, kabupaten Malang</div>
-    </div>
-    <div class="col card-home">
-        <div class="card-text1">Tanah Longsor</div>
-        <div class="card-text2">Kamis, 22 April 2021</div>
-        <div class="card-text3">Desa Tamansari, Ampelgading, kabupaten Malang</div>
-    </div>
-    <div class="col card-home">
-        <div class="card-text1">Tanah Longsor</div>
-        <div class="card-text2">Kamis, 22 April 2021</div>
-        <div class="card-text3">Desa Tamansari, Ampelgading, kabupaten Malang</div>
-    </div>
-    <div class="col card-home">
-        <div class="card-text1">Tanah Longsor</div>
-        <div class="card-text2">Kamis, 22 April 2021</div>
-        <div class="card-text3">Desa Tamansari, Ampelgading, kabupaten Malang</div>
-    </div>
-    <div class="col card-home">
-        <div class="card-text1">Tanah Longsor</div>
-        <div class="card-text2">Kamis, 22 April 2021</div>
-        <div class="card-text3">Desa Tamansari, Ampelgading, kabupaten Malang</div>
-    </div>
-    <div class="col card-home">
-        <div class="card-text1">Tanah Longsor</div>
-        <div class="card-text2">Kamis, 22 April 2021</div>
-        <div class="card-text3">Desa Tamansari, Ampelgading, kabupaten Malang</div>
-    </div>
-    <div class="col card-home">
-        <div class="card-text1">Tanah Longsor</div>
-        <div class="card-text2">Kamis, 22 April 2021</div>
-        <div class="card-text3">Desa Tamansari, Ampelgading, kabupaten Malang</div>
-    </div>
-    <div class="col card-home">
-        <div class="card-text1">Tanah Longsor</div>
-        <div class="card-text2">Kamis, 22 April 2021</div>
-        <div class="card-text3">Desa Tamansari, Ampelgading, kabupaten Malang</div>
-    </div>
-    <div class="col card-home">
-        <div class="card-text1">Tanah Longsor</div>
-        <div class="card-text2">Kamis, 22 April 2021</div>
-        <div class="card-text3">Desa Tamansari, Ampelgading, kabupaten Malang</div>
-    </div>
-    <div class="col card-home">
-        <div class="card-text1">Tanah Longsor</div>
-        <div class="card-text2">Kamis, 22 April 2021</div>
-        <div class="card-text3">Desa Tamansari, Ampelgading, kabupaten Malang</div>
-    </div>
-    <div class="col card-home">
-        <div class="card-text1">Tanah Longsor</div>
-        <div class="card-text2">Kamis, 22 April 2021</div>
-        <div class="card-text3">Desa Tamansari, Ampelgading, kabupaten Malang</div>
-    </div>
-    <div class="col card-home">
-        <div class="card-text1">Tanah Longsor</div>
-        <div class="card-text2">Kamis, 22 April 2021</div>
-        <div class="card-text3">Desa Tamansari, Ampelgading, kabupaten Malang</div>
-    </div>
+    </a>
+    
   </div>
 @endsection

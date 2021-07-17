@@ -1,21 +1,4 @@
-#content{
-    width: 100%;
-    height: 100%;
-    background-color: #EFEFEF;
-    /* margin-bottom: 30px; */
-}
 
-.content-atas{
-    height: 80px;
-}
-
-.content-bawah{
-    height: 100%;
-    background-color: white;
-    border-radius: 15px;
-    margin: 10px 15px 50px 15px;
-    padding: 50px
-}
 
 .card-home{
     /* width: 500px; */
