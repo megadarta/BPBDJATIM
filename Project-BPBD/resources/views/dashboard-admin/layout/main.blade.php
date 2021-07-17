@@ -49,50 +49,28 @@
 
         <!-- Sidebar -->
         <nav id="sidebar">
-        <!-- <div class="sidebar-header">
-            <h3>Bootstrap Sidebar</h3>
-            <strong>BS</strong>
-        </div> -->
+            @yield('sidebar-admin')
+        </nav>
 
-        <ul class="list-unstyled components">
-            <li class="active">
-                <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false">
-                    <div class="d-flex menu">
-                        <div><img class="icon-btn-menu" src="{{ asset('assets/menu-sidebar-active.png') }}"></div>
-                        <div><p  class="text-sidebar">Home</p></div>  
-                    </div>  
-                </a>
-            </li>
-            <li>
-                <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle menu-sidebar">
-                    <div class="d-flex menu">
-                        <div><img class="icon-btn-menu" src="{{ asset('assets/history.png') }}"></div>
-                        <div><p  class="text-sidebar">History</p></div>
-                    </div>
-                </a>
-                <ul class="collapse list-unstyled" id="pageSubmenu">
-                    <li>
-                        <a href="#" class="pilihan-menu">Data Bencana</a>
-                    </li>
-                    <li>
-                        <a href="#" class="pilihan-menu">Data Elemen</a>
-                    </li>
-                   
-                </ul>
-
-                <a href="" data-toggle="collapse" aria-expanded="false">
-                    <div class="d-flex menu">
-                        <div><img class="icon-btn-menu" src="{{ asset('assets/akun.png') }}"></div>
-                        <div><p  class="text-sidebar">Data Akun</p></div>   
-                    </div>               
-                </a>
-            </li>
-        </ul>
-
-    </nav>
         <!-- Page Content -->
         <div id="content">
-            @yield('dashboard-admin')
+            <nav>
+                <div class="d-flex container-fluid content-atas">
+                    <div class="content-btn-menu">
+                        <button type="button" id="sidebarCollapse" class="btn-menu">
+                            <img class="icon-btn-menu" src="{{ asset('assets/menu.png') }}">
+                        </button>
+                    </div>
+                    <div class="input-group content-home-admin">
+                        <span class="input-group-text icon-search" ><img src="{{asset('assets/search.png')}}" style="width: 18px"></span>
+                        <input type="text" class="form-control input-search" placeholder="Cari" aria-label="Search" aria-describedby="basic-addon1">
+                    </div>
+                </div>
+                <div class="content-bawah"> 
+                    @yield('dashboard-admin')
+                </div>
+            </nav>
+            
         </div>
 
     </div>       
