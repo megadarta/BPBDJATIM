@@ -2,6 +2,7 @@
 .footer-login-atas{
     background-color: black;
     height: 230px;
+    margin-top: 100px;
     padding: 50px 100px;
 }
 .footer-login-bawah{
@@ -27,6 +28,7 @@
 }
 .img-footer{
     width: 30px;
+    margin-right: 10px;
 }
 .medsos-footer{
     color: white;

@@ -1,7 +1,13 @@
-@extends('layouts.login-register')
+
+@extends('auth\layout\main')
+
+@section('style')
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/login.css') }}"></link>
+@endsection
 
 @section('content')
-<link rel="stylesheet" type="text/css" href="{{ asset('css/login.css') }}">
+
+<!-- form login  -->
 <div class="d-flex flex-column align-items-center login-tengah container">
     <div class='form-login' id="form-login">
         <div class="namelogin"><b>LOGIN</b></div>
