@@ -22,12 +22,17 @@ Route::get('/', function () {
 
 Auth::routes();
 
+
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('/admin/data/home', [App\Http\Controllers\AdminController::class, 'indexhome']);
-Route::get('/admin/data/history/data-bencana', [App\Http\Controllers\AdminController::class, 'indexdatabencana']);
-Route::get('/admin/data/history/data-elemen', [App\Http\Controllers\AdminController::class, 'indexdataelemen']);
-Route::get('/admin/data/data-akun', [App\Http\Controllers\AdminController::class, 'indexdataakun']);
-Route::get('/detail-bencana', [App\Http\Controllers\AdminController::class, 'indexdetailbencana']);
+
+Route::prefix('admin')->group(function () {
+    Route::get('/data/home', [App\Http\Controllers\AdminController::class, 'indexhome']);
+    Route::get('/data/history/data-bencana', [App\Http\Controllers\AdminController::class, 'indexdatabencana']);
+    Route::get('/data/history/data-elemen', [App\Http\Controllers\AdminController::class, 'indexdataelemen']);
+    Route::get('/data/data-akun', [App\Http\Controllers\AdminController::class, 'indexdataakun']);
+    Route::get('/detail-bencana', [App\Http\Controllers\AdminController::class, 'indexdetailbencana']);
+});
+
 
 
 

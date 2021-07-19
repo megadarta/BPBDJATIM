@@ -31,7 +31,7 @@
                    
                 </ul>
 
-                <a href="/admin/data/data-akun" data-toggle="collapse" aria-expanded="false">
+                <a href="/admin/data/data-akun">
                     <div class="d-flex menu">
                         <div><img class="icon-btn-menu" src="{{ asset('assets/akun.png') }}"></div>
                         <div><p  class="text-sidebar">Data Akun</p></div>   
@@ -44,7 +44,7 @@
 @section('dashboard-admin')
   <div class="row row-cols-auto">
     
-    <a href="/detail-bencana" style="text-decoration: none;">
+    <a href="{{ url('admin/detail-bencana') }}" style="text-decoration: none;">
     <div class="col card-home">
         <div class="card-text1">Tanah Longsor</div>
         <div class="card-text2">Kamis, 22 April 2021</div>
@@ -52,7 +52,7 @@
     </div>
     </a>
     
-    <a href="/detail-bencana" style="text-decoration: none;">
+    <a href="{{ url('admin/detail-bencana') }}" style="text-decoration: none;">
     <div class="col card-home">
         <div class="card-text1">Tanah Longsor</div>
         <div class="card-text2">Kamis, 22 April 2021</div>
@@ -60,7 +60,7 @@
     </div>
     </a>
     
-    <a href="/detail-bencana" style="text-decoration: none;">
+    <a href="{{ url('admin/detail-bencana') }}" style="text-decoration: none;">
     <div class="col card-home">
         <div class="card-text1">Tanah Longsor</div>
         <div class="card-text2">Kamis, 22 April 2021</div>

@@ -17,7 +17,7 @@
             <li>
                 <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle menu-sidebar">
                     <div class="d-flex menu">
-                        <div><img class="icon-btn-menu" src="{{ asset('assets/history.png') }}"></div>
+                        <div><img class="icon-btn-menu" src="{{ asset('assets/menu-history-active.png') }}"></div>
                         <div><p  class="text-sidebar true">History</p></div>
                     </div>
                 </a>
