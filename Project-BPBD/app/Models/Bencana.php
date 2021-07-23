@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class Bencana extends Model
 {
@@ -16,4 +17,11 @@ class Bencana extends Model
     public function elements(){
         return $this->belongsToMany(Element::class, 'bantuan');
     }    
+
+    public function allData(){
+        $results = DB::table('bencanas')
+        ->select('nama_bencana', 'tanggal', 'latitude', 'longitude', 'lokasi')
+        ->get();
+        return $results;
+    }
 }

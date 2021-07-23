@@ -31,4 +31,8 @@ class AdminController extends Controller
     {
         return view('dashboard-admin/detailbencana');
     }
+    // public function indexmaps()
+    // {
+    //     return view('dashboard-admin/maps');
+    // }
 }

@@ -33,6 +33,9 @@ Route::prefix('admin')->group(function () {
     Route::get('/detail-bencana', [App\Http\Controllers\AdminController::class, 'indexdetailbencana']);
 });
 
+Route::get('/maps', [App\Http\Controllers\BencanaController::class, 'index']);
 
+
+Route::get('/maps/titik', [App\Http\Controllers\BencanaController::class, 'titik']);
 
 
