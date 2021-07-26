@@ -42,6 +42,7 @@
 @endsection
 
 @section('dashboard-admin')
+<div class="content-bawah"> 
   <div class="row row-cols-auto">
     
     <a href="{{ url('admin/detail-bencana') }}" style="text-decoration: none;">
@@ -77,4 +78,5 @@
     </a>
     
   </div>
+</div>
 @endsection

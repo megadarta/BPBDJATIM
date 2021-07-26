@@ -42,7 +42,7 @@
 @endsection
 
 @section('dashboard-admin')
-
+<div class="content-bawah"> 
 <div>
   <div class=" d-flex bencana-atas justify-content-between">
         <div class="judul">Data Elemen </div>
@@ -94,5 +94,6 @@
   </tbody>
 </table>
 </div>
-<div>
+</div>
+</div>
 @endsection

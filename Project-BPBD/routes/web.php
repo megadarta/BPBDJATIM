@@ -39,3 +39,5 @@ Route::get('/maps', [App\Http\Controllers\BencanaController::class, 'index']);
 Route::get('/maps/titik', [App\Http\Controllers\BencanaController::class, 'titik']);
 
 
+
+Route::post('/bencana/create', [App\Http\Controllers\BencanaController::class, 'create']);
