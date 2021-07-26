@@ -7,15 +7,18 @@ use Illuminate\Http\Request;
 
 class BencanaController extends Controller
 {
-    public function __construct(){
-        $this->Bencana = new Bencana();
-    }
     public function index(){
         return view('dashboard-admin/maps');
     }
 
-    public function titik(){
-        $results=$this->Bencana->allData();
-        return json_encode($results);
+    // public function titik(){
+    //     $results=$this->Bencana->allData();
+    //     return json_encode($results);
+    // }
+
+    public function create(Request $request)
+    {
+        \App\Models\Bencana::create($request->all());  
+        return redirect('/maps');
     }
 }

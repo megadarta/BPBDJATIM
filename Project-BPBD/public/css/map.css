@@ -1,0 +1,49 @@
+/* .mapid{
+} */
+.content-bawah-maps{
+    min-height: 600px;
+    /* height: 100%; */
+    background-color: white;
+    border-radius: 15px;
+    margin: 10px 15px 50px 15px;
+}
+
+.popup{
+    width: 300px;
+    max-height: 300px!important;
+    position: relative;
+    z-index: 9999;
+    margin-top: -100px;
+    margin-left: auto;
+    margin-right: auto;
+    align-items: center;
+    background: #FFFFFF;
+    border: 1px solid #FE5E32;
+    box-sizing: border-box;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 10px;
+    padding: 10px 20px;
+}
+.nama-peta{
+    font-size: 15px;
+    font-weight: bold;
+}
+.text-peta{
+    font-size: 10px;
+    border: none;
+}
+
+.btn-bencana{
+    background-color: #FE5E32;
+    border: 1px solid #FE5E32;
+    box-sizing: border-box;
+    border-radius: 5px;
+    font-size: 10px;
+    width: 80px;
+    height: 30px;
+    color: white;
+}
+
+.icon-tambah-bencana{
+    width: 10px;
+}
