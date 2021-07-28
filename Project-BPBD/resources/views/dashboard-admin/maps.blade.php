@@ -12,11 +12,6 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
     integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
     
-    <!-- Load Esri Leaflet Geocoder from CDN -->
-    <link rel="stylesheet" href="https://unpkg.com/esri-leaflet-geocoder@3.1.0/dist/esri-leaflet-geocoder.css"
-    integrity="sha512-IM3Hs+feyi40yZhDH6kV8vQMg4Fh20s9OzInIIAc4nx7aMYMfo+IenRUekoYsHZqGkREUgx0VvlEsgm7nCDW9g=="
-    crossorigin="">
-
 @endsection
 
 @section('sidebar-admin')
@@ -131,20 +126,13 @@
         integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
         crossorigin="">
 </script>
-<!-- Load Esri Leaflet js from CDN -->
-<script src="https://unpkg.com/esri-leaflet@3.0.2/dist/esri-leaflet.js"
-        integrity="sha512-myckXhaJsP7Q7MZva03Tfme/MSF5a6HC2xryjAM4FxPLHGqlh5VALCbywHnzs2uPoF/4G/QVXyYDDSkp5nPfig=="
-        crossorigin="">
-</script>
 
-<!-- Load Esri Leaflet Geocoder from CDN -->
-<script src="https://unpkg.com/esri-leaflet-geocoder@3.1.0/dist/esri-leaflet-geocoder.js"
-        integrity="sha512-FbJc8QgjTS3k1G41cT+bSnU7D41T2sUdLBN1ElrYDN3E5vZwMuoft3PqXAJN9FCa2lXT7Anva7X0OuwiLDJ+yg=="
-        crossorigin="">
+<!-- jQuery  -->
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"
+        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous">
 </script>
 
 <script>
-    const apiKey = "AAPK0af3d4329245422eab248f7f7f25eb37sm9eqg-x3K-ai7TpHiUcg_nOrlvpsxJQDLJ9I2PJpQLpo9k5yonRIabYNVchGzw1";
 	var mymap = L.map('mapid').setView([-6.8826604, 109.0833123], 6);
 
     // L.tileLayer('http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}',{
@@ -164,31 +152,24 @@
 
     // function popup 
     var popup = L.popup();
-    var geocodeService = L.esri.Geocoding.geocodeService({
-        apikey: apiKey // replace with your api key - https://developers.arcgis.com
-    });
 
     mymap.on('click',function (e){
-        
         popup
             .setLatLng(e.latlng)
             .setContent("Koordinatnya adalah " + e.latlng.lat + "," + e.latlng.lng 
                 .toString()
                 )
             .openOn(mymap);
-        var latling = e.latlng.lat + "," + e.latlng.lng;
-        document.getElementById('latlong').value = latling;
-        
-        geocodeService.reverse().latlng(e.latlng).run(function (error, result) {
-            var tempat;
-            if(result.address.City){
-                tempat = result.address.City + ", " + result.address.Region + " (" + result.address.Postal + ")";
-                
-            }else{
-                tempat = result.address.Region + " (" + result.address.Postal + ")";
+        var latling = e.latlng.lat + "," + e.latlng.lng 
+        document.getElementById('latlong').value = latling
+
+        $.ajax({
+            url:"https://nominatim.openstreetmap.org/reverse",
+            data: "lat="+e.latlng.lat+"&lon="+e.latlng.lng+"&format=json",
+            dataType:"JSON",
+            success:function(data){
+                document.getElementById('tempat').value = data.display_name;
             }
-            console.log(tempat);
-            document.getElementById('tempat').value = tempat;
         });
     });
 
