@@ -46,10 +46,10 @@
 <div>
   <div class=" d-flex bencana-atas justify-content-between">
         <div class="judul">Data Bencana </div>
-        <div class="btn button-new d-flex justify-content-center align-items-center">
+        <!-- <div class="btn button-new d-flex justify-content-center align-items-center">
             <div class="btn-new"><img src="{{asset('assets/plus.png')}}" style="width: 20px"></div>
             <div class="new">New</div>
-        </div>
+        </div> -->
   </div>
 
   <div>
@@ -66,19 +66,23 @@
     </tr>
   </thead>
   <tbody>
+    <?php $i = 1; ?>
+    @foreach($data_bencana as $item)
     <tr>
-        <th scope="row">1</th>
-        <td>Pemadam Kebakaran</td>
-        <td>20/04/2021</td>
-        <td>12:00 WIB</td>
-        <td>Malang</td>
-        <td>Aktif</td>
+        <th scope="row">{{$i}}</th>
+        <td>{{$item->nama_bencana}}</td>
+        <td>{{$item->tanggal}}</td>
+        <td>{{$item->tanggal}}</td>
+        <td>{{$item->lokasi}}</td>
+        <td>{{$item->status}}</td>
         <td>
-            <a href=""><img src="{{asset('assets/delete.png')}}" width="20px" ></a>
-            <a href=""><img src="{{asset('assets/edit.png')}}" width="20px" ></a>
+            <a href="{{ url('bencana/delete', $item->id) }}"><img src="{{asset('assets/delete.png')}}" width="20px" ></a>
+            <a href="{{ url('bencana/edit', $item->id) }}"><img src="{{asset('assets/edit.png')}}" width="20px" ></a>
         </td>
     </tr>
-   
+    <?php $i++?>
+   @endforeach
+
   </tbody>
 </table>
 </div>

@@ -75,7 +75,8 @@
     <div class="popup d-flex">
         <div>
             <input type="text" class="text-peta nama-peta" id="tempat" name="nama_tempat">
-            <input type="text" class="text-peta" id="latlong" name="latlong">
+            <input type="text" class="text-peta" id="latitude" name="latitude">
+            <input type="text" class="text-peta" id="longitude" name="longitude">
         </div>
         <div>
             <button type="button" class="btn-bencana" onclick="tambahbencana()">
@@ -104,8 +105,12 @@
                         <label class="form-label">Lokasi</label>
                         <input name="lokasi" type="text" class="form-control" id="lokasi">
 
-                        <label class="form-label">Long Lang</label>
-                        <input name="longlang" type="text" class="form-control" id="titik">
+                        <label class="form-label">Latitude</label>
+                        <input name="latitude" type="text" class="form-control" id="titik1">
+
+                        <label class="form-label">Longitude</label>
+                        <input name="longitude" type="text" class="form-control" id="titik2">
+
                     
                     </div>
                     <div class="modal-footer">
@@ -116,7 +121,14 @@
                 </div>
             </div>
         </div>    
+
+     
     </div>
+    <!-- Data bencana dari controller  -->
+    <div>
+        <input value="{{ $data_bencana }}" type="hidden" id="data_bencana">
+    </div>
+   
 </div>
 @endsection
 
@@ -133,13 +145,9 @@
 </script>
 
 <script>
+    
 	var mymap = L.map('mapid').setView([-6.8826604, 109.0833123], 6);
 
-    // L.tileLayer('http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}',{
-    // maxZoom: 20,
-    // subdomains:['mt0','mt1','mt2','mt3']
-    // }).addTo(mymap);
-    
     L.tileLayer(
         'https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibmFiaWxjaGVuIiwiYSI6ImNrOWZzeXh5bzA1eTQzZGxpZTQ0cjIxZ2UifQ.1YMI-9pZhxALpQ_7x2MxHw', {
             attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
@@ -149,7 +157,7 @@
             zoomOffset: -1,
             accessToken: 'your.mapbox.access.token'
         }).addTo(mymap);
-
+    
     // function popup 
     var popup = L.popup();
 
@@ -160,9 +168,12 @@
                 .toString()
                 )
             .openOn(mymap);
-        var latling = e.latlng.lat + "," + e.latlng.lng 
-        document.getElementById('latlong').value = latling
+        var latitude = e.latlng.lat
+        var longitude = e.latlng.lng 
+        document.getElementById('latitude').value = latitude
+        document.getElementById('longitude').value = longitude
 
+        // nama lokasi 
         $.ajax({
             url:"https://nominatim.openstreetmap.org/reverse",
             data: "lat="+e.latlng.lat+"&lon="+e.latlng.lng+"&format=json",
@@ -175,9 +186,33 @@
 
     //function modal
     function tambahbencana(){
-        document.getElementById('titik').value = document.getElementById('latlong').value
+        document.getElementById('titik1').value = document.getElementById('latitude').value        
+        document.getElementById('titik2').value = document.getElementById('longitude').value
         document.getElementById('lokasi').value = document.getElementById('tempat').value
         $('#inputbencana').modal('show');
     }
+
+
 </script>
+
+<!-- Memunculkan titik bencana  -->
+<script>
+    $( document ).ready(function() {
+        var bencana = JSON.parse(document.getElementById('data_bencana').value);
+        console.log(bencana);
+
+        for(i in bencana){
+            console.log(bencana[i].nama_bencana);
+
+            console.log(bencana[i].longlang);
+            var marker =  L.marker([bencana[i].latitude,bencana[i].longitude]).addTo(mymap);
+            var popup2 = L.popup()
+            .setContent(bencana[i].nama_bencana);
+        
+            marker.bindPopup(popup2).openPopup();
+        }
+    })
+
+</script>
+
 @endsection

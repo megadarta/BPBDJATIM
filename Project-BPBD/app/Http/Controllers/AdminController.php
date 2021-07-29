@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\Bencana;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
@@ -13,11 +13,13 @@ class AdminController extends Controller
     // menampilkan
     public function indexhome()
     {
-        return view('dashboard-admin/home');
+        $data_bencana = \App\Models\Bencana::all();
+        return view('dashboard-admin/home', ['data_bencana' => $data_bencana]); 
     }
     public function indexdatabencana()
-    {
-        return view('dashboard-admin/databencana');
+    {   
+        $data_bencana = \App\Models\Bencana::all();
+        return view('dashboard-admin/databencana', ['data_bencana' => $data_bencana]); 
     }
     public function indexdataelemen()
     {
@@ -27,10 +29,23 @@ class AdminController extends Controller
     {
         return view('dashboard-admin/dataakun');
     }
-    public function indexdetailbencana()
+    public function indexdetailbencana($id)
     {
-        return view('dashboard-admin/detailbencana');
+        $bencana = \App\Models\Bencana::find($id);  
+        return view('dashboard-admin/detailbencana', ['bencana' => $bencana]);
     }
+    public function delete($id)
+    {
+        $bencana = \App\Models\Bencana::find($id);   
+        $bencana->delete();
+        return redirect('/admin/data/history/data-bencana');
+    
+    }
+    // public function edit($id)
+    // {
+    //     $editbencana = \App\Models\Bencana::find($id);   
+    //     return view('dashboard-admin/databencana', ['editbencana' => $editbencana])->with("$('#editbencana').modal('show')");
+    // }
     // public function indexmaps()
     // {
     //     return view('dashboard-admin/maps');

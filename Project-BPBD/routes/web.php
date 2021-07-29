@@ -30,14 +30,14 @@ Route::prefix('admin')->group(function () {
     Route::get('/data/history/data-bencana', [App\Http\Controllers\AdminController::class, 'indexdatabencana']);
     Route::get('/data/history/data-elemen', [App\Http\Controllers\AdminController::class, 'indexdataelemen']);
     Route::get('/data/data-akun', [App\Http\Controllers\AdminController::class, 'indexdataakun']);
-    Route::get('/detail-bencana', [App\Http\Controllers\AdminController::class, 'indexdetailbencana']);
+    Route::get('/detail-bencana/{id}', [App\Http\Controllers\AdminController::class, 'indexdetailbencana']);
 });
 
-Route::get('/maps', [App\Http\Controllers\BencanaController::class, 'index']);
+Route::get('/maps', [App\Http\Controllers\BencanaController::class, 'maps']);
 
 
 Route::get('/maps/titik', [App\Http\Controllers\BencanaController::class, 'titik']);
 
-
-
 Route::post('/bencana/create', [App\Http\Controllers\BencanaController::class, 'create']);
+Route::get('/bencana/delete/{id}', [App\Http\Controllers\AdminController::class, 'delete']);
+Route::get('/bencana/edit/{id}', [App\Http\Controllers\AdminController::class, 'edit']);

@@ -5,6 +5,7 @@
 @endsection
 
 @section('sidebar-admin')
+
 <ul class="list-unstyled components">
             <li>
                 <a href="/admin/data/home">
@@ -43,12 +44,13 @@
 
 @section('dashboard-admin')
 
+<div class="content-bawah"> 
 <div>
   <div class="bencana-atas">
-        <div class="judul-detail">TANAH LONGSOR</div>
+        <div class="judul-detail">{{$bencana->nama_bencana}}</div>
         <div class="info-detail">
-        Waktu   : Kamis, 2 April 2021 <br>                 
-        Lokasi  : Desa Tamansari, Ampelggading, Kabupaten malang
+        Waktu   : {{$bencana->tanggal}} <br>                 
+        Lokasi  : {{$bencana->lokasi}}
         </div>
   </div>
 
@@ -75,5 +77,6 @@
   </tbody>
 </table>
 </div>
-<div>
+</div>
+</div>
 @endsection

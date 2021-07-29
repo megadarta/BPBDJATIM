@@ -44,38 +44,16 @@
 @section('dashboard-admin')
 <div class="content-bawah"> 
   <div class="row row-cols-auto">
-    
-    <a href="{{ url('admin/detail-bencana') }}" style="text-decoration: none;">
+    @foreach($data_bencana as $bencana)
+    <a href="{{ url('admin/detail-bencana', $bencana->id) }}" style="text-decoration: none;">
     <div class="col card-home">
-        <div class="card-text1">Tanah Longsor</div>
-        <div class="card-text2">Kamis, 22 April 2021</div>
-        <div class="card-text3">Desa Tamansari, Ampelgading, kabupaten Malang</div>
+        <div class="card-text1">{{$bencana->nama_bencana}}</div>
+        <div class="card-text2">{{$bencana->tanggal}}</div>
+        <div class="card-text3">{{$bencana->lokasi}}</div>
     </div>
     </a>
-    
-    <a href="{{ url('admin/detail-bencana') }}" style="text-decoration: none;">
-    <div class="col card-home">
-        <div class="card-text1">Tanah Longsor</div>
-        <div class="card-text2">Kamis, 22 April 2021</div>
-        <div class="card-text3">Desa Tamansari, Ampelgading, kabupaten Malang</div>
-    </div>
-    </a>
-    
-    <a href="{{ url('admin/detail-bencana') }}" style="text-decoration: none;">
-    <div class="col card-home">
-        <div class="card-text1">Tanah Longsor</div>
-        <div class="card-text2">Kamis, 22 April 2021</div>
-        <div class="card-text3">Desa Tamansari, Ampelgading, kabupaten Malang</div>
-    </div>
-    </a>
-    
-    <a href="/detail-bencana" style="text-decoration: none;">
-    <div class="col card-home">
-        <div class="card-text1">Tanah Longsor</div>
-        <div class="card-text2">Kamis, 22 April 2021</div>
-        <div class="card-text3">Desa Tamansari, Ampelgading, kabupaten Malang</div>
-    </div>
-    </a>
+    @endforeach
+
     
   </div>
 </div>
