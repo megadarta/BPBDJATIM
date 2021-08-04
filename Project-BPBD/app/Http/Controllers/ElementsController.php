@@ -10,6 +10,8 @@ use App\Models\Element;
 
 class ElementsController extends Controller
 {
+ 
+
     /**
      * Display a listing of the resource.
      *
@@ -17,20 +19,8 @@ class ElementsController extends Controller
      */
     public function index()
     {
-        //
-        $elements = Element::all();
-        return view('dashboard-admin/dataelemen',compact('elements'));
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        $elements = Element::all();
-        return view('create_element',compact('elements'));
+        $data_elemen = Element::all();
+        return view('dashboard-admin/dataelemen',compact('data_elemen'));
     }
 
     /**
@@ -48,7 +38,7 @@ class ElementsController extends Controller
         
         // Cek Validasi
         if ($validated->fails()) {
-            return redirect()->route('buat'); 
+            return back(); 
         } else {
             $extension = $request->file('icon')->extension();
             $icon_name = request('nama_element').'.'.$extension;
@@ -61,32 +51,32 @@ class ElementsController extends Controller
             ]);
 
             //Redirect
-            return redirect()->route('');
+            return back();
         }
         
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Element $element
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Element $element)
-    {
-        //
-    }
+    // /**
+    //  * Display the specified resource.
+    //  *
+    //  * @param  \App\Models\Element $element
+    //  * @return \Illuminate\Http\Response
+    //  */
+    // public function show(Element $element)
+    // {
+    //     //
+    // }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Element $element
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Element $element)
-    {
-        //
-    }
+    // /**
+    //  * Show the form for editing the specified resource.
+    //  *
+    //  * @param  \App\Models\Element $element
+    //  * @return \Illuminate\Http\Response
+    //  */
+    // public function edit(Element $element)
+    // {
+    //     //
+    // }
 
     /**
      * Update the specified resource in storage.
@@ -95,7 +85,7 @@ class ElementsController extends Controller
      * @param  \App\Models\Element $element
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Element $element)
+    public function update(Request $request)
     {
         $validated = Validator::make($request->all(),[
             'nama_element' =>['required', 'string', 'max:255'],
@@ -104,10 +94,10 @@ class ElementsController extends Controller
         
         // Cek Validasi
         if ($validated->fails()) {
-            return redirect()->route('buat'); 
+            return back(); 
         } else {
             if($request->file('icon')){
-                Storage::disk('public_image')->delete('assets/icon/'.$element->icon);
+                // Storage::disk('public_image')->delete('assets/icon/'.$element->icon);
 
                 $extension = $request->file('icon')->extension();
                 $icon_name = request('nama_element').'.'.$extension;
@@ -118,13 +108,13 @@ class ElementsController extends Controller
             }
             
             // Input Data ke Database
-            Element::update([
+            Element::where('id', $request->id)->update([
                 'nama_element' => request('nama_element'),
                 'icon' => $icon_name,
             ]);
 
             //Redirect
-            return redirect()->route('');
+            return back();
         }
     }
 
@@ -134,11 +124,11 @@ class ElementsController extends Controller
      * @param  \App\Models\Element $element
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Element $element)
+    public function delete(Element $item)
     {
-        Storage::disk('public_image')->delete('icon/'.$element->icon);
-        $element->delete();
+        Storage::disk('public_image')->delete('icon/'.$item->icon);
+        $item->delete();
 
-        return redirect()->route('');
+        return back();
     }
 }

@@ -29,6 +29,10 @@
     color: #FE5E32;
 }
 
+a{
+    text-decoration: none!important;
+}
+
 .btn-new{
     margin-top: -2px;
 }

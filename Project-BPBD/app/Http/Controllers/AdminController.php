@@ -41,14 +41,12 @@ class AdminController extends Controller
         return redirect('/admin/data/history/data-bencana');
     
     }
-    // public function edit($id)
-    // {
-    //     $editbencana = \App\Models\Bencana::find($id);   
-    //     return view('dashboard-admin/databencana', ['editbencana' => $editbencana])->with("$('#editbencana').modal('show')");
-    // }
-    // public function indexmaps()
-    // {
-    //     return view('dashboard-admin/maps');
-    // }
-    
+
+    public function update(Request $request)
+    {
+        $editbencana = \App\Models\Bencana::findOrFail($request->id);   
+        $editbencana->update($request->all());
+
+        return back();
+    }
 }

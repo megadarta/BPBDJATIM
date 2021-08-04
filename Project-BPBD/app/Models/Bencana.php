@@ -9,5 +9,5 @@ use Illuminate\Support\Facades\DB;
 class Bencana extends Model
 {
     protected $table = 'bencanas';
-    protected $fillable  = ['nama_bencana', 'tanggal', 'latitude', 'longitude', 'lokasi'];
+    protected $fillable  = ['nama_bencana', 'tanggal', 'latitude', 'longitude', 'lokasi', 'status'];
 }
