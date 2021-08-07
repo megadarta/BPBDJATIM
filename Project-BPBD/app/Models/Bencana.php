@@ -8,6 +8,16 @@ use Illuminate\Support\Facades\DB;
 
 class Bencana extends Model
 {
+    use HasFactory;
     protected $table = 'bencanas';
-    protected $fillable  = ['nama_bencana', 'tanggal', 'latitude', 'longitude', 'lokasi', 'status'];
+    protected $primaryKey = 'id';
+
+    protected $fillable = [
+        'nama_bencana', 
+        'tanggal', 
+        'latitude', 
+        'longitude',
+        'lokasi',
+        'status_bencana',
+    ];
 }

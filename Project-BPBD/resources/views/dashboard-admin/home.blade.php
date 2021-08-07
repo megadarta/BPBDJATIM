@@ -45,7 +45,7 @@
 <div class="content-bawah"> 
   <div class="row row-cols-auto">
     @foreach($data_bencana as $bencana)
-    <a href="{{ url('admin/detail-bencana', $bencana->id) }}" style="text-decoration: none;">
+    <a href="{{ url('admin/data/detail-bencana', $bencana->id) }}" style="text-decoration: none;">
     <div class="col card-home">
         <div class="card-text1">{{$bencana->nama_bencana}}</div>
         <div class="card-text2">{{$bencana->tanggal}}</div>

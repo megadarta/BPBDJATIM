@@ -10,25 +10,17 @@ use App\Models\Element;
 
 class ElementsController extends Controller
 {
- 
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
 
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
         $data_elemen = Element::all();
         return view('dashboard-admin/dataelemen',compact('data_elemen'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         $validated = Validator::make($request->all(),[
@@ -38,7 +30,7 @@ class ElementsController extends Controller
         
         // Cek Validasi
         if ($validated->fails()) {
-            return back(); 
+            return back()->withErrors($validated); 
         } else {
             $extension = $request->file('icon')->extension();
             $icon_name = request('nama_element').'.'.$extension;
@@ -51,41 +43,12 @@ class ElementsController extends Controller
             ]);
 
             //Redirect
-            return back();
+            return redirect()->back();
         }
         
     }
 
-    // /**
-    //  * Display the specified resource.
-    //  *
-    //  * @param  \App\Models\Element $element
-    //  * @return \Illuminate\Http\Response
-    //  */
-    // public function show(Element $element)
-    // {
-    //     //
-    // }
-
-    // /**
-    //  * Show the form for editing the specified resource.
-    //  *
-    //  * @param  \App\Models\Element $element
-    //  * @return \Illuminate\Http\Response
-    //  */
-    // public function edit(Element $element)
-    // {
-    //     //
-    // }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Element $element
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request)
+    public function update(Request $request, Element $element)
     {
         $validated = Validator::make($request->all(),[
             'nama_element' =>['required', 'string', 'max:255'],
@@ -118,12 +81,6 @@ class ElementsController extends Controller
         }
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Element $element
-     * @return \Illuminate\Http\Response
-     */
     public function delete(Element $item)
     {
         Storage::disk('public_image')->delete('icon/'.$item->icon);

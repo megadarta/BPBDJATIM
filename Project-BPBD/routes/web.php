@@ -1,6 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\AkunController;
+use App\Http\Controllers\BencanaController;
+use App\Http\Controllers\ElementsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,9 +20,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
-// Route::get('/login', function () {
-//     return view('/auth/login');
-// });
+
 
 Auth::routes();
 
@@ -26,23 +28,38 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::prefix('admin')->group(function () {
-    Route::get('/data/home', [App\Http\Controllers\AdminController::class, 'indexhome']);
-    Route::get('/data/history/data-bencana', [App\Http\Controllers\AdminController::class, 'indexdatabencana']);
-    Route::get('/data/data-akun', [App\Http\Controllers\AdminController::class, 'indexdataakun']);
-    Route::get('/detail-bencana/{id}', [App\Http\Controllers\AdminController::class, 'indexdetailbencana']);
+    //data
+    Route::prefix('data')->group(function () {
+        //home
+        Route::get('/', [AdminController::class, 'indexhome'])->name('admin');
+        Route::get('/home', [AdminController::class, 'indexhome']);
+
+        Route::prefix('history')->group(function () {
+            Route::get('/data-bencana', [BencanaController::class, 'index']);
+            Route::get('/data-elemen', [ElementsController::class, 'index']);
+        });
+        // bencana
+        Route::get('/detail-bencana/{id}', [BencanaController::class, 'show']);
+
+        //akun
+        Route::get('data-akun', [AkunController::class, 'index']);
+    });
+
+    //map
+    Route::prefix('maps')->group(function () {
+        Route::get('/', [BencanaController::class, 'maps']);
+    });
 });
 
-// maps 
-Route::get('/maps', [App\Http\Controllers\BencanaController::class, 'maps']);
-Route::get('/maps/titik', [App\Http\Controllers\BencanaController::class, 'titik']);
-
-// bencana 
-Route::post('/bencana/create', [App\Http\Controllers\BencanaController::class, 'create']);
-Route::get('/bencana/delete/{id}', [App\Http\Controllers\AdminController::class, 'delete']);
+// action bencana 
+Route::post('/bencana/store', [BencanaController::class, 'store'])->name('simpan bencana');
 Route::post('/bencana/update/{id}', [App\Http\Controllers\AdminController::class, 'update']);
+Route::get('/bencana/delete/{id}', [BencanaController::class, 'delete']);
 
-// elemen 
-Route::get('admin/data/history/data-elemen', [App\Http\Controllers\ElementsController::class, 'index']);
-Route::post('/elemen/create', [App\Http\Controllers\ElementsController::class, 'store']);
-Route::get('/elemen/delete/{item}', [App\Http\Controllers\ElementsController::class, 'delete']);
+// action elemen 
+Route::post('/elemen/store', [App\Http\Controllers\ElementsController::class, 'store'])->name('simpan element');
 Route::post('/elemen/update/{icon}', [App\Http\Controllers\ElementsController::class, 'update']);
+Route::get('/elemen/delete/{item}', [App\Http\Controllers\ElementsController::class, 'delete']);
+
+// action akun
+Route::get('/akun/delete/{id}', [AkunController::class, 'delete']);

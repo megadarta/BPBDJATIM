@@ -8,6 +8,12 @@ use Illuminate\Support\Facades\DB;
 
 class Element extends Model
 {
+    use HasFactory;
     protected $table = 'elements';
-    protected $fillable  = ['nama_element', 'icon'];
+    protected $primaryKey = 'id';
+
+    protected $fillable = [
+        'nama_element',
+        'icon',
+    ];
 }
