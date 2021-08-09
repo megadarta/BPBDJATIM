@@ -7,6 +7,8 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Storage;
 use App\Models\Element;
+// use RealRashid\SweetAlert\Facades\Alert;
+
 
 class ElementsController extends Controller
 {
@@ -128,6 +130,7 @@ class ElementsController extends Controller
     {
         Storage::disk('public_image')->delete('icon/'.$item->icon);
         $item->delete();
+        // Alert::success('Success Title', 'Success Message');
 
         return back();
     }

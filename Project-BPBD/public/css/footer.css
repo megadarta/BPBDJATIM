@@ -2,7 +2,7 @@
 .footer-login-atas{
     background-color: black;
     height: 230px;
-    margin-top: 100px;
+    margin-top: 50px;
     padding: 50px 100px;
 }
 .footer-login-bawah{
@@ -15,7 +15,7 @@
     margin-top: auto!important;
     margin-bottom: auto!important;
     font-family: IBM Plex Sans;
-    font-size: 12px;
+    font-size: 10px;
 }
 .alamat-footer{
     color: white;
@@ -23,7 +23,7 @@
     font-weight: normal;
     text-align: left;
     font-family: IBM Plex Sans;
-    font-size: 12px;
+    font-size: 11px;
     
 }
 .img-footer{
@@ -35,4 +35,5 @@
     font-family: IBM Plex Sans;
     font-style: normal;
     font-weight: normal;
+    font-size: 11px;
 }

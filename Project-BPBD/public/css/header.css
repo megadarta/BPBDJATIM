@@ -3,22 +3,26 @@
         background-color: black;
         height: 200px;
         width: 100%;
-        /* position: absolute; */
-        /* left: 0px;
-        top: 0px; */
     }
+
+
     .logo-nama{
          color: white;
-         padding-top: 30px;
+         padding-top: 50px!important;
      }
      .logo-atas{
-         width: 100px;
+         width: 50px;
      }
      .nama-atas{
          margin-left: 10px;
-         width: 180px;
+         width: 108px;
          text-align: left;
          margin-top: auto;
          margin-bottom: auto;
-         font-size: 14px;
+         font-size: 10px;
      }
+
+
+    
+
+

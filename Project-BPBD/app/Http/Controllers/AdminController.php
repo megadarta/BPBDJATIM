@@ -11,6 +11,11 @@ class AdminController extends Controller
         $this->middleware('auth');
     }
     // menampilkan
+    public function login2()
+    {
+        // $data_bencana = \App\Models\Bencana::all();
+        return view('auth2/layout/main'); 
+    }
     public function indexhome()
     {
         $data_bencana = \App\Models\Bencana::all();

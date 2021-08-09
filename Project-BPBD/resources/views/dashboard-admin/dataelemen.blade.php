@@ -46,13 +46,15 @@
 <div>
   <div class=" d-flex bencana-atas justify-content-between">
         <div class="judul">Data Elemen </div>
-        <a href="" data-bs-toggle="modal" data-bs-target="#tambahelemen"><div class="btn button-new d-flex justify-content-center align-items-center">
+        <a href="" data-bs-toggle="modal" data-bs-target="#tambahelemen">
+        <div class="btn button-new d-flex justify-content-center align-items-center">
             <div class="btn-new"><img src="{{asset('assets/plus.png')}}" style="width: 20px"></div>
             <div class="new">New</div>
-        </div></a>
+        </div>
+        </a>
   </div>
 
-  <div>
+  <div class="table-responsive">
   <table class="table table-bencana">
   <thead>
     <tr>
@@ -144,6 +146,19 @@
 </div>
 <!-- endmodal -->
 
+    <script>
+        $( document ).ready(function(){
+                Swal.fire({
+                    // position: 'top-end',
+                    icon: 'success',
+                    title: 'Data Berhasil di hapus',
+                    showConfirmButton: false,
+                    timer: 1500
+                    })
+        });
+    </script>
+
+     
 <script>
     $('#editelemen').on('click', function (){
         // var button = $(event.releatedTarget)
@@ -156,5 +171,9 @@
         modal.find('.modal-body #id').val(id);
         
     })
+
+
+
 </script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.2/dist/sweetalert2.all.min.js"></script>
 @endsection
