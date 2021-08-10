@@ -1,0 +1,28 @@
+.navbar{
+    padding: 20px;
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.25);
+    z-index: 9999;
+    position: fixed;
+}
+
+.logo-atas-navbar{
+    width: 50px;
+}
+
+.btn-login-landingpage{
+    color: #536DFE!important;
+}
+
+.btn-register-landingpage{
+    background-color: #536DFE!important;
+    color: white!important;
+}
+
+.menu-nav{
+    font-size: 14px;
+    color: black!important;
+}
+
+.menu-navbar{
+    margin-left: 20px;
+}

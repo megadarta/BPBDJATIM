@@ -13,7 +13,7 @@
   </div>
 
   <div class="menu-navbar-admin">
-      <a class="text-menu-navbar" href="{{ url('/maps') }}"><img class="gambar-atas-navbar" src="{{ asset('assets/maps.png') }}" >Maps</a>
+      <a class="text-menu-navbar" href="{{ url('/admin/maps') }}"><img class="gambar-atas-navbar" src="{{ asset('assets/maps.png') }}" >Maps</a>
       
       <a class="text-menu-navbar navbar-active" href="{{ url('/admin/data/home') }}"><img class="gambar-atas-navbar" src="{{ asset('assets/data.png') }}">Data</a>
   </div>

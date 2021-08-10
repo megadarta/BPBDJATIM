@@ -44,109 +44,110 @@
 @section('dashboard-admin')
 <div class="content-bawah"> 
 <div>
-  <div class=" d-flex bencana-atas justify-content-between">
+    <div class=" d-flex bencana-atas justify-content-between">
         <div class="judul">Data Elemen </div>
         <a href="" data-bs-toggle="modal" data-bs-target="#tambahelemen">
         <div class="btn button-new d-flex justify-content-center align-items-center">
             <div class="btn-new"><img src="{{asset('assets/plus.png')}}" style="width: 20px"></div>
             <div class="new">New</div>
-        </div>
-        </a>
-  </div>
-
-  <div class="table-responsive">
-  <table class="table table-bencana">
-  <thead>
-    <tr>
-      <th scope="col">No</th>
-      <th scope="col">Gambar</th>
-      <th scope="col">Nama Elemen</th>
-      <th scope="col">Action</th>
-    </tr>
-  </thead>
-  <tbody>
-    <?php $i = 1; ?>
-    @foreach($data_elemen as $item)
-    
-    <tr>
-      <th scope="row">{{$i}}</th>
-      <td><img src="{{url('assets/icon/', $item->icon)}}" width="20px" style="margin-left: 13px;"></td>
-      <td>{{$item->nama_element}}</td>
-      <td>
+        </div></a>
+    </div>
+    @if ($errors->any())
+        @foreach ($errors->all() as $error)
+            <p class="alert alert-danger card-text">{{$error}}</p>
+        @endforeach
+    @endif
+    <div>
+    <table class="table table-bencana">
+    <thead>
+        <tr>
+        <th scope="col">No</th>
+        <th scope="col">Gambar</th>
+        <th scope="col">Nama Elemen</th>
+        <th scope="col">Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @php
+            $i = 0;
+        @endphp 
         
-      <a href="{{ url('elemen/delete', $item) }}"><img src="{{asset('assets/delete.png')}}" width="20px" ></a>
-      <a href="" id="editelemen" data-bs-toggle="modal" data-bs-target="#modaledit" data-nama="{{$item->nama_element}}" data-icon="{{$item->icon}}" data-id="{{$item->id}}"><img src="{{asset('assets/edit.png')}}" width="20px" ></a>
-      </td>
-    </tr>
-    <?php $i++?>
-    @endforeach
-  </tbody>
-</table>
-</div>
+        @foreach($data_elemen as $item)
+        <tr>
+        <th scope="row">{{ ++$i }}</th>
+            <td><img src="{{url('assets/icon/', $item->icon)}}" width="20px" style="margin-left: 13px;"></td>
+            <td>{{$item->nama_element}}</td>
+            <td>
+                <a href="{{ url('elemen/delete', $item) }}"><img src="{{asset('assets/delete.png')}}" width="20px" ></a>
+                <a href="" id="editelemen" data-bs-toggle="modal" data-bs-target="#modaledit" data-nama="{{$item->nama_element}}" data-icon="{{$item->icon}}" data-id="{{$item->id}}"><img src="{{asset('assets/edit.png')}}" width="20px" ></a>
+            </td>
+        </tr>
+        @endforeach
+    </tbody>
+    </table>
+    </div>
 </div>
 </div>
 
 <!-- modal tambah elemen -->
 <div class="modal fade" id="tambahelemen" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Tambah Data Elemen</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <form action="{{ url('/elemen/create') }}" enctype="multipart/form-data" method="post" id="tambahelemenform">
-                    {{csrf_field()}}
-
-                    <div class="modal-body">            
-                        <label class="form-label">Nama Elemen</label>
-                        <input name="nama_element" id="nama_element" type="text" class="form-control" value="">
-
-                        <label class="form-label">Masukkan Icon</label>
-                        <input name="icon" id="icon" type="file" class="form-control" value="">
-                    
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary">Upload</button>
-                    </form>
-                    </div>
-                </div>
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Tambah Data Elemen</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-        </div>    
+            <form action="{{ route('simpan element') }}" enctype="multipart/form-data" method="post" id="tambahelemenform">
+                {{csrf_field()}}
+
+                <div class="modal-body">            
+                    <label class="form-label">Nama Elemen</label>
+                    <input name="nama_element" id="nama_element" type="text" class="form-control" value="">
+
+                    <label class="form-label">Masukkan Icon</label>
+                    <input name="icon" id="icon" type="file" class="form-control" value="">
+                
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Upload</button>                
+                </div>
+            </form>
+        </div>
+    </div>    
 </div>
 <!-- endmodal -->
 
 <!-- modal edit elemen  -->
 <div class="modal fade" id="modaledit" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Tambah Data Elemen</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <form action="{{ url('/elemen/update', 'test') }}" enctype="multipart/form-data" method="post" id="tambahelemenform">
-                    {{csrf_field()}}
-
-                    <div class="modal-body">            
-                        <label class="form-label">Nama Elemen</label>
-                        <input name="nama_element" id="nama_element" type="text" class="form-control" value="">
-
-                        <label class="form-label">Masukkan Icon</label>
-                        <input name="icon" id="icon" type="file" class="form-control" value="">
-                    
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary">Update</button>
-                    </form>
-                    </div>
-                </div>
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Tambah Data Elemen</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-        </div>    
+            <form action="{{ url('/elemen/update', 'test') }}" enctype="multipart/form-data" method="post" id="tambahelemenform">
+                {{csrf_field()}}
+
+                <div class="modal-body">            
+                    <label class="form-label">Nama Elemen</label>
+                    <input name="nama_element" id="nama_element" type="text" class="form-control" value="">
+
+                    <label class="form-label">Masukkan Icon</label>
+                    <input name="icon" id="icon" type="file" class="form-control" value="">
+                
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Update</button>
+                </div>
+            </form>
+        </div>
+    </div>    
 </div>
 <!-- endmodal -->
 
-    <script>
+    <!-- <script>
         $( document ).ready(function(){
                 Swal.fire({
                     // position: 'top-end',
@@ -156,7 +157,7 @@
                     timer: 1500
                     })
         });
-    </script>
+    </script> -->
 
      
 <script>

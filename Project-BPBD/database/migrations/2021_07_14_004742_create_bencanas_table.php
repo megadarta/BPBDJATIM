@@ -20,6 +20,7 @@ class CreateBencanasTable extends Migration
             $table->string('latitude');
             $table->string('longitude');
             $table->string('lokasi');
+            $table->string('status_bencana')->default('Aktif');;
             $table->timestamps();
         });
     }

@@ -93,7 +93,7 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">            
-                    <form action="/bencana/create" method="post">
+                    <form action="{{ route('simpan bencana') }}" method="post">
                     {{csrf_field()}}
                         <label class="form-label">Nama Bencana</label>
                         <input name="nama_bencana" type="text" class="form-control">

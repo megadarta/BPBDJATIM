@@ -50,10 +50,6 @@
 <div>
   <div class=" d-flex bencana-atas justify-content-between">
         <div class="judul">Data Bencana </div>
-        <!-- <div class="btn button-new d-flex justify-content-center align-items-center">
-            <div class="btn-new"><img src="{{asset('assets/plus.png')}}" style="width: 20px"></div>
-            <div class="new">New</div>
-        </div> -->
   </div>
 
   <div class="table-responsive">
@@ -78,10 +74,10 @@
         <td>{{$item->tanggal}}</td>
         <td>{{$item->tanggal}}</td>
         <td>{{$item->lokasi}}</td>
-        <td>{{$item->status}}</td>
+        <td>{{$item->status_bencana}}</td>
         <td>
             <a href="{{ url('bencana/delete', $item->id) }}" ><img src="{{asset('assets/delete.png')}}" width="20px" ></a>
-            <a id="buttonedit"  data-bs-toggle="modal" data-bs-target="#modaledit" data-mynama="{{$item->nama_bencana}}" data-lokasi="{{$item->lokasi}}" data-tanggal="{{$item->tanggal}}" data-status="{{$item->status}}" data-longitude="{{$item->longitude}}" data-latitude="{{$item->latitude}}" data-id="{{$item->id}}"><img src="{{asset('assets/edit.png')}}" width="20px" ></a>
+            <a id="buttonedit" data-bs-toggle="modal" data-bs-target="#modaledit" data-mynama="{{$item->nama_bencana}}" data-lokasi="{{$item->lokasi}}" data-tanggal="{{$item->tanggal}}" data-status="{{$item->status}}" data-longitude="{{$item->longitude}}" data-latitude="{{$item->latitude}}" data-id="{{$item->id}}"><img src="{{asset('assets/edit.png')}}" width="20px" ></a>
         </td>
     </tr>
     <?php $i++?>
@@ -121,7 +117,10 @@
                         <input id="longitude" type="text" name="longitude" class="form-control" value="" >
 
                         <label class="form-label" id="statusselect">Status</label>
-                        
+                        <select class='form-select' aria-label='Default select example' name='status_bencana' id='status_bencana'>
+                            <option value='Aktif'>Aktif</option>
+                            <option value='Nonaktif'>Nonaktif</option>
+                        </select>
                     
                     </div>
                     <div class="modal-footer">
@@ -136,10 +135,11 @@
 
 <script>
     $('#buttonedit').on('click', function (){
+        console.log("hallo")
         // var button = $(event.releatedTarget)
         var nama = $(this).data('mynama');
         var lokasi = $(this).data('lokasi');
-        var status = $(this).data('status');
+        // var status = $(this).data('status');
         var id = $(this).data('id');
         var tanggal = $(this).data('tanggal');
         var longitude = $(this).data('longitude');
@@ -154,9 +154,9 @@
         console.log(modal);
         modal.find('.modal-body #nama_bencana').val(nama);
         modal.find('.modal-body #lokasi').val(lokasi);
-        modal.find('.modal-body #statusselect').after(
-            "<select class='form-select' aria-label='Default select example' name='status' id='status'><option selected value='Aktif'>Aktif</option><option value='Nonaktif'>Nonaktif</option></select>"
-        );
+        // modal.find('.modal-body #statusselect').after(
+        //     ""
+        // );
         modal.find('.modal-body #tanggal').val(tanggal);
         modal.find('.modal-body #latitude').val(latitude);
         modal.find('.modal-body #longitude').val(longitude);

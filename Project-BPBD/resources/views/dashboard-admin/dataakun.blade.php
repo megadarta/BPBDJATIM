@@ -59,24 +59,30 @@
   <thead>
     <tr>
       <th scope="col">No</th>
-      <th scope="col">Nama Akun</th>
+      <th scope="col">Nama Instansi</th>
       <th scope="col">Email</th>
-      <th scope="col">Institusi</th>
+      <th scope="col">Nomor Telepon</th>
+      <th scope="col">Role</th>
       <th scope="col">Action</th>
     </tr>
   </thead>
   <tbody>
+    @php
+        $i = 0;
+    @endphp 
+    @foreach ($data_akun as $akun)
     <tr>
-        <th scope="row">1</th>
-        <td>Dinkes</td>
-        <td>dinkes@gmail.com</td>
-        <td>Dinas Kesehatan</td>
+        <th scope="row">{{ ++$i }}</th>
+        <td>{{ $akun->nama_instansi }}</td>
+        <td>{{ $akun->email }}</td>
+        <td>{{ $akun->no_telepon }}</td>
+        <td>{{ $akun->role }}</td>
         <td>
-            <a href=""><img src="{{asset('assets/delete.png')}}" width="20px" ></a>
+            <a href="{{ url('akun/delete', $akun->id) }}"><img src="{{asset('assets/delete.png')}}" width="20px" ></a>
             <a href=""><img src="{{asset('assets/edit.png')}}" width="20px" ></a>
         </td>
     </tr>
-   
+    @endforeach
   </tbody>
 </table>
 </div>
