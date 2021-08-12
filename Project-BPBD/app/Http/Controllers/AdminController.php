@@ -18,9 +18,61 @@ class AdminController extends Controller
     }
     public function indexhome()
     {
-        $data_bencana = \App\Models\Bencana::all();
-        return view('dashboard-admin/home', ['data_bencana' => $data_bencana]); 
+        return view('dashboard-admin/home'); 
     }
+
+    function homesearch(Request $request)
+    {
+        if($request->ajax())
+        {
+            $output = '';
+            $query = $request->get('query');
+            if($query != '')
+            {
+                $data = Bencana::where('nama_bencana', 'like', '%'.$query.'%')
+                    ->orWhere('tanggal', 'like', '%'.$query.'%')  
+                    ->orWhere('lokasi', 'like', '%'.$query.'%')
+                    ->get();                
+            }
+            else
+            {
+                $data = Bencana::all();
+            }
+            $total_row = $data->count();
+            
+            if($total_row > 0)
+            {
+                $i = 0;
+                foreach($data as $row)
+                {
+                    $url_detail = url('admin/data/detail-bencana', $row->id);
+                    $output .= '
+                    <a href="'.$url_detail.'" style="text-decoration: none;">
+                    <div class="col card-home">
+                        <div class="card-text1">'.$row->nama_bencana.'</div>
+                        <div class="card-text2">'.$row->tanggal.'</div>
+                        <div class="card-text3">'.$row->lokasi.'</div>
+                    </div>
+                    </a>
+                    ';
+                }
+            }
+            else
+            {
+            $output = '
+            <tr>
+                <td align="center" colspan="5">No Data Found</td>
+            </tr>
+            ';
+            }
+            $data = array(
+            'table_data'  => $output
+            );
+
+            echo json_encode($data);
+        }
+    }
+
     public function update(Request $request)
     {
         $editbencana = \App\Models\Bencana::findOrFail($request->id);   

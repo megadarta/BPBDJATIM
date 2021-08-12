@@ -66,22 +66,7 @@
     </tr>
   </thead>
   <tbody>
-    <?php $i = 1; ?>
-    @foreach($data_bencana as $item)
-    <tr>
-        <th scope="row">{{$i}}</th>
-        <td>{{$item->nama_bencana}}</td>
-        <td>{{$item->tanggal}}</td>
-        <td>{{$item->tanggal}}</td>
-        <td>{{$item->lokasi}}</td>
-        <td>{{$item->status_bencana}}</td>
-        <td>
-            <a href="{{ url('bencana/delete', $item->id) }}" ><img src="{{asset('assets/delete.png')}}" width="20px" ></a>
-            <a id="buttonedit" data-bs-toggle="modal" data-bs-target="#modaledit" data-mynama="{{$item->nama_bencana}}" data-lokasi="{{$item->lokasi}}" data-tanggal="{{$item->tanggal}}" data-status="{{$item->status}}" data-longitude="{{$item->longitude}}" data-latitude="{{$item->latitude}}" data-id="{{$item->id}}"><img src="{{asset('assets/edit.png')}}" width="20px" ></a>
-        </td>
-    </tr>
-    <?php $i++?>
-   @endforeach
+
 
   </tbody>
 </table>
@@ -163,5 +148,34 @@
         modal.find('.modal-body #id').val(id);
         
     })
+</script>
+@endsection
+
+@section('script')
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+<script>
+    $(document).ready(function(){
+
+    fetch_data_bencana();
+
+    function fetch_data_bencana(query = '')
+    {
+    $.ajax({
+    url:"{{ route('bencana.search') }}",
+    method:'GET',
+    data:{query:query},
+    dataType:'json',
+    success:function(data)
+    {
+        $('tbody').html(data.table_data);
+    }
+    })
+    }
+
+    $(document).on('keyup', '#search', function(){
+    var query = $(this).val();
+    fetch_data_bencana(query);
+    });
+    });
 </script>
 @endsection

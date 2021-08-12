@@ -67,22 +67,7 @@
     </tr>
   </thead>
   <tbody>
-    @php
-        $i = 0;
-    @endphp 
-    @foreach ($data_akun as $akun)
-    <tr>
-        <th scope="row">{{ ++$i }}</th>
-        <td>{{ $akun->nama_instansi }}</td>
-        <td>{{ $akun->email }}</td>
-        <td>{{ $akun->no_telepon }}</td>
-        <td>{{ $akun->role }}</td>
-        <td>
-            <a href="{{ url('akun/delete', $akun->id) }}"><img src="{{asset('assets/delete.png')}}" width="20px" ></a>
-            <a href=""><img src="{{asset('assets/edit.png')}}" width="20px" ></a>
-        </td>
-    </tr>
-    @endforeach
+    
   </tbody>
 </table>
 </div>
@@ -121,4 +106,33 @@
         </div>    
 </div>
 <!-- endmodal -->
+@endsection
+
+@section('script')
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+<script>
+    $(document).ready(function(){
+
+    fetch_data_akun();
+
+    function fetch_data_akun(query = '')
+    {
+    $.ajax({
+    url:"{{ route('akun.search') }}",
+    method:'GET',
+    data:{query:query},
+    dataType:'json',
+    success:function(data)
+    {
+        $('tbody').html(data.table_data);
+    }
+    })
+    }
+
+    $(document).on('keyup', '#search', function(){
+    var query = $(this).val();
+    fetch_data_akun(query);
+    });
+    });
+</script>
 @endsection

@@ -52,15 +52,21 @@ Route::prefix('admin')->group(function () {
     });
 });
 
+
+Route::get('/home/search', [AdminController::class, 'homesearch'])->name('home.search');
+
 // action bencana 
 Route::post('/bencana/store', [BencanaController::class, 'store'])->name('simpan bencana');
 Route::post('/bencana/update/{id}', [App\Http\Controllers\AdminController::class, 'update']);
 Route::get('/bencana/delete/{id}', [BencanaController::class, 'delete']);
+Route::get('/bencana/search', [BencanaController::class, 'search'])->name('bencana.search');
 
 // action elemen 
 Route::post('/elemen/store', [App\Http\Controllers\ElementsController::class, 'store'])->name('simpan element');
 Route::post('/elemen/update/{icon}', [App\Http\Controllers\ElementsController::class, 'update']);
 Route::get('/elemen/delete/{item}', [App\Http\Controllers\ElementsController::class, 'delete']);
+Route::get('/element/search', [ElementsController::class, 'search'])->name('element.search');
 
 // action akun
 Route::get('/akun/delete/{id}', [AkunController::class, 'delete']);
+Route::get('/akun/search', [AkunController::class, 'search'])->name('akun.search');

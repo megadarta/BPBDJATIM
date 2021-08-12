@@ -19,8 +19,61 @@ class ElementsController extends Controller
 
     public function index()
     {
-        $data_elemen = Element::all();
-        return view('dashboard-admin/dataelemen',compact('data_elemen'));
+        return view('dashboard-admin/dataelemen');
+    }
+
+    function search(Request $request)
+    {
+        if($request->ajax())
+        {
+            $output = '';
+            $query = $request->get('query');
+            if($query != '')
+            {
+                $data = Element::where('nama_element', 'like', '%'.$query.'%')->get();                
+            }
+            else
+            {
+                $data = Element::all();
+            }
+            $total_row = $data->count();
+            
+            if($total_row > 0)
+            {
+                $hapus_icon = asset('assets/delete.png');
+                $edit_icon = asset('assets/edit.png');
+                $i = 0;
+                foreach($data as $row)
+                {
+                    $url_hapus = url('element/delete', $row->id);
+                    $icon_element = url('assets/icon/', $row->icon);
+                    $output .= '
+                    <tr>
+                    <th scope="row">'.++$i.'</th>
+                    <td><img src="'.$icon_element.'" width="20px" style="margin-left: 13px;"></td>
+                    <td>'.$row->nama_element.'</td>
+                    <td>
+                        <a href="'.$url_hapus.'"><img src="'.$hapus_icon.'" width="20px" ></a>
+                        <a href="" id="editelemen" data-bs-toggle="modal" data-bs-target="#modaledit" data-nama="'.$row->nama_element.'" data-icon="'.$row->icon.'" data-id="'.$row->id.'"><img src="'.$edit_icon.'" width="20px" ></a>
+                    </td>
+                    </tr>
+                    ';
+                }
+            }
+            else
+            {
+            $output = '
+            <tr>
+                <td align="center" colspan="5">No Data Found</td>
+            </tr>
+            ';
+            }
+            $data = array(
+            'table_data'  => $output
+            );
+
+            echo json_encode($data);
+        }
     }
 
     public function store(Request $request)
