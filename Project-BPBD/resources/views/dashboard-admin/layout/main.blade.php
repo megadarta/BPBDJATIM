@@ -62,7 +62,7 @@
                     </div>
                     <div class="input-group content-home-admin">
                         <span class="input-group-text icon-search" ><img src="{{asset('assets/search.png')}}" style="width: 18px"></span>
-                        <input type="text" class="form-control input-search" placeholder="Cari" aria-label="Search" aria-describedby="basic-addon1">
+                        <input type="text" id="search" class="form-control input-search" placeholder="Cari" aria-label="Search" aria-describedby="basic-addon1">
                     </div>
                 </div>
                 

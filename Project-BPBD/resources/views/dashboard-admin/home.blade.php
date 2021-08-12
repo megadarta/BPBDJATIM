@@ -43,18 +43,37 @@
 
 @section('dashboard-admin')
 <div class="content-bawah"> 
-  <div class="row row-cols-auto">
-    @foreach($data_bencana as $bencana)
-    <a href="{{ url('admin/data/detail-bencana', $bencana->id) }}" style="text-decoration: none;">
-    <div class="col card-home">
-        <div class="card-text1">{{$bencana->nama_bencana}}</div>
-        <div class="card-text2">{{$bencana->tanggal}}</div>
-        <div class="card-text3">{{$bencana->lokasi}}</div>
-    </div>
-    </a>
-    @endforeach
-
-    
+  <div class="row row-cols-auto cardbencana">
+     
   </div>
 </div>
+@endsection
+
+@section('script')
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+<script>
+    $(document).ready(function(){
+
+    fetch_data_home();
+
+    function fetch_data_home(query = '')
+    {
+    $.ajax({
+    url:"{{ route('home.search') }}",
+    method:'GET',
+    data:{query:query},
+    dataType:'json',
+    success:function(data)
+    {
+        $('.cardbencana').html(data.table_data);
+    }
+    })
+    }
+
+    $(document).on('keyup', '#search', function(){
+    var query = $(this).val();
+    fetch_data_home(query);
+    });
+    });
+</script>
 @endsection

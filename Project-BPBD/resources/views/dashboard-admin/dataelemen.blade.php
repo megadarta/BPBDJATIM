@@ -68,21 +68,7 @@
         </tr>
     </thead>
     <tbody>
-        @php
-            $i = 0;
-        @endphp 
         
-        @foreach($data_elemen as $item)
-        <tr>
-        <th scope="row">{{ ++$i }}</th>
-            <td><img src="{{url('assets/icon/', $item->icon)}}" width="20px" style="margin-left: 13px;"></td>
-            <td>{{$item->nama_element}}</td>
-            <td>
-                <a href="{{ url('elemen/delete', $item) }}"><img src="{{asset('assets/delete.png')}}" width="20px" ></a>
-                <a href="" id="editelemen" data-bs-toggle="modal" data-bs-target="#modaledit" data-nama="{{$item->nama_element}}" data-icon="{{$item->icon}}" data-id="{{$item->id}}"><img src="{{asset('assets/edit.png')}}" width="20px" ></a>
-            </td>
-        </tr>
-        @endforeach
     </tbody>
     </table>
     </div>
@@ -177,4 +163,33 @@
 
 </script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.2/dist/sweetalert2.all.min.js"></script>
+@endsection
+
+@section('script')
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+<script>
+    $(document).ready(function(){
+
+    fetch_data_element();
+
+    function fetch_data_element(query = '')
+    {
+    $.ajax({
+    url:"{{ route('element.search') }}",
+    method:'GET',
+    data:{query:query},
+    dataType:'json',
+    success:function(data)
+    {
+        $('tbody').html(data.table_data);
+    }
+    })
+    }
+
+    $(document).on('keyup', '#search', function(){
+    var query = $(this).val();
+    fetch_data_element(query);
+    });
+    });
+</script>
 @endsection
