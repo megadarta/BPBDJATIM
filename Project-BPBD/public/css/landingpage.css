@@ -1,10 +1,16 @@
+html {
+    scroll-behavior: smooth;
+}
+
 .landing-page-home{
     height: auto;
     margin-top: 50px;
 }
-.home-kiri{
-    width: 50%;
+
+.img-lp-home{
+    margin-top: 60px;
 }
+
 .judul-home-lp{
     padding-top: 100px;
     font-size: 40px;
@@ -24,12 +30,18 @@
     margin-left: 10px;
     margin-top: 30px;
 }
-
+.zoom-act:hover{
+    transform: scale(1.5);
+}
 
 /* map  */
 .landing-page-map{
-    margin-top: 100px;
-    margin-bottom: 100px;
+    padding-top: 100px;
+    /* margin-bottom: 100px; */
+}
+
+.map{
+    margin-top: 20px;
 }
 
 .judul-map, .judul-fitur, .judul-action, .judul-about{
@@ -43,27 +55,112 @@
 
 /* fitur  */
 .landing-page-fitur{
-    margin-bottom: 100px;
+    padding-top: 100px;
 }
 .card-fitur{
     width: 300px!important;
-    height: 200px;
-    box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.25);
+    height: 300px;
     margin: 10px;
+    background-color: transparent;
+    perspective: 1000px;
 }
 
 .kartu-fitur{
     margin-top: 50px!important;
 }
 
+.flip-card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+}
+
+.card-fitur:hover .flip-card-inner {
+    transform: rotateY(180deg);
+}
+  
+.flip-card-front, .flip-card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+}
+  
+.flip-card-front {
+    background-color: white;
+    padding-top: 80px;
+}
+
+.text-fitur-front{
+    margin-top: 10px;
+    font-size: 15px;
+    color: #FE5E32;
+    font-family: 'Poppins', sans-serif;
+}
+
+.text-fitur-back{
+    font-size: 20px;
+    color: white;
+    font-family: 'Poppins', sans-serif;
+}
+
+.flip-card-back {
+    background-color: #FE5E32;
+    color: white;
+    padding-top: 130px;
+    font-weight: bold;
+    transform: rotateY(180deg);
+}
+
 /* action  */
 .landing-page-action{
     margin-bottom: 50px;
-    height: 500px;
+    padding-top: 100px;
 }
 
+.action-kiri, .action-kanan{
+    margin-top: 50px;
+}
+
+.text-action-kiri{
+    margin-left: 20px;
+    font-family: 'Poppins', sans-serif;
+    align-self: center;
+    width: 500px;
+}
+.text-action-kanan{
+    text-align: right;
+    margin-right: 20px;
+    font-family: 'Poppins', sans-serif;
+    align-self: center;
+    width: 500px;
+}
 /* about  */
 .landing-page-about{
     margin-bottom: 50px;
     height: 500px;
 }
+.img-lp-home{
+    display: none;
+}
+/* Small devices (landscape phones, 576px and up) */
+@media (min-width: 576px) {  
+    .action-div{
+        align-items: center;
+    }
+
+ }
+
+ @media (min-width: 900px){
+    .img-lp-home{
+        display: block;
+    }
+    .home-kiri{
+        padding-right: 12vw;
+    }
+ }
