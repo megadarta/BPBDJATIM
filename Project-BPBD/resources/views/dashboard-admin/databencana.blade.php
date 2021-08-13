@@ -90,7 +90,7 @@
                         <input name="nama_bencana" id="nama_bencana" type="text" class="form-control" value="">
 
                         <label class="form-label">Tanggal</label>
-                        <input name="tanggal" id="tanggal" type="date" class="form-control" value="">
+                        <input name="tanggal" id="tanggal" type="datetime-local" class="form-control" value="">
 
                         <label class="form-label">Lokasi</label>
                         <input name="lokasi" id="lokasi" type="text" class="form-control" value="">

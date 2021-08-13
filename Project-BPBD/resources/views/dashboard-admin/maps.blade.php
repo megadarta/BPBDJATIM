@@ -56,7 +56,7 @@
 
                         
                         <label class="form-label">Tanggal</label>
-                        <input name="tanggal" type="date" class="form-control" id="date">
+                        <input name="tanggal" type="datetime-local" class="form-control" id="date">
 
                         <label class="form-label">Lokasi</label>
                         <input name="lokasi" type="text" class="form-control" id="lokasi">
