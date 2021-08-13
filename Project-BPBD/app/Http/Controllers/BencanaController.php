@@ -56,8 +56,8 @@ class BencanaController extends Controller
                     <tr>
                     <th scope="row">'.++$i.'</th>
                     <td>'.$row->nama_bencana.'</td>
-                    <td>'.$row->tanggal.'</td>
-                    <td>'.$row->tanggal.'</td>
+                    <td>'.date('d-m-Y', strtotime($row->tanggal)).'</td>
+                    <td>'.date('H:i', strtotime($row->tanggal)).'</td>
                     <td>'.$row->lokasi.'</td>
                     <td>'.$row->status_bencana.'</td>
                     <td>
