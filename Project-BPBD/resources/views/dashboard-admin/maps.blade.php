@@ -124,6 +124,7 @@
 
      
     </div>
+    
     <!-- Data bencana dari controller  -->
     <div>
         <input value="{{ $data_bencana }}" type="hidden" id="data_bencana">

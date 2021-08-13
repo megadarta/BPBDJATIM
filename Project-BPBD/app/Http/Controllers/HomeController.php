@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Bencana;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -23,6 +24,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        
+        $data_bencana = Bencana::all()->where('status_bencana', '=', 'Aktif');
+        return view('dashboard-admin.maps', ['data_bencana' => $data_bencana]);
     }
 }

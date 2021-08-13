@@ -5,7 +5,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AkunController;
 use App\Http\Controllers\BencanaController;
 use App\Http\Controllers\ElementsController;
-
+use App\Models\Bencana;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -18,7 +18,8 @@ use App\Http\Controllers\ElementsController;
 */
 
 Route::get('/', function () {
-    return view('/landingpage/main');
+    $data_bencana = Bencana::all()->where('status_bencana', '=', 'Aktif');
+    return view('/landingpage/main', ['data_bencana' => $data_bencana]); 
 });
 
 
