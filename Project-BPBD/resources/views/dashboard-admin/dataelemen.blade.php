@@ -133,18 +133,6 @@
 </div>
 <!-- endmodal -->
 
-    <!-- <script>
-        $( document ).ready(function(){
-                Swal.fire({
-                    // position: 'top-end',
-                    icon: 'success',
-                    title: 'Data Berhasil di hapus',
-                    showConfirmButton: false,
-                    timer: 1500
-                    })
-        });
-    </script> -->
-
      
 <script>
     $('#editelemen').on('click', function (){
@@ -158,9 +146,6 @@
         modal.find('.modal-body #id').val(id);
         
     })
-
-
-
 </script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.2/dist/sweetalert2.all.min.js"></script>
 @endsection

@@ -22,6 +22,7 @@ class ElementsController extends Controller
         return view('dashboard-admin/dataelemen');
     }
 
+    // search dashboard admin 
     function search(Request $request)
     {
         if($request->ajax())
@@ -66,6 +67,58 @@ class ElementsController extends Controller
             <tr>
                 <td align="center" colspan="5">No Data Found</td>
             </tr>
+            ';
+            }
+            $data = array(
+            'table_data'  => $output
+            );
+
+            echo json_encode($data);
+        }
+    }
+
+    // search maps side bar 
+    function mapssearch(Request $request)
+    {
+        if($request->ajax())
+        {
+            $output = '';
+            $query = $request->get('query');
+            if($query != '')
+            {
+                $data = Element::where('nama_element', 'like', '%'.$query.'%')->get();                
+            }
+            else
+            {
+                $data = Element::all();
+            }
+            $total_row = $data->count();
+            
+            if($total_row > 0)
+            {
+                // $hapus_icon = asset('assets/delete.png');
+                // $edit_icon = asset('assets/edit.png');
+                $i = 0;
+                foreach($data as $row)
+                {
+                    // $url_hapus = url('element/delete', $row->id);
+                    $icon_element = url('assets/icon/', $row->icon);
+                    $output .= '
+                    <div class="kotak-icon-elemen d-flex">
+                        <div>
+                            <img src="'.$icon_element.'" class="icon-elemen"></img>
+                        </div>
+                        <div class="nama-elemen">
+                            '.$row->nama_element.'
+                        </div>
+                    </div>
+                    ';
+                }
+            }
+            else
+            {
+            $output = '
+            <p> Tidak ditemukan </p>
             ';
             }
             $data = array(

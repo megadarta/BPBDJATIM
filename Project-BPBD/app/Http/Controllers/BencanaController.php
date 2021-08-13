@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Bencana;
+use App\Models\Element;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 

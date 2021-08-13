@@ -5,6 +5,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AkunController;
 use App\Http\Controllers\BencanaController;
 use App\Http\Controllers\ElementsController;
+use App\Http\Controllers\HomeController;
 use App\Models\Bencana;
 /*
 |--------------------------------------------------------------------------
@@ -25,9 +26,12 @@ Route::get('/', function () {
 
 Auth::routes();
 
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('user');
 
 // Route::get('/logintest', [App\Http\Controllers\AdminController::class, 'login2']);
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+// Route::prefix('user')->group(function () {
+    
+// });
 
 Route::prefix('admin')->group(function () {
     //data
@@ -40,6 +44,7 @@ Route::prefix('admin')->group(function () {
             Route::get('/data-bencana', [BencanaController::class, 'index']);
             Route::get('/data-elemen', [ElementsController::class, 'index']);
         });
+
         // bencana
         Route::get('/detail-bencana/{id}', [BencanaController::class, 'show']);
 
@@ -50,6 +55,8 @@ Route::prefix('admin')->group(function () {
     //map
     Route::prefix('maps')->group(function () {
         Route::get('/', [BencanaController::class, 'maps']);
+        
+        Route::get('/element/search', [ElementsController::class, 'mapssearch'])->name('maps.element.search');
     });
 });
 

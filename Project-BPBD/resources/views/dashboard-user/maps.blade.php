@@ -1,4 +1,4 @@
-@extends('dashboard-admin\layout\main')
+@extends('dashboard-user\layout\dashboard')
 
 @section('style')
     <link rel="stylesheet" type="text/css" href="{{ asset('css/map.css') }}"></link>
@@ -24,7 +24,7 @@
 </div>
 @endsection
 
-@section('dashboard-admin')
+@section('maps')
 <div class="content-bawah-maps"> 
     <div id="mapid" class="map" style="height: 600px; border-radius: 15px;"></div>
     
@@ -87,51 +87,8 @@
     </div>
    
 </div>
-
-
-@foreach($data_bencana  as $item)
-<div class="info-bantuan">
-    <div class="info-bencana">
-        <h2>{{ $item->nama_bencana }}</h2>
-    </div>
-    <div>
-    <table class="table responsive">
-        <thead class="table-dark">
-            <tr>
-            <th scope="col">#</th>
-            <th scope="col">Nama Instansi</th>
-            <th scope="col">Nama Elemen</th>
-            <th scope="col">Jumlah</th>
-            <th scope="col">Action</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <th scope="row">1</th>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
-                <td>
-                    Edit
-                    Hapus      
-                </td>
-            </tr>
-            <tr>
-            <th scope="row">2</th>
-            <td>Jacob</td>
-            <td>Thornton</td>
-            <td>@fat</td>
-            <td>
-                    Edit
-                    Hapus      
-            </td>
-            </tr>
-        </tbody>
-    </table>
-    </div>
-</div>
-@endforeach
 @endsection
+
 
 @section('script')
 <!-- leaflet js  -->
@@ -214,6 +171,7 @@
         }
     })
 </script>
+
 
 <!-- search dan tampilkan elemen  -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>

@@ -24,8 +24,6 @@ class HomeController extends Controller
      */
     public function index()
     {
-        
-        $data_bencana = Bencana::all()->where('status_bencana', '=', 'Aktif');
-        return view('dashboard-admin.maps', ['data_bencana' => $data_bencana]);
+        return view('dashboard-user/layout/dashboard');
     }
 }

@@ -205,7 +205,9 @@ ul ul a {
 }
 
 .kotak-icon-elemen{
-    border: 3px solid #FE5E32;
+    border: 0.5px solid #FE5E32;
+    border-radius: 10px!important;
+    box-shadow: 0px 4px 4px rgba(223, 223, 223, 0.25)!important;
     /* margin: 10px 20px; */
     width: 100%;
     padding: 5px;
@@ -214,9 +216,4 @@ ul ul a {
 
 .kotak-elemen{
     padding: 10px!important;
-}
-
-.cari-elemen:hover, .cari-elemen{
-    box-shadow: none!important;
-    margin-bottom: 20px;
 }
