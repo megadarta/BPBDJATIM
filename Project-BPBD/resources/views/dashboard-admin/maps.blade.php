@@ -206,11 +206,17 @@
             console.log(bencana[i].nama_bencana);
 
             console.log(bencana[i].longlang);
+            var circle = L.circle([bencana[i].latitude,bencana[i].longitude], {
+                color: 'red',
+                fillColor: '#f03',
+                fillOpacity: 0.5,
+                radius: 1200
+            }).addTo(mymap);
             var marker =  L.marker([bencana[i].latitude,bencana[i].longitude]).addTo(mymap);
             var popup2 = L.popup()
             .setContent(bencana[i].nama_bencana);
         
-            marker.bindPopup(popup2).openPopup();
+            circle.bindPopup(popup2).openPopup();
         }
     })
 </script>
