@@ -46,7 +46,7 @@ class ElementsController extends Controller
                 $i = 0;
                 foreach($data as $row)
                 {
-                    $url_hapus = url('element/delete', $row->id);
+                    $url_hapus = url('elemen/delete', $row->id);
                     $icon_element = url('assets/icon/', $row->icon);
                     $output .= '
                     <tr>

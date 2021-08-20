@@ -23,8 +23,8 @@ Route::get('/', function () {
     return view('/landingpage/main', ['data_bencana' => $data_bencana]); 
 });
 
-
-Auth::routes();
+//Auth::routes();
+Auth::routes(['verify' => true]);    // Auth dengan verifikasi email
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('user');
 
