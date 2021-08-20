@@ -104,6 +104,7 @@ class ElementsController extends Controller
                     // $url_hapus = url('element/delete', $row->id);
                     $icon_element = url('assets/icon/', $row->icon);
                     $output .= '
+                    <a href="" class="klikelemen">
                     <div class="kotak-icon-elemen d-flex">
                         <div>
                             <img src="'.$icon_element.'" class="icon-elemen"></img>
@@ -112,6 +113,7 @@ class ElementsController extends Controller
                             '.$row->nama_element.'
                         </div>
                     </div>
+                    </a>
                     ';
                 }
             }
