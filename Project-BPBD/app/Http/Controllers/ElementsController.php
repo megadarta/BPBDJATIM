@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Storage;
 use App\Models\Element;
+use App\Models\Bantuan;
 // use RealRashid\SweetAlert\Facades\Alert;
 
 
@@ -96,25 +97,23 @@ class ElementsController extends Controller
             
             if($total_row > 0)
             {
-                // $hapus_icon = asset('assets/delete.png');
-                // $edit_icon = asset('assets/edit.png');
-                $i = 0;
-                foreach($data as $row)
+                $i=0;
+                while($i<$total_row)
                 {
+                    // echo $key->nama_element;
                     // $url_hapus = url('element/delete', $row->id);
-                    $icon_element = url('assets/icon/', $row->icon);
+                    $icon_element = url('assets/icon/', $data[$i]->icon);
                     $output .= '
-                    <a href="" class="klikelemen">
                     <div class="kotak-icon-elemen d-flex">
                         <div>
                             <img src="'.$icon_element.'" class="icon-elemen"></img>
                         </div>
                         <div class="nama-elemen">
-                            '.$row->nama_element.'
+                            <input id="'.$data[$i]->id.'" value="'.$data[$i]->nama_element.'" onclick="tambahbantuan(this.value, this.id)" type="button" class="nama-elemen klikelemen">
                         </div>
                     </div>
-                    </a>
                     ';
+                    $i++;
                 }
             }
             else
@@ -199,4 +198,35 @@ class ElementsController extends Controller
 
         return back();
     }
+
+    public function deletebantuan(Bantuan $item)
+    {
+        $item->delete();
+        // Alert::success('Success Title', 'Success Message');
+
+        return back();
+    }
+
+    public function bantuan(Request $request)
+    {
+        $validated = Validator::make($request->all(),[
+            'bencana_id' =>['required', 'int', 'max:20'],
+            'user_id' => ['required','int'],
+            'element_id' => ['required','int'],
+            'kuantitas' => ['required','int'],
+        ]);
+        
+    
+        // Input Data ke Database
+        Bantuan::create([
+            'bencana_id' => request('id_bencana'),
+            'user_id' =>  request('id_instansi'),
+            'element_id' =>  request('id_element'),
+            'kuantitas' =>  request('kuantitas')
+        ]);
+
+        //Redirect
+        return redirect()->back();
+    }
+
 }

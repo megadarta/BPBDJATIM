@@ -78,3 +78,7 @@ Route::get('/element/search', [ElementsController::class, 'search'])->name('elem
 // action akun
 Route::get('/akun/delete/{id}', [AkunController::class, 'delete']);
 Route::get('/akun/search', [AkunController::class, 'search'])->name('akun.search');
+
+//action bantuan 
+Route::post('/bantuan/store', [App\Http\Controllers\ElementsController::class, 'bantuan'])->name('simpan bantuan');
+Route::get('/bantuan/delete/{item}', [App\Http\Controllers\ElementsController::class, 'deletebantuan']);

@@ -18,10 +18,53 @@
 <div class="list-unstyled components kotak-elemen">
 
     <input type="text" id="search" class="cari-elemen form-control input-search" placeholder="Cari" aria-label="Search" aria-describedby="basic-addon1">
+ 
     <div id="tampilkanelemen">
-      
+    
     </div>
 </div>
+
+<!-- modal edit elemen  -->
+<div class="modal fade" id="editelemen" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Tambah Data Elemen</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form action="{{ route('simpan bantuan') }}" enctype="multipart/form-data" method="post" id="tambahelemenform">
+                {{csrf_field()}}
+
+                <div class="modal-body">   
+                    <label class="form-label">Nama Instansi</label>
+                    <input name="nama_instansi" id="nama_instansi" type="text" class="form-control" value="{{ Auth::user()->nama_instansi }}" disabled>
+                    <input name="id_instansi" id="id_instansi" type="hidden" class="form-control" value="{{ Auth::user()->id }}">
+
+                    <label class="form-label">Nama Elemen</label>
+                    <input name="nama_element" id="nama_element" type="text" class="form-control" value="" disabled>
+                    <input name="id_element" id="id_element" type="hidden" class="form-control" value="">
+
+                    <label class="form-label" id="statusselect">Nama Bencana</label>
+                    <select class='form-select' aria-label='Default select example' name='id_bencana' id='id_bencana'>
+                        <option value=''>Pilih bencana aktif</option>
+                        @foreach($data_bencana as $item)
+                        <option value='{{$item->id}}'>{{$item->nama_bencana}}</option>
+                        @endforeach
+                    </select>
+
+                    <label class="form-label">Kuantitas</label>
+                    <input name="kuantitas" id="kuantitas" type="text" class="form-control" value="">
+                
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Tambah Bantuan</button>
+                </div>
+            </form>
+        </div>
+    </div>    
+</div>
+<!-- endmodal -->
 @endsection
 
 @section('dashboard-admin')
@@ -76,8 +119,7 @@
                     </div>
                 </div>
             </div>
-        </div>    
-
+        </div>   
      
     </div>
     
@@ -106,26 +148,26 @@
             </tr>
         </thead>
         <tbody>
-            <tr>
+            @foreach($data_bantuan as $bantuan)
+            
+            <?php 
+            
+                if($bantuan->bencana_id == $item->id){
+            ?>
+                <tr>
                 <th scope="row">1</th>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
+                <td>{{$bantuan->nama_instansi}}</td>
+                <td>{{$bantuan->nama_element}}</td>
+                <td>{{$bantuan->kuantitas}}</td>
                 <td>
-                    Edit
-                    Hapus      
+                    <a href="{{ url('bantuan/delete', $bantuan->id) }}">Hapus</a>      
                 </td>
             </tr>
-            <tr>
-            <th scope="row">2</th>
-            <td>Jacob</td>
-            <td>Thornton</td>
-            <td>@fat</td>
-            <td>
-                    Edit
-                    Hapus      
-            </td>
-            </tr>
+            <?php
+            }
+        
+            ?>      
+            @endforeach
         </tbody>
     </table>
     </div>
@@ -249,4 +291,28 @@
     });
 </script>
 
+<!-- tambah elemen bantuan  -->
+<script>
+    // $('#klikelemen').click(function(){
+    //     console.log("Hello world!");
+    //     console.log("elemedddn");
+    //     // var button = $(event.relatedTarget)
+    //     // var elemen = button.data('nama')
+    //     // var id = button.data('id')
+    //     console.log("elemen");
+    // })
+
+    function tambahbantuan(value, id){
+        console.log(id);
+        $('#editelemen').modal('show');
+        var modal = $('#editelemen');
+        modal.find('.modal-body #nama_element').val(value);
+        
+        modal.find('.modal-body #id_element').val(id);
+    }
+    // $('#klikelemen').click(function(event){
+    //     ('#editelemen').modal('show');
+    //     var button = $(event.relatedTarget);
+    // })
+</script>
 @endsection

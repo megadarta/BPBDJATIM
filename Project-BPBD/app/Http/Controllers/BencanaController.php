@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Bencana;
+use App\Models\Bantuan;
 use App\Models\Element;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 
 class BencanaController extends Controller
@@ -16,7 +18,14 @@ class BencanaController extends Controller
 
     public function maps(){
         $data_bencana = Bencana::all()->where('status_bencana', '=', 'Aktif');
-        return view('dashboard-admin.maps', ['data_bencana' => $data_bencana]); 
+        $data_bantuan = DB::table('bantuan')
+        ->join('bencanas', 'bantuan.bencana_id', '=', 'bencanas.id')
+        ->join('users', 'bantuan.user_id', '=', 'users.id')
+        ->join('elements', 'bantuan.element_id', '=', 'elements.id')
+        ->select('elements.nama_element', 'bantuan.id', 'bantuan.bencana_id', 'bantuan.kuantitas', 'bencanas.nama_bencana', 'users.nama_instansi')
+        ->get();
+        $tabelbantuan = Bantuan::all();
+        return view('dashboard-admin.maps', ['data_bencana' => $data_bencana, 'data_bantuan' => $data_bantuan, 'tabelbantuan' => $tabelbantuan]); 
     }
 
     public function index()
