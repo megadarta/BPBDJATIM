@@ -77,3 +77,7 @@
 .info-bencana{
     height: 50px;
 }
+
+.custom-select{
+    width: 50%!important;
+}

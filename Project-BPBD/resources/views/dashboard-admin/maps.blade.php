@@ -126,6 +126,8 @@
     <!-- Data bencana dari controller  -->
     <div>
         <input value="{{ $data_bencana }}" type="hidden" id="data_bencana">
+        
+        <input value="{{ $data_bantuan }}" type="hidden" id="data_bantuan">
     </div>
    
 </div>
@@ -137,7 +139,7 @@
         <h2>{{ $item->nama_bencana }}</h2>
     </div>
     <div>
-    <table class="table responsive">
+    <table class="table responsive"class="example" id="example">
         <thead class="table-dark">
             <tr>
             <th scope="col">#</th>
@@ -148,22 +150,24 @@
             </tr>
         </thead>
         <tbody>
+            <?php $i = 1; ?>
             @foreach($data_bantuan as $bantuan)
             
             <?php 
-            
+
                 if($bantuan->bencana_id == $item->id){
             ?>
                 <tr>
-                <th scope="row">1</th>
+                <th scope="row">{{$i}}</th>
                 <td>{{$bantuan->nama_instansi}}</td>
                 <td>{{$bantuan->nama_element}}</td>
                 <td>{{$bantuan->kuantitas}}</td>
                 <td>
-                    <a href="{{ url('bantuan/delete', $bantuan->id) }}">Hapus</a>      
+                    <a href="{{ url('bantuan/delete', $bantuan->id) }}"><button type="button"  class="btn btn-danger klikelemen" width="100%">Hapus</button></a>
                 </td>
             </tr>
             <?php
+            $i++;
             }
         
             ?>      
@@ -189,7 +193,7 @@
 
 <script>
     
-	var mymap = L.map('mapid').setView([-6.8826604, 109.0833123], 6);
+	var mymap = L.map('mapid').setView([-7.3285945, 113.1173121], 8.08);
 
     L.tileLayer(
         'https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibmFiaWxjaGVuIiwiYSI6ImNrOWZzeXh5bzA1eTQzZGxpZTQ0cjIxZ2UifQ.1YMI-9pZhxALpQ_7x2MxHw', {
@@ -252,7 +256,7 @@
                 color: 'red',
                 fillColor: '#f03',
                 fillOpacity: 0.5,
-                radius: 1200
+                radius: 2000
             }).addTo(mymap);
             var marker =  L.marker([bencana[i].latitude,bencana[i].longitude]).addTo(mymap);
             var popup2 = L.popup()
@@ -262,6 +266,25 @@
         }
     })
 </script>
+
+<!-- memunculkan bantuan -->
+<script>
+   $( document ).ready(function() {
+        var bantuan = JSON.parse(document.getElementById('data_bantuan').value);
+        console.log(bantuan);
+        var j = 0.001;
+        for(i=0; i<=bantuan.length; i++){
+            console.log(i);
+            var iconbantuan = L.icon({
+                iconUrl: 'http://127.0.0.1:8000/assets/icon/' + bantuan[i].icon,
+                iconSize: [30,30]
+            })
+            var marker2 =  L.marker([bantuan[i].latitude,bantuan[i].longitude-j], {icon:iconbantuan}).addTo(mymap);
+            j = j + 0.001;
+        }
+    })
+</script>
+
 
 <!-- search dan tampilkan elemen  -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
@@ -293,15 +316,6 @@
 
 <!-- tambah elemen bantuan  -->
 <script>
-    // $('#klikelemen').click(function(){
-    //     console.log("Hello world!");
-    //     console.log("elemedddn");
-    //     // var button = $(event.relatedTarget)
-    //     // var elemen = button.data('nama')
-    //     // var id = button.data('id')
-    //     console.log("elemen");
-    // })
-
     function tambahbantuan(value, id){
         console.log(id);
         $('#editelemen').modal('show');
@@ -310,9 +324,16 @@
         
         modal.find('.modal-body #id_element').val(id);
     }
-    // $('#klikelemen').click(function(event){
-    //     ('#editelemen').modal('show');
-    //     var button = $(event.relatedTarget);
-    // })
+</script>
+
+<!-- data table -->
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.25/js/dataTables.bootstrap4.min.js"></script>
+
+<script>
+$(document).ready(function() {
+    $('#example').DataTable();
+} );
 </script>
 @endsection

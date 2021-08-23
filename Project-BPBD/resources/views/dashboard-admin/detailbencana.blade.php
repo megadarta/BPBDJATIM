@@ -62,18 +62,17 @@
       <th scope="col">Nama Institusi</th>
       <th scope="col">Elemen</th>
       <th scope="col">Kuantiitas</th>
-      <th scope="col">Waktu Pengiriman</th>
     </tr>
   </thead>
   <tbody>
+    @foreach($bantuan as $item)
     <tr>
       <th scope="row">1</th>
-      <td>dinkes</td>
-      <td>pemadan</td>
-      <td>2</td>
-      <td>Kamis, 2 April 2021 08:00 WIB</td>
+      <td>{{$item->nama_instansi}}</td>
+      <td>{{$item->nama_element}}</td>
+      <td>{{$item->kuantitas}}</td>
     </tr>
-   
+   @endforeach
   </tbody>
 </table>
 </div>

@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Bencana;
+use App\Models\Bantuan;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -25,6 +27,14 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('dashboard-user/layout/dashboard');
+        $data_bencana = Bencana::all();
+        $data_bantuan = DB::table('bantuan')
+        ->join('bencanas', 'bantuan.bencana_id', '=', 'bencanas.id')
+        ->join('users', 'bantuan.user_id', '=', 'users.id')
+        ->join('elements', 'bantuan.element_id', '=', 'elements.id')
+        ->select('elements.nama_element', 'elements.icon', 'bantuan.id', 'bantuan.bencana_id', 'bantuan.kuantitas', 'bencanas.nama_bencana', 'bencanas.latitude', 'bencanas.longitude', 'users.nama_instansi')
+        ->get();
+        $tabelbantuan = Bantuan::all();
+        return view('dashboard-user/maps', ['data_bencana' => $data_bencana, 'data_bantuan' => $data_bantuan, 'tabelbantuan' => $tabelbantuan]);
     }
 }

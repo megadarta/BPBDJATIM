@@ -17,8 +17,8 @@
         <!-- Scrollbar Custom CSS -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css"> 
         <!-- Styles -->
-        
-        
+        <link rel="stylesheet" href=" https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css"> 
+        <link rel="stylesheet" href=" https://cdn.datatables.net/1.10.25/css/dataTables.bootstrap4.min.css">
         <link rel="stylesheet" type="text/css" href="{{ asset('css/sidebar.css') }}"></link>
         <link rel="stylesheet" type="text/css" href="{{ asset('css/navbaradmin.css') }}"></link>
         <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/sweetalert2@9.17.2/dist/sweetalert2.min.css">

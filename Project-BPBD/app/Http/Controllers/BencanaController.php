@@ -22,7 +22,7 @@ class BencanaController extends Controller
         ->join('bencanas', 'bantuan.bencana_id', '=', 'bencanas.id')
         ->join('users', 'bantuan.user_id', '=', 'users.id')
         ->join('elements', 'bantuan.element_id', '=', 'elements.id')
-        ->select('elements.nama_element', 'bantuan.id', 'bantuan.bencana_id', 'bantuan.kuantitas', 'bencanas.nama_bencana', 'users.nama_instansi')
+        ->select('elements.nama_element', 'elements.icon', 'bantuan.id', 'bantuan.bencana_id', 'bantuan.kuantitas', 'bencanas.nama_bencana', 'bencanas.latitude', 'bencanas.longitude', 'users.nama_instansi')
         ->get();
         $tabelbantuan = Bantuan::all();
         return view('dashboard-admin.maps', ['data_bencana' => $data_bencana, 'data_bantuan' => $data_bantuan, 'tabelbantuan' => $tabelbantuan]); 
@@ -72,7 +72,7 @@ class BencanaController extends Controller
                     <td>'.$row->status_bencana.'</td>
                     <td>
                         <a href="'.$url_hapus.'"><img src="'.$hapus_icon.'" width="20px" ></a>
-                        <a id="buttonedit" data-bs-toggle="modal" data-bs-target="#modaledit" data-mynama="'.$row->nama_bencana.'" data-lokasi="'.$row->lokasi.'" data-tanggal="'.$row->tanggal.'" data-status="'.$row->status_bencana.'" data-longitude="'.$row->longitude.'" data-latitude="'.$row->latitude.'" data-id="'.$row->id.'"><img src="'.$edit_icon.'" width="20px" ></a>
+                        <a id='.$row->nama_bencana.' type="button" onclick="editbencana(this.id)" ><img src="'.$edit_icon.'" width="20px" ></a>
                     </td>
                     </tr>
                     ';
@@ -119,7 +119,16 @@ class BencanaController extends Controller
     public function show($id)
     {
         $bencana = Bencana::find($id);  
-        return view('dashboard-admin/detailbencana', ['bencana' => $bencana]);
+        $bantuan = DB::table('bantuan')
+        ->join('bencanas', 'bantuan.bencana_id', '=', 'bencanas.id')
+        ->join('users', 'bantuan.user_id', '=', 'users.id')
+        ->join('elements', 'bantuan.element_id', '=', 'elements.id')
+        ->select('elements.nama_element', 'elements.icon', 'bantuan.id', 'bantuan.bencana_id', 'bantuan.kuantitas', 'bencanas.nama_bencana', 'bencanas.latitude', 'bencanas.longitude', 'users.nama_instansi')
+        ->where('bantuan.bencana_id', '=', $id)
+        ->get();
+        // $tampilbantuan = $bantuan::all()->where('bencana_id', '=', $bencana);
+        // echo $bantuan;
+        return view('dashboard-admin/detailbencana', ['bencana' => $bencana, 'bantuan' => $bantuan]);
     }
 
     public function edit($id)

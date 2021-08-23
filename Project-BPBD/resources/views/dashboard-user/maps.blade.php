@@ -87,6 +87,52 @@
     </div>
    
 </div>
+
+
+@foreach($data_bencana  as $item)
+<div class="info-bantuan">
+    <div class="info-bencana">
+        <h2>{{ $item->nama_bencana }}</h2>
+    </div>
+    <div>
+    <table class="table responsive"class="example" id="example">
+        <thead class="table-dark">
+            <tr>
+            <th scope="col">#</th>
+            <th scope="col">Nama Instansi</th>
+            <th scope="col">Nama Elemen</th>
+            <th scope="col">Jumlah</th>
+            <th scope="col">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php $i = 1; ?>
+            @foreach($data_bantuan as $bantuan)
+            
+            <?php 
+
+                if($bantuan->bencana_id == $item->id){
+            ?>
+                <tr>
+                <th scope="row">{{$i}}</th>
+                <td>{{$bantuan->nama_instansi}}</td>
+                <td>{{$bantuan->nama_element}}</td>
+                <td>{{$bantuan->kuantitas}}</td>
+                <td>
+                    <a href="{{ url('bantuan/delete', $bantuan->id) }}"><button type="button"  class="btn btn-danger klikelemen" width="100%">Hapus</button></a>
+                </td>
+            </tr>
+            <?php
+            $i++;
+            }
+        
+            ?>      
+            @endforeach
+        </tbody>
+    </table>
+    </div>
+</div>
+@endforeach
 @endsection
 
 
@@ -163,11 +209,35 @@
             console.log(bencana[i].nama_bencana);
 
             console.log(bencana[i].longlang);
+            var circle = L.circle([bencana[i].latitude,bencana[i].longitude], {
+                color: 'red',
+                fillColor: '#f03',
+                fillOpacity: 0.5,
+                radius: 2000
+            }).addTo(mymap);
             var marker =  L.marker([bencana[i].latitude,bencana[i].longitude]).addTo(mymap);
             var popup2 = L.popup()
             .setContent(bencana[i].nama_bencana);
         
-            marker.bindPopup(popup2).openPopup();
+            circle.bindPopup(popup2).openPopup();
+        }
+    })
+</script>
+
+<!-- memunculkan bantuan -->
+<script>
+   $( document ).ready(function() {
+        var bantuan = JSON.parse(document.getElementById('data_bantuan').value);
+        console.log(bantuan);
+        var j = 0.001;
+        for(i=0; i<=bantuan.length; i++){
+            console.log(i);
+            var iconbantuan = L.icon({
+                iconUrl: 'http://127.0.0.1:8000/assets/icon/' + bantuan[i].icon,
+                iconSize: [30,30]
+            })
+            var marker2 =  L.marker([bantuan[i].latitude,bantuan[i].longitude-j], {icon:iconbantuan}).addTo(mymap);
+            j = j + 0.001;
         }
     })
 </script>
