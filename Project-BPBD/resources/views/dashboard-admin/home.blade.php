@@ -41,6 +41,20 @@
         </ul>
 @endsection
 
+@section('navbar-admin')
+<div class="d-flex container-fluid content-atas">
+                    <div class="content-btn-menu">
+                        <button type="button" id="sidebarCollapse" class="btn-menu">
+                            <img class="icon-btn-menu" src="{{ asset('assets/menu.png') }}">
+                        </button>
+                    </div>
+                    <div class="input-group content-home-admin">
+                        <span class="input-group-text icon-search" ><img src="{{asset('assets/search.png')}}" style="width: 18px"></span>
+                        <input type="text" id="search" class="form-control input-search" placeholder="Cari" aria-label="Search" aria-describedby="basic-addon1">
+                    </div>
+                </div>
+@endsection
+
 @section('dashboard-admin')
 <div class="content-bawah"> 
   <div class="row row-cols-auto cardbencana">
