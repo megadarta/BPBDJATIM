@@ -263,7 +263,7 @@
             var popup2 = L.popup()
             .setContent(bencana[i].nama_bencana);
         
-            circle.bindPopup(popup2).openPopup();
+            marker.bindPopup(popup2).openPopup();
         }
     })
 </script>
@@ -277,10 +277,14 @@
         for(i=0; i<=bantuan.length; i++){
             console.log(i);
             var iconbantuan = L.icon({
-                iconUrl: 'http://127.0.0.1:8000/assets/icon/' + bantuan[i].icon,
+                iconUrl: '{{ url('/assets/icon') }}/' + bantuan[i].icon,
                 iconSize: [30,30]
             })
             var marker2 =  L.marker([bantuan[i].latitude,bantuan[i].longitude-j], {icon:iconbantuan}).addTo(mymap);
+            var popup_bantuan = L.popup()
+            .setContent(bantuan[i].kuantitas + " " + bantuan[i].nama_element);
+        
+            marker2.bindPopup(popup_bantuan).openPopup();
             j = j + 0.001;
         }
     })

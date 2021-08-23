@@ -51,7 +51,7 @@ class AdminController extends Controller
                     <div class="col card-home">
                         <div class="card-text1">'.$row->nama_bencana.'</div>
                         <div class="card-text2">'.$row->tanggal.'</div>
-                        <div class="card-text3">'.$row->lokasi.'</div>
+                        <div class="card-text3">'.mb_strimwidth($row->lokasi, 0, 30, "...").'</div>
                     </div>
                     </a>
                     ';

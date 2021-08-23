@@ -14,10 +14,10 @@ class CreateBantuanTable extends Migration
     public function up()
     {
         Schema::create('bantuan', function (Blueprint $table) {
+            $table->id();
             $table->foreignId('bencana_id')->references('id')->on('bencanas');
             $table->foreignId('user_id')->references('id')->on('users');
             $table->foreignId('element_id')->references('id')->on('elements');
-            $table->primary(['bencana_id','user_id','element_id']);
             $table->unsignedBigInteger('kuantitas');
             $table->timestamps();
         });
