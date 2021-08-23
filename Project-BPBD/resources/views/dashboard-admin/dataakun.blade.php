@@ -47,10 +47,10 @@
   <div class=" d-flex bencana-atas justify-content-between">
         <div class="judul">Data Akun </div>
         <a href="" data-bs-toggle="modal" data-bs-target="#tambahakun">
-        <div class="btn button-new d-flex justify-content-center align-items-center">
+        <!-- <div class="btn button-new d-flex justify-content-center align-items-center">
             <div class="btn-new"><img src="{{asset('assets/plus.png')}}" style="width: 20px"></div>
             <div class="new">New</div>
-        </div>
+        </div> -->
         </a>
   </div>
 
@@ -75,7 +75,7 @@
 </div>
 
 <!-- modal tambah elemen -->
-<div class="modal fade" id="tambahakun" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<!-- <div class="modal fade" id="tambahakun" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -104,7 +104,7 @@
                 </div>
             </div>
         </div>    
-</div>
+</div> -->
 <!-- endmodal -->
 @endsection
 

@@ -139,7 +139,7 @@
         <h2>{{ $item->nama_bencana }}</h2>
     </div>
     <div>
-    <table class="table responsive"class="example" id="example-{{$j}}">
+    <table class="table responsive" class="example" id="example-{{$j}}">
         <thead class="table-dark">
             <tr>
             <th scope="col">#</th>

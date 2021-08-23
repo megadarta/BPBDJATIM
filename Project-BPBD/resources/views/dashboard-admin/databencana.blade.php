@@ -53,7 +53,7 @@
   </div>
 
   <div class="table-responsive">
-  <table class="table table-bencana">
+  <table class="table table-bencana"  class="example" id="example">
   <thead>
     <tr>
       <th scope="col">No</th>
@@ -66,7 +66,22 @@
     </tr>
   </thead>
   <tbody>
-
+  <?php $i=1 ?>
+  @foreach($data_bencana as $item)
+  <tr>
+                    <th scope="row">{{$i}}</th>
+                    <td>{{$item->nama_bencana}}</td>
+                    <td>{{date('d-m-Y', strtotime($item->tanggal))}}</td>
+                    <td>{{date('H:i', strtotime($item->tanggal))}}</td>
+                    <td>{{$item->lokasi}}</td>
+                    <td>{{$item->status_bencana}}</td>
+                    <td>
+                        <a href=" url('bencana/delete', $row->id)"><img src="{{asset('assets/delete.png')}}" width="20px" ></a>
+                        <a class="buttonedit" type="button" id="buttonedit" data-bs-toggle="modal" data-bs-target="#modaledit" data-mynama="{{$item->nama_bencana}}" data-lokasi="{{$item->lokasi}}" data-tanggal="{{$item->tanggal}}" data-status="{{$item->status}}" data-longitude="{{$item->longitude}}" data-latitude="{{$item->latitude}}" data-id="{{$item->id}}" ><img src="{{asset('assets/edit.png')}}" width="20px" ></a>
+                    </td>
+                    </tr>
+    <?php $i++ ?>
+    @endforeach
 
   </tbody>
 </table>
@@ -146,25 +161,71 @@
     });
     });
 </script>
+
 <script>
-    // $('#buttonedit').on('click', function (){
-    function editbencana(id){
-        
-        console.log(id)
-        
+    $('.buttonedit').on('click', function (){
+        console.log("hallo")
+        // var button = $(event.releatedTarget)
+        var nama = $(this).data('mynama');
+        var lokasi = $(this).data('lokasi');
+        // var status = $(this).data('status');
+        var id = $(this).data('id');
+        var tanggal = $(this).data('tanggal');
+        var longitude = $(this).data('longitude');
+        var latitude = $(this).data('latitude');
+        // console.log(button);
+        console.log(latitude);
+        console.log(tanggal);
+        console.log(longitude);
+    
         var modal = $('#modaledit');
-        modal.find('.modal-body #nama_bencana').val(id["nama_bencana"]);
+        console.log(modal);
+        modal.find('.modal-body #nama_bencana').val(nama);
         modal.find('.modal-body #lokasi').val(lokasi);
-      
+        // modal.find('.modal-body #statusselect').after(
+        //     ""
+        // );
         modal.find('.modal-body #tanggal').val(tanggal);
         modal.find('.modal-body #latitude').val(latitude);
         modal.find('.modal-body #longitude').val(longitude);
         modal.find('.modal-body #id').val(id);
+        
+    })
+</script>
+
+<script>
+    // $('#buttonedit').on('click', function (){
+    // function editbencana(id){
+        
+    //     console.log(id)
+        
+    //     var modal = $('#modaledit');
+    //     modal.find('.modal-body #nama_bencana').val(id["nama_bencana"]);
+    //     modal.find('.modal-body #lokasi').val(lokasi);
+      
+    //     modal.find('.modal-body #tanggal').val(tanggal);
+    //     modal.find('.modal-body #latitude').val(latitude);
+    //     modal.find('.modal-body #longitude').val(longitude);
+    //     modal.find('.modal-body #id').val(id);
 
         
-        $('#modaledit').modal('show');
+    //     $('#modaledit').modal('show');
         
-    }
+    // }
+    // })
+
+    
+</script>
+<!-- data table -->
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.25/js/dataTables.bootstrap4.min.js"></script>
+
+<script>
+$(document).ready(function() {
+    $('#example').DataTable();
+    
+} );
 </script>
 
 @endsection

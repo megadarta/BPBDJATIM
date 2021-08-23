@@ -55,3 +55,7 @@ a{
     border-left: 0px!important;
     border-right: 0px!important;
 }
+
+.custom-select{
+    width: 50%!important;
+}

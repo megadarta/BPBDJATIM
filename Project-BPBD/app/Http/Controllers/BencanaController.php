@@ -31,68 +31,68 @@ class BencanaController extends Controller
     public function index()
     {
         $data_bencana = Bencana::all();
-        return view('dashboard-admin/databencana'); 
+        return view('dashboard-admin/databencana', ['data_bencana' => $data_bencana]); 
     }
 
-    function search(Request $request)
-    {
-        if($request->ajax())
-        {
-            $output = '';
-            $query = $request->get('query');
-            if($query != '')
-            {
-                $data = Bencana::where('nama_bencana', 'like', '%'.$query.'%')
-                    ->orWhere('tanggal', 'like', '%'.$query.'%')  
-                    ->orWhere('lokasi', 'like', '%'.$query.'%')
-                    ->orWhere('status_bencana', 'like', '%'.$query.'%')
-                    ->get();                
-            }
-            else
-            {
-                $data = Bencana::all();
-            }
-            $total_row = $data->count();
+    // function search(Request $request)
+    // {
+    //     if($request->ajax())
+    //     {
+    //         $output = '';
+    //         $query = $request->get('query');
+    //         if($query != '')
+    //         {
+    //             $data = Bencana::where('nama_bencana', 'like', '%'.$query.'%')
+    //                 ->orWhere('tanggal', 'like', '%'.$query.'%')  
+    //                 ->orWhere('lokasi', 'like', '%'.$query.'%')
+    //                 ->orWhere('status_bencana', 'like', '%'.$query.'%')
+    //                 ->get();                
+    //         }
+    //         else
+    //         {
+    //             $data = Bencana::all();
+    //         }
+    //         $total_row = $data->count();
             
-            if($total_row > 0)
-            {
-                $hapus_icon = asset('assets/delete.png');
-                $edit_icon = asset('assets/edit.png');
-                $i = 0;
-                foreach($data as $row)
-                {
-                    $url_hapus = url('bencana/delete', $row->id);
-                    $output .= '
-                    <tr>
-                    <th scope="row">'.++$i.'</th>
-                    <td>'.$row->nama_bencana.'</td>
-                    <td>'.date('d-m-Y', strtotime($row->tanggal)).'</td>
-                    <td>'.date('H:i', strtotime($row->tanggal)).'</td>
-                    <td>'.$row->lokasi.'</td>
-                    <td>'.$row->status_bencana.'</td>
-                    <td>
-                        <a href="'.$url_hapus.'"><img src="'.$hapus_icon.'" width="20px" ></a>
-                        <a id='.$row->nama_bencana.' type="button" onclick="editbencana(this.id)" ><img src="'.$edit_icon.'" width="20px" ></a>
-                    </td>
-                    </tr>
-                    ';
-                }
-            }
-            else
-            {
-            $output = '
-            <tr>
-                <td align="center" colspan="5">No Data Found</td>
-            </tr>
-            ';
-            }
-            $data = array(
-            'table_data'  => $output
-            );
+    //         if($total_row > 0)
+    //         {
+    //             $hapus_icon = asset('assets/delete.png');
+    //             $edit_icon = asset('assets/edit.png');
+    //             $i = 0;
+    //             foreach($data as $row)
+    //             {
+    //                 $url_hapus = url('bencana/delete', $row->id);
+    //                 $output .= '
+    //                 <tr>
+    //                 <th scope="row">'.++$i.'</th>
+    //                 <td>'.$row->nama_bencana.'</td>
+    //                 <td>'.date('d-m-Y', strtotime($row->tanggal)).'</td>
+    //                 <td>'.date('H:i', strtotime($row->tanggal)).'</td>
+    //                 <td>'.$row->lokasi.'</td>
+    //                 <td>'.$row->status_bencana.'</td>
+    //                 <td>
+    //                     <a href="'.$url_hapus.'"><img src="'.$hapus_icon.'" width="20px" ></a>
+    //                     <a id='.json_encode($row).' type="button" onclick="editbencana(this.id)" ><img src="'.$edit_icon.'" width="20px" ></a>
+    //                 </td>
+    //                 </tr>
+    //                 ';
+    //             }
+    //         }
+    //         else
+    //         {
+    //         $output = '
+    //         <tr>
+    //             <td align="center" colspan="5">No Data Found</td>
+    //         </tr>
+    //         ';
+    //         }
+    //         $data = array(
+    //         'table_data'  => $output
+    //         );
 
-            echo json_encode($data);
-        }
-    }
+    //         echo json_encode($data);
+    //     }
+    // }
 
     public function store(Request $request)
     {
