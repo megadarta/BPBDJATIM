@@ -17,8 +17,8 @@
         <!-- Scrollbar Custom CSS -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css"> 
         <!-- Styles -->
-        
-        
+        <link rel="stylesheet" href=" https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css"> 
+        <link rel="stylesheet" href=" https://cdn.datatables.net/1.10.25/css/dataTables.bootstrap4.min.css">
         <link rel="stylesheet" type="text/css" href="{{ asset('css/admin-home.css') }}"></link>
         <link rel="stylesheet" type="text/css" href="{{ asset('css/sidebar.css') }}"></link>
         <link rel="stylesheet" type="text/css" href="{{ asset('css/navbaradmin.css') }}"></link>
@@ -60,10 +60,7 @@
                             <img class="icon-btn-menu" src="{{ asset('assets/menu.png') }}">
                         </button>
                     </div>
-                    <div class="input-group content-home-admin">
-                        <span class="input-group-text icon-search" ><img src="{{asset('assets/search.png')}}" style="width: 18px"></span>
-                        <input type="text" id="search" class="form-control input-search" placeholder="Cari" aria-label="Search" aria-describedby="basic-addon1">
-                    </div>
+                    
                 </div>
                 @yield('maps')
             </nav>

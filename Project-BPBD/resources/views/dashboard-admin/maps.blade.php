@@ -132,14 +132,14 @@
    
 </div>
 
-
+<?php $j = 0 ?>
 @foreach($data_bencana  as $item)
 <div class="info-bantuan">
     <div class="info-bencana">
         <h2>{{ $item->nama_bencana }}</h2>
     </div>
     <div>
-    <table class="table responsive"class="example" id="example">
+    <table class="table responsive"class="example" id="example-{{$j}}">
         <thead class="table-dark">
             <tr>
             <th scope="col">#</th>
@@ -176,6 +176,7 @@
     </table>
     </div>
 </div>
+<?php $j++ ?>
 @endforeach
 @endsection
 
@@ -333,7 +334,14 @@
 
 <script>
 $(document).ready(function() {
-    $('#example').DataTable();
+    var bencanaaktif = JSON.parse(document.getElementById('data_bencana').value);
+    // console.log(bencanaaktif[]);
+    // console.log(bencana);
+
+    for(var i = 0; i<bencanaaktif.length; i++){
+        console.log(i);
+        $('#example-' + i).DataTable();
+    }
 } );
 </script>
 @endsection
