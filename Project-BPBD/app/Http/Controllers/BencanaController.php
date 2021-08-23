@@ -23,6 +23,7 @@ class BencanaController extends Controller
         ->join('users', 'bantuan.user_id', '=', 'users.id')
         ->join('elements', 'bantuan.element_id', '=', 'elements.id')
         ->select('elements.nama_element', 'elements.icon', 'bantuan.id', 'bantuan.bencana_id', 'bantuan.kuantitas', 'bencanas.nama_bencana', 'bencanas.latitude', 'bencanas.longitude', 'users.nama_instansi')
+        ->where('bencanas.status_bencana', '=', 'Aktif')
         ->get();
         $tabelbantuan = Bantuan::all();
         return view('dashboard-admin.maps', ['data_bencana' => $data_bencana, 'data_bantuan' => $data_bantuan, 'tabelbantuan' => $tabelbantuan]); 
