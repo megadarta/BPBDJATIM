@@ -68,7 +68,6 @@ Route::post('/bencana/store', [BencanaController::class, 'store'])->name('simpan
 Route::post('/bencana/update/{id}', [App\Http\Controllers\AdminController::class, 'update']);
 Route::get('/bencana/delete/{id}', [BencanaController::class, 'delete']);
 Route::get('/bencana/search', [BencanaController::class, 'search'])->name('bencana.search');
-
 // action elemen 
 Route::post('/elemen/store', [App\Http\Controllers\ElementsController::class, 'store'])->name('simpan element');
 Route::post('/elemen/update/{id}', [App\Http\Controllers\ElementsController::class, 'update']);

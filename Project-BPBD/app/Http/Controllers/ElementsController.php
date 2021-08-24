@@ -108,8 +108,7 @@ class ElementsController extends Controller
     public function update(Request $request)
     {
 
-        // 
-            // Input Data ke Database
+            
             echo($request->id);
           
 
