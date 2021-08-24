@@ -178,28 +178,23 @@
 
 <script>
     $('.buttonedit').on('click', function (){
-        console.log("hallo")
-        // var button = $(event.releatedTarget)
+        
         var nama = $(this).data('mynama');
         var lokasi = $(this).data('lokasi');
-        // var status = $(this).data('status');
         var id = $(this).data('id');
         var tanggal = $(this).data('tanggal');
         var longitude = $(this).data('longitude');
         var latitude = $(this).data('latitude');
-        // console.log(button);
         console.log(latitude);
-        console.log(tanggal);
         console.log(longitude);
-    
+        
+        console.log(new Date(tanggal).toISOString());
+        console.log(tanggal);
         var modal = $('#modaledit');
-        console.log(modal);
         modal.find('.modal-body #nama_bencana').val(nama);
         modal.find('.modal-body #lokasi').val(lokasi);
-        // modal.find('.modal-body #statusselect').after(
-        //     ""
-        // );
-        modal.find('.modal-body #tanggal').val(tanggal);
+        
+        modal.find('.modal-body #tanggal').val(new Date(tanggal).toISOString().slice(0,16));
         modal.find('.modal-body #latitude').val(latitude);
         modal.find('.modal-body #longitude').val(longitude);
         modal.find('.modal-body #id').val(id);
@@ -208,27 +203,7 @@
 </script>
 
 <script>
-    // $('#buttonedit').on('click', function (){
-    // function editbencana(id){
-        
-    //     console.log(id)
-        
-    //     var modal = $('#modaledit');
-    //     modal.find('.modal-body #nama_bencana').val(id["nama_bencana"]);
-    //     modal.find('.modal-body #lokasi').val(lokasi);
-      
-    //     modal.find('.modal-body #tanggal').val(tanggal);
-    //     modal.find('.modal-body #latitude').val(latitude);
-    //     modal.find('.modal-body #longitude').val(longitude);
-    //     modal.find('.modal-body #id').val(id);
 
-        
-    //     $('#modaledit').modal('show');
-        
-    // }
-    // })
-
-    
 </script>
 <!-- data table -->
 <script src="https://code.jquery.com/jquery-3.5.1.js"></script>

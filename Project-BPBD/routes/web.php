@@ -71,12 +71,13 @@ Route::get('/bencana/search', [BencanaController::class, 'search'])->name('benca
 
 // action elemen 
 Route::post('/elemen/store', [App\Http\Controllers\ElementsController::class, 'store'])->name('simpan element');
-Route::post('/elemen/update/{icon}', [App\Http\Controllers\ElementsController::class, 'update']);
+Route::post('/elemen/update/{id}', [App\Http\Controllers\ElementsController::class, 'update']);
 Route::get('/elemen/delete/{item}', [App\Http\Controllers\ElementsController::class, 'delete']);
 Route::get('/element/search', [ElementsController::class, 'search'])->name('element.search');
 
 // action akun
 Route::get('/akun/delete/{id}', [AkunController::class, 'delete']);
+Route::post('/akun/update/{id}', [App\Http\Controllers\AkunController::class, 'update']);
 Route::get('/akun/search', [AkunController::class, 'search'])->name('akun.search');
 
 //action bantuan 

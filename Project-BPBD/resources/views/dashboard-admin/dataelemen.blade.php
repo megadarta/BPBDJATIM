@@ -48,10 +48,7 @@
                             <img class="icon-btn-menu" src="{{ asset('assets/menu.png') }}">
                         </button>
                     </div>
-                    <!-- <div class="input-group content-home-admin">
-                        <span class="input-group-text icon-search" ><img src="{{asset('assets/search.png')}}" style="width: 18px"></span>
-                        <input type="text" id="search" class="form-control input-search" placeholder="Cari" aria-label="Search" aria-describedby="basic-addon1">
-                    </div> -->
+                 
                 </div>
 @endsection
 
@@ -73,7 +70,7 @@
         @endforeach
     @endif
     <div>
-    <table class="table table-bencana">
+    <table class="table table-bencana" id="dataelement">
     <thead>
         <tr>
         <th scope="col">No</th>
@@ -83,7 +80,19 @@
         </tr>
     </thead>
     <tbody>
-        
+    <?php $i=1 ?>
+    @foreach($data_elemen as $row)
+        <tr>
+            <th scope="row">{{$i}}</th>
+            <td><img src="{{url('assets/icon/', $row->icon)}}" width="20px" style="margin-left: 13px;"></td>
+            <td>{{$row->nama_element}}</td>
+            <td>
+            <a href="{{url('elemen/delete', $row->id)}}"><img src="{{asset('assets/delete.png')}}" width="20px" ></a>
+            <a href="" class="editelemen" data-bs-toggle="modal" data-bs-target="#modaledit" data-nama="{{$row->nama_element}}" data-icon="{{$row->icon}}" data-idelement="{{$row->id}}"><img src="{{asset('assets/edit.png')}}" width="20px" ></a>
+            </td>
+        </tr>
+    <?php $i++ ?>
+    @endforeach
     </tbody>
     </table>
     </div>
@@ -130,7 +139,8 @@
             <form action="{{ url('/elemen/update', 'test') }}" enctype="multipart/form-data" method="post" id="tambahelemenform">
                 {{csrf_field()}}
 
-                <div class="modal-body">            
+                <div class="modal-body">    
+                    <input type="hidden" name="id" id="id" value="">         
                     <label class="form-label">Nama Elemen</label>
                     <input name="nama_element" id="nama_element" type="text" class="form-control" value="">
 
@@ -150,11 +160,12 @@
 
      
 <script>
-    $('#editelemen').on('click', function (){
+    $('.editelemen').on('click', function (){
         // var button = $(event.releatedTarget)
         var nama = $(this).data('nama');
         var icon = $(this).data('icon');
-    
+        var id = $(this).data('idelement');
+        console.log(id);
         var modal = $('#modaledit');
         modal.find('.modal-body #nama_element').val(nama);
         modal.find('.modal-body #icon').val(icon);
@@ -191,5 +202,17 @@
     fetch_data_element(query);
     });
     });
+</script>
+
+<!-- data table -->
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.25/js/dataTables.bootstrap4.min.js"></script>
+
+<script>
+    $(document).ready(function() {
+    $('#dataelement').DataTable();
+    
+} );
 </script>
 @endsection
