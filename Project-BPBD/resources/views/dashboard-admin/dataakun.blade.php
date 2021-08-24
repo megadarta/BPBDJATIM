@@ -117,8 +117,8 @@
                     <label class="form-label">Role</label>
                     <select class='form-select' aria-label='Default select example' name='role' id='role'>
                             <option value=''>Pilih Role</option>
-                            <option value='Admin'>Admin</option>
-                            <option value='User'>User</option>
+                            <option value='admin'>Admin</option>
+                            <option value='user'>User</option>
                         </select>
                 
                 </div>
