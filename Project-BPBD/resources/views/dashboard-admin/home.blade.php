@@ -26,7 +26,7 @@
                         <a href="/admin/data/history/data-bencana" class="pilihan-menu">Data Bencana</a>
                     </li>
                     <li>
-                        <a href="/admin/data/history/data-elemen" class="pilihan-menu">Data Elemen</a>
+                        <a href="/admin/data/history/data-elemen" class="pilihan-menu">Data Sumber Daya</a>
                     </li>
                    
                 </ul>

@@ -50,6 +50,9 @@ Route::prefix('admin')->group(function () {
 
         //akun
         Route::get('data-akun', [AkunController::class, 'index']);
+        
+        //profile
+        Route::get('profile', [AkunController::class, 'profile']);
     });
 
     //map

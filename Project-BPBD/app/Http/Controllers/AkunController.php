@@ -37,4 +37,8 @@ class AkunController extends Controller
         $user->delete();
         return redirect()->back();
     }
+
+    public function profile(){
+        return view('dashboard-admin/profile');
+    }
 }

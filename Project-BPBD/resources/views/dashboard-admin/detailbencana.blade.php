@@ -75,7 +75,7 @@
     <tr>
       <th scope="col">No</th>
       <th scope="col">Nama Institusi</th>
-      <th scope="col">Elemen</th>
+      <th scope="col">Sumber Daya</th>
       <th scope="col">Kuantiitas</th>
     </tr>
   </thead>

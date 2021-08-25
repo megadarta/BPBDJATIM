@@ -36,7 +36,7 @@
                         <a href="/admin/data/history/data-bencana" class="pilihan-menu">Data Bencana</a>
                     </li>
                     <li>
-                        <a href="/admin/data/history/data-elemen" class="pilihan-menu">Data Elemen</a>
+                        <a href="/admin/data/history/data-elemen" class="pilihan-menu">Data Sumber Daya</a>
                     </li>
                    
                 </ul>
@@ -117,8 +117,8 @@
                     <label class="form-label">Role</label>
                     <select class='form-select' aria-label='Default select example' name='role' id='role'>
                             <option value=''>Pilih Role</option>
-                            <option value='Admin'>Admin</option>
-                            <option value='User'>User</option>
+                            <option value='admin'>Admin</option>
+                            <option value='user'>User</option>
                         </select>
                 
                 </div>

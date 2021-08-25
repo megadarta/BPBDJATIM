@@ -26,7 +26,7 @@
                         <a href="/admin/data/history/data-bencana" class="pilihan-menu">Data Bencana</a>
                     </li>
                     <li>
-                        <a href="/admin/data/history/data-elemen" class="pilihan-menu" style="background-color: #FE5E32; color: white:">Data Elemen</a>
+                        <a href="/admin/data/history/data-elemen" class="pilihan-menu" style="background-color: #FE5E32; color: white:">Data Sumber Daya</a>
                     </li>
                    
                 </ul>
@@ -57,7 +57,7 @@
 <div class="content-bawah"> 
 <div>
     <div class=" d-flex bencana-atas justify-content-between">
-        <div class="judul">Data Elemen </div>
+        <div class="judul">Data Sumber Daya </div>
         <a href="" data-bs-toggle="modal" data-bs-target="#tambahelemen">
         <div class="btn button-new d-flex justify-content-center align-items-center">
             <div class="btn-new"><img src="{{asset('assets/plus.png')}}" style="width: 20px"></div>
@@ -75,7 +75,7 @@
         <tr>
         <th scope="col">No</th>
         <th scope="col">Gambar</th>
-        <th scope="col">Nama Elemen</th>
+        <th scope="col">Nama Sumber Daya</th>
         <th scope="col">Action</th>
         </tr>
     </thead>
@@ -104,14 +104,14 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Tambah Data Elemen</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Tambah Data Sumber Daya</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <form action="{{ route('simpan element') }}" enctype="multipart/form-data" method="post" id="tambahelemenform">
                 {{csrf_field()}}
 
                 <div class="modal-body">            
-                    <label class="form-label">Nama Elemen</label>
+                    <label class="form-label">Nama Sumber Daya</label>
                     <input name="nama_element" id="nama_element" type="text" class="form-control" value="">
 
                     <label class="form-label">Masukkan Icon</label>
@@ -133,7 +133,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Tambah Data Elemen</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Tambah Data Sumber Daya</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <form action="{{ url('/elemen/update', 'test') }}" enctype="multipart/form-data" method="post" id="tambahelemenform">
@@ -141,7 +141,7 @@
 
                 <div class="modal-body">    
                     <input type="hidden" name="id" id="id" value="">         
-                    <label class="form-label">Nama Elemen</label>
+                    <label class="form-label">Nama Sumber Daya</label>
                     <input name="nama_element" id="nama_element" type="text" class="form-control" value="">
 
                     <label class="form-label">Masukkan Icon</label>

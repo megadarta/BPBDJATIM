@@ -22,9 +22,9 @@
         Hi, {{ Auth::user()->nama_instansi }}
       </p>
       <ul class="dropdown-menu jarak-ul" aria-labelledby="navbarDropdownMenuLink">
-        <!-- <li>
-          <a class="dropdown-item" href="#">Profile</a>
-        </li> -->
+        <li>
+          <a class="dropdown-item" href="{{ url('admin/data/profile')}}">Profile</a>
+        </li>
         <li>
           <a class="dropdown-item" href="{{ route('logout') }}"
             onclick="event.preventDefault();

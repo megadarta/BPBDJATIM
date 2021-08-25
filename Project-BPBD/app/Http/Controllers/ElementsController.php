@@ -81,8 +81,8 @@ class ElementsController extends Controller
     public function store(Request $request)
     {
         $validated = Validator::make($request->all(),[
-            'nama_element' =>['required', 'string', 'max:255'],
-            'icon' => ['required','image'],
+            'nama_element' => 'required',
+            'icon' => 'required',
         ]);
         
         // Cek Validasi
@@ -105,14 +105,40 @@ class ElementsController extends Controller
         
     }
 
-    public function update(Request $request)
+    public function update(Request $request, Element $element)
     {
 
-            
-            echo($request->id);
-          
+        $validated = Validator::make($request->all(),[
+            'nama_element' => 'required',
+            'icon' => 'required',
+        ]);
 
+        // Cek Validasi
+        if ($validated->fails()) {
+            return back(); 
+        } else {
+            if($request->file('icon')){
+                Storage::disk('public_image')->delete('assets/icon/'.$element->icon);
+
+                $extension = $request->file('icon')->extension();
+                $icon_name = request('nama_element').'.'.$extension;
+                $icon = $request->file('icon')->storeAs('icon',$icon_name, ['disk' => 'public_image']);
+                
+            }
+            else{
+                $icon_name = $element->icon;
+            }
+            
+            // echo ($request->id);
+            // die();
+
+            Element::Where('id', $request->id)->update([
+                'nama_element' => $request->nama_element,
+                'icon' => $icon_name,
+            ]);
         
+            return redirect()->back();
+            }        
     }
 
     public function delete(Element $item)
