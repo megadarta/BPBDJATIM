@@ -42,12 +42,4 @@ class User extends Authenticatable implements MustVerifyEmail
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
-
-    public function bencana(){
-        return $this->belongsToMany(Bencana::class, 'bantuan');
-    }
-
-    public function elements(){
-        return $this->belongsToMany(Element::class, 'bantuan');
-    }    
 }

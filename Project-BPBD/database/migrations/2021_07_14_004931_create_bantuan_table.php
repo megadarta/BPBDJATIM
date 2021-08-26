@@ -15,9 +15,9 @@ class CreateBantuanTable extends Migration
     {
         Schema::create('bantuan', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('bencana_id')->references('id')->on('bencanas');
-            $table->foreignId('user_id')->references('id')->on('users');
-            $table->foreignId('element_id')->references('id')->on('elements');
+            $table->foreignId('bencana_id')->references('id')->on('bencanas')->onDelete('cascade');
+            $table->foreignId('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreignId('element_id')->references('id')->on('elements')->onDelete('cascade');
             $table->unsignedBigInteger('kuantitas');
             $table->timestamps();
         });

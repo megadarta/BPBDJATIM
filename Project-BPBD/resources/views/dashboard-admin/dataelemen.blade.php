@@ -178,31 +178,6 @@
 
 @section('script')
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-<script>
-    $(document).ready(function(){
-
-    fetch_data_element();
-
-    function fetch_data_element(query = '')
-    {
-    $.ajax({
-    url:"{{ route('element.search') }}",
-    method:'GET',
-    data:{query:query},
-    dataType:'json',
-    success:function(data)
-    {
-        $('tbody').html(data.table_data);
-    }
-    })
-    }
-
-    $(document).on('keyup', '#search', function(){
-    var query = $(this).val();
-    fetch_data_element(query);
-    });
-    });
-</script>
 
 <!-- data table -->
 <script src="https://code.jquery.com/jquery-3.5.1.js"></script>

@@ -35,11 +35,6 @@
                     <label for="nohp" class="form-label">Nomor Telepon</label><br>
                     <input value="{{Auth::user()->no_telepon}}" type="text" class="nohp" id="nohp" aria-describedby="Masukkan no HP">
                 </div>
-
-                <div class="mb-3">
-                    <label for="pass" class="form-label">Passoword</label><br>
-                    <input value="{{Auth::user()->password}}" type="password" class="pass" id="pass" aria-describedby="Masukkan no HP">
-                </div>
                 
                 <!-- button  -->
                 <div class="d-flex button-profile">                
