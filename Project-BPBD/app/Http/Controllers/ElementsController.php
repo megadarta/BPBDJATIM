@@ -13,11 +13,6 @@ use App\Models\Bantuan;
 
 class ElementsController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
-
     public function index()
     {
         $data_elemen = Element::all();

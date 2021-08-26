@@ -11,11 +11,6 @@ use Illuminate\Support\Facades\Validator;
 
 class BencanaController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
-
     public function maps(){
         $data_bencana = Bencana::all()->where('status_bencana', '=', 'Aktif');
         $data_bantuan = DB::table('bantuan')

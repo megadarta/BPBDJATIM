@@ -26,14 +26,14 @@ Route::get('/', function () {
 //Auth::routes();
 Auth::routes(['verify' => true]);    // Auth dengan verifikasi email
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('user');
+
 
 // Route::get('/logintest', [App\Http\Controllers\AdminController::class, 'login2']);
 // Route::prefix('user')->group(function () {
     
 // });
 
-Route::prefix('admin')->group(function () {
+Route::middleware(['auth','admin'])->prefix('admin')->group(function () {
     //data
     Route::prefix('data')->group(function () {
         //home
@@ -58,30 +58,29 @@ Route::prefix('admin')->group(function () {
     //map
     Route::prefix('maps')->group(function () {
         Route::get('/', [BencanaController::class, 'maps']);
-        
-        Route::get('/element/search', [ElementsController::class, 'mapssearch'])->name('maps.element.search');
     });
 });
 
+Route::middleware(['auth','admin'])->group(function () {
+    // action bencana 
+    Route::post('/bencana/store', [BencanaController::class, 'store'])->name('simpan bencana');
+    Route::post('/bencana/update/{id}', [App\Http\Controllers\AdminController::class, 'update']);
+    Route::get('/bencana/delete/{id}', [BencanaController::class, 'delete']);
+    // action elemen 
+    Route::post('/elemen/store', [App\Http\Controllers\ElementsController::class, 'store'])->name('simpan element');
+    Route::post('/elemen/update/{id}', [App\Http\Controllers\ElementsController::class, 'update']);
+    Route::get('/elemen/delete/{item}', [App\Http\Controllers\ElementsController::class, 'delete']);
 
-Route::get('/home/search', [AdminController::class, 'homesearch'])->name('home.search');
+    // action akun
+    Route::get('/akun/delete/{id}', [AkunController::class, 'delete']);
+    Route::post('/akun/update/{id}', [App\Http\Controllers\AkunController::class, 'update']);
+});
 
-// action bencana 
-Route::post('/bencana/store', [BencanaController::class, 'store'])->name('simpan bencana');
-Route::post('/bencana/update/{id}', [App\Http\Controllers\AdminController::class, 'update']);
-Route::get('/bencana/delete/{id}', [BencanaController::class, 'delete']);
-Route::get('/bencana/search', [BencanaController::class, 'search'])->name('bencana.search');
-// action elemen 
-Route::post('/elemen/store', [App\Http\Controllers\ElementsController::class, 'store'])->name('simpan element');
-Route::post('/elemen/update/{id}', [App\Http\Controllers\ElementsController::class, 'update']);
-Route::get('/elemen/delete/{item}', [App\Http\Controllers\ElementsController::class, 'delete']);
-Route::get('/element/search', [ElementsController::class, 'search'])->name('element.search');
-
-// action akun
-Route::get('/akun/delete/{id}', [AkunController::class, 'delete']);
-Route::post('/akun/update/{id}', [App\Http\Controllers\AkunController::class, 'update']);
-Route::get('/akun/search', [AkunController::class, 'search'])->name('akun.search');
-
-//action bantuan 
-Route::post('/bantuan/store', [App\Http\Controllers\ElementsController::class, 'bantuan'])->name('simpan bantuan');
-Route::get('/bantuan/delete/{item}', [App\Http\Controllers\ElementsController::class, 'deletebantuan']);
+Route::middleware(['auth'])->group(function () {
+    Route::get('/element/search', [ElementsController::class, 'mapssearch'])->name('maps.element.search');
+    Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('user');
+    Route::get('/home/search', [AdminController::class, 'homesearch'])->name('home.search');
+    //action bantuan 
+    Route::post('/bantuan/store', [App\Http\Controllers\ElementsController::class, 'bantuan'])->name('simpan bantuan');
+    Route::get('/bantuan/delete/{item}', [App\Http\Controllers\ElementsController::class, 'deletebantuan']);
+});

@@ -287,19 +287,35 @@
    $( document ).ready(function() {
         var bantuan = JSON.parse(document.getElementById('data_bantuan').value);
         console.log(bantuan);
-        var j = 0.001;
+        var j = 0.0001;
+        var k = 0;
         for(i=0; i<=bantuan.length; i++){
-            console.log(i);
             var iconbantuan = L.icon({
                 iconUrl: '{{ url('/assets/icon') }}/' + bantuan[i].icon,
                 iconSize: [30,30]
             })
-            var marker2 =  L.marker([bantuan[i].latitude,bantuan[i].longitude-j], {icon:iconbantuan}).addTo(mymap);
+            if(i % 3 == 0){
+                var marker2 =  L.marker([bantuan[i].latitude,bantuan[i].longitude-j], {icon:iconbantuan}).addTo(mymap);                
+                
+            }else if(i % 3 == 1){
+                var marker2 =  L.marker([bantuan[i].latitude-j,bantuan[i].longitude-j], {icon:iconbantuan}).addTo(mymap);
+                
+            }else{
+                var marker2 =  L.marker([bantuan[i].latitude-j,bantuan[i].longitude], {icon:iconbantuan}).addTo(mymap);
+                if(k == 0){
+                    j = j * (-1);
+                    console.log(k);
+                    k++;
+                }
+                else{
+                    j = (j * (-1)) + 0.00008;
+                    k = 0;
+                }           
+            }            
             var popup_bantuan = L.popup()
-            .setContent(bantuan[i].kuantitas + " " + bantuan[i].nama_element);
+            .setContent(bantuan[i].kuantitas + " " + bantuan[i].nama_element + " dari " + bantuan[i].nama_instansi);
         
-            marker2.bindPopup(popup_bantuan).openPopup();
-            j = j + 0.001;
+            marker2.bindPopup(popup_bantuan).openPopup();            
         }
     })
 </script>

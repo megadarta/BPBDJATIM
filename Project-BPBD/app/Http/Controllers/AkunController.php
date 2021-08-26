@@ -7,11 +7,6 @@ use App\Models\User;
 
 class AkunController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
-
     public function index()
     {
         $data_akun = User::all();
