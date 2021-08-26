@@ -74,10 +74,6 @@
                             <img class="icon-btn-menu" src="{{ asset('assets/menu.png') }}">
                         </button>
                     </div>
-                    <!-- <div class="input-group content-home-admin">
-                        <span class="input-group-text icon-search" ><img src="{{asset('assets/search.png')}}" style="width: 18px"></span>
-                        <input type="text" id="search" class="form-control input-search" placeholder="Cari" aria-label="Search" aria-describedby="basic-addon1">
-                    </div> -->
                 </div>
 @endsection
 
@@ -353,11 +349,13 @@
 <script>
 $(document).ready(function() {
     var bencanaaktif = JSON.parse(document.getElementById('data_bencana').value);
-    // console.log(bencanaaktif[]);
-    // console.log(bencana);
-
+    console.log(bencanaaktif);
+    console.log(bencanaaktif.length);
+    console.log("tambah bantuan");
+    
     for(var i = 0; i<bencanaaktif.length; i++){
         console.log(i);
+        console.log("hihihi");
         $('#example-' + i).DataTable();
     }
 } );

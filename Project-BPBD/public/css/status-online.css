@@ -1,0 +1,12 @@
+.status-online{
+    background-color: white;
+    height: 100px;
+    width: 100%;
+    z-index: 99999;
+    position: fixed;
+    margin-top: -150px;
+}
+
+#content, .wrapper{
+    z-index: 0px!important;
+}

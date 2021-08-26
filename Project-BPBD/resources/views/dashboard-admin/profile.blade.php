@@ -20,10 +20,14 @@
             </div>
 
             <div class="form-edit-profile">
+
                 <!-- form  -->
+            <form action="{{ url('/profile/update', 'test') }}" method="post" id="editprofile">
+                {{csrf_field()}}
+
                 <div class="mb-3">
-                    <label for="nama" class="form-label">Nama Instansi</label><br>
-                    <input value="{{Auth::user()->nama_instansi}}" type="text" class="nama" id="nama" aria-describedby="Masukkan nama instansi">
+                    <label for="nama_instansi" class="form-label">Nama Instansi</label><br>
+                    <input value="{{Auth::user()->nama_instansi}}" type="text" class="nama_instansi" id="nama_instansi" aria-describedby="Masukkan nama instansi">
                 </div>
 
                 <div class="mb-3">
@@ -32,21 +36,21 @@
                 </div>
 
                 <div class="mb-3">
-                    <label for="nohp" class="form-label">Nomor Telepon</label><br>
-                    <input value="{{Auth::user()->no_telepon}}" type="text" class="nohp" id="nohp" aria-describedby="Masukkan no HP">
+                    <label for="no_telepon" class="form-label">Nomor Telepon</label><br>
+                    <input value="{{Auth::user()->no_telepon}}" type="text" class="no_telepon" id="no_telepon" aria-describedby="Masukkan no HP">
                 </div>
 
                 <div class="mb-3">
-                    <label for="pass" class="form-label">Passoword</label><br>
-                    <input value="{{Auth::user()->password}}" type="password" class="pass" id="pass" aria-describedby="Masukkan no HP">
-                </div>
-                
-                <!-- button  -->
-                <div class="d-flex button-profile">                
-                    <button type="button" class="mr-4 btn btn-secondary">Batal</button>
-                    <button type="button" class="btn btn-simpan">Simpan</button>
+                    <label for="password" class="form-label">Passoword</label><br>
+                    <input value="{{Auth::user()->password}}" type="password" class="password" id="password" aria-describedby="Masukkan no HP">
                 </div>
 
+                <!-- button  -->
+                <div class="d-flex button-profile">                
+                    <a href="{{ url('/admin/data/home') }}" type="button" class="mr-4 btn btn-secondary">Batal</a>
+                    <a href="{{ url('/update-profile') }}" type="submit" class="btn btn-simpan">Simpan</a>
+                </div>  
+            </form>
             </div>
         </div>
     </div>
