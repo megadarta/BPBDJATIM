@@ -69,12 +69,12 @@
 
 @section('navbar-admin')
 <div class="d-flex container-fluid content-atas">
-                    <div class="content-btn-menu">
-                        <button type="button" id="sidebarCollapse" class="btn-menu">
-                            <img class="icon-btn-menu" src="{{ asset('assets/menu.png') }}">
-                        </button>
-                    </div>
-                </div>
+        <div class="content-btn-menu">
+            <button type="button" id="sidebarCollapse" class="btn-menu">
+                <img class="icon-btn-menu" src="{{ asset('assets/menu.png') }}">
+            </button>
+        </div>
+</div>
 @endsection
 
 @section('dashboard-admin')
@@ -142,8 +142,12 @@
    
 </div>
 
+<!-- <div class="coba">
+
+</div> -->
 <?php $j = 0 ?>
 @foreach($data_bencana  as $item)
+
 <div class="info-bantuan">
     <div class="info-bencana">
         <h2>{{ $item->nama_bencana }}</h2>
@@ -188,6 +192,8 @@
 </div>
 <?php $j++ ?>
 @endforeach
+
+
 @endsection
 
 @section('script')
@@ -257,12 +263,10 @@
 <script>
     $( document ).ready(function() {
         var bencana = JSON.parse(document.getElementById('data_bencana').value);
+        console.log("bencana");
         console.log(bencana);
 
         for(i in bencana){
-            console.log(bencana[i].nama_bencana);
-
-            console.log(bencana[i].longlang);
             var circle = L.circle([bencana[i].latitude,bencana[i].longitude], {
                 color: 'red',
                 fillColor: '#f03',
@@ -282,7 +286,7 @@
 <script>
    $( document ).ready(function() {
         var bantuan = JSON.parse(document.getElementById('data_bantuan').value);
-        console.log(bantuan);
+        // console.log(bantuan);
         var j = 0.001;
         for(i=0; i<=bantuan.length; i++){
             console.log(i);
@@ -348,14 +352,12 @@
 
 <script>
 $(document).ready(function() {
-    var bencanaaktif = JSON.parse(document.getElementById('data_bencana').value);
-    console.log(bencanaaktif);
-    console.log(bencanaaktif.length);
-    console.log("tambah bantuan");
-    
-    for(var i = 0; i<bencanaaktif.length; i++){
+    var bencana = JSON.parse(document.getElementById('data_bencana').value);
+    // console.log(bencanaaktif);
+    console.log("tampil bencana");
+
+    for(var i = 0; i<bencana.length; i++){
         console.log(i);
-        console.log("hihihi");
         $('#example-' + i).DataTable();
     }
 } );
