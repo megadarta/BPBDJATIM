@@ -24,7 +24,9 @@
         <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/sweetalert2@9.17.2/dist/sweetalert2.min.css">
 
         @yield('style')
-        
+
+        <link rel="stylesheet" type="text/css" href="{{ asset('css/status-online.css') }}"></link>
+
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@200;300;400&display=swap" rel="stylesheet">
@@ -43,7 +45,51 @@
     
     <x-navbaradmin />
     
-    
+    <div class="navbar-online-off" id="navbar-online-off">
+        <div class="status-online">    
+            <div type="button" id="nonactive" onclick="klikonline(this.id)" class="judul-online"><b>User Online</b></div>
+
+            <div class="isi-online" id="sidebar-online">
+                <div class="d-flex text-nama-online justify-content-between">
+                    <p>Mega Darta</p>
+                    <img class="gambar-online" src="{{asset('assets/poin-online.png')}}"></img>
+                </div>
+
+                <div class="d-flex text-nama-online justify-content-between" >
+                    <p>Mega Darta</p>
+                    <img class="gambar-online" src="{{asset('assets/poin-online.png')}}"></img>
+                </div>
+
+                <div class="d-flex text-nama-online justify-content-between">
+                    <p>Mega Darta</p>
+                    <img class="gambar-online" src="{{asset('assets/poin-online.png')}}"></img>
+                </div>
+
+                <div class="d-flex text-nama-online justify-content-between">
+                    <p>Mega Darta</p>
+                    <img class="gambar-online" src="{{asset('assets/poin-online.png')}}"></img>
+                </div>
+
+                <div class="d-flex text-nama-online justify-content-between" >
+                    <p>Mega Darta</p>
+                    <img class="gambar-online" src="{{asset('assets/poin-online.png')}}"></img>
+                </div>
+
+                <div class="d-flex text-nama-online justify-content-between">
+                    <p>Mega Darta</p>
+                    <img class="gambar-online" src="{{asset('assets/poin-online.png')}}"></img>
+                </div>
+
+                <div class="d-flex text-nama-online justify-content-between">
+                    <p>Mega Darta</p>
+                    <img class="gambar-online" src="{{asset('assets/poin-online.png')}}"></img>
+                </div>
+            </div>
+
+        </div>
+       
+    </div>
+
     <div class="wrapper">
 
         <!-- Sidebar -->
@@ -63,7 +109,7 @@
         </div>
 
     </div>       
-    
+
     @yield('script')
     <!-- script  -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
@@ -77,6 +123,20 @@
                 });
 
                 });
+    </script>
+    <script>
+        function klikonline(id){
+            if(id=="nonactive"){
+                document.getElementById("nonactive").id = "active";
+                document.getElementById("sidebar-online").style.display = "block";
+                document.getElementById("navbar-online-off").id = "navbar-online-on";
+            }
+            else if(id=="active"){
+                document.getElementById("active").id = "nonactive";
+                document.getElementById("sidebar-online").style.display = "none";
+                document.getElementById("navbar-online-on").id = "navbar-online-off";
+            }
+        }
     </script>
     
     </body>

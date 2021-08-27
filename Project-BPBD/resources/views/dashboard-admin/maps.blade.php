@@ -69,16 +69,12 @@
 
 @section('navbar-admin')
 <div class="d-flex container-fluid content-atas">
-                    <div class="content-btn-menu">
-                        <button type="button" id="sidebarCollapse" class="btn-menu">
-                            <img class="icon-btn-menu" src="{{ asset('assets/menu.png') }}">
-                        </button>
-                    </div>
-                    <!-- <div class="input-group content-home-admin">
-                        <span class="input-group-text icon-search" ><img src="{{asset('assets/search.png')}}" style="width: 18px"></span>
-                        <input type="text" id="search" class="form-control input-search" placeholder="Cari" aria-label="Search" aria-describedby="basic-addon1">
-                    </div> -->
-                </div>
+        <div class="content-btn-menu">
+            <button type="button" id="sidebarCollapse" class="btn-menu">
+                <img class="icon-btn-menu" src="{{ asset('assets/menu.png') }}">
+            </button>
+        </div>
+</div>
 @endsection
 
 @section('dashboard-admin')
@@ -146,8 +142,12 @@
    
 </div>
 
+<!-- <div class="coba">
+
+</div> -->
 <?php $j = 0 ?>
 @foreach($data_bencana  as $item)
+
 <div class="info-bantuan">
     <div class="info-bencana">
         <h2>{{ $item->nama_bencana }}</h2>
@@ -192,6 +192,8 @@
 </div>
 <?php $j++ ?>
 @endforeach
+
+
 @endsection
 
 @section('script')
@@ -261,12 +263,10 @@
 <script>
     $( document ).ready(function() {
         var bencana = JSON.parse(document.getElementById('data_bencana').value);
+        console.log("bencana");
         console.log(bencana);
 
         for(i in bencana){
-            console.log(bencana[i].nama_bencana);
-
-            console.log(bencana[i].longlang);
             var circle = L.circle([bencana[i].latitude,bencana[i].longitude], {
                 color: 'red',
                 fillColor: '#f03',
@@ -368,11 +368,11 @@
 
 <script>
 $(document).ready(function() {
-    var bencanaaktif = JSON.parse(document.getElementById('data_bencana').value);
-    // console.log(bencanaaktif[]);
-    // console.log(bencana);
+    var bencana = JSON.parse(document.getElementById('data_bencana').value);
+    // console.log(bencanaaktif);
+    console.log("tampil bencana");
 
-    for(var i = 0; i<bencanaaktif.length; i++){
+    for(var i = 0; i<bencana.length; i++){
         console.log(i);
         $('#example-' + i).DataTable();
     }
