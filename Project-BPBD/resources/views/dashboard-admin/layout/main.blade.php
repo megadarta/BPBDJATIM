@@ -50,40 +50,15 @@
             <div type="button" id="nonactive" onclick="klikonline(this.id)" class="judul-online"><b>User Online</b></div>
 
             <div class="isi-online" id="sidebar-online">
-                <div class="d-flex text-nama-online justify-content-between">
-                    <p>Mega Darta</p>
-                    <img class="gambar-online" src="{{asset('assets/poin-online.png')}}"></img>
-                </div>
-
-                <div class="d-flex text-nama-online justify-content-between" >
-                    <p>Mega Darta</p>
-                    <img class="gambar-online" src="{{asset('assets/poin-online.png')}}"></img>
-                </div>
-
-                <div class="d-flex text-nama-online justify-content-between">
-                    <p>Mega Darta</p>
-                    <img class="gambar-online" src="{{asset('assets/poin-online.png')}}"></img>
-                </div>
-
-                <div class="d-flex text-nama-online justify-content-between">
-                    <p>Mega Darta</p>
-                    <img class="gambar-online" src="{{asset('assets/poin-online.png')}}"></img>
-                </div>
-
-                <div class="d-flex text-nama-online justify-content-between" >
-                    <p>Mega Darta</p>
-                    <img class="gambar-online" src="{{asset('assets/poin-online.png')}}"></img>
-                </div>
-
-                <div class="d-flex text-nama-online justify-content-between">
-                    <p>Mega Darta</p>
-                    <img class="gambar-online" src="{{asset('assets/poin-online.png')}}"></img>
-                </div>
-
-                <div class="d-flex text-nama-online justify-content-between">
-                    <p>Mega Darta</p>
-                    <img class="gambar-online" src="{{asset('assets/poin-online.png')}}"></img>
-                </div>
+                @foreach($data_akun as $user)
+                    @if($user->isOnline())
+                    <div class="d-flex text-nama-online justify-content-between">
+                    <p>{{$user->nama_instansi}}</p>
+                        <img class="gambar-online" src="{{asset('assets/poin-online.png')}}"></img>
+                    </div>
+                    @endif
+                @endforeach
+                
             </div>
 
         </div>

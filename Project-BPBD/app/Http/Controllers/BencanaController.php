@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Bencana;
 use App\Models\Bantuan;
 use App\Models\Element;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
@@ -12,6 +13,7 @@ use Illuminate\Support\Facades\Validator;
 class BencanaController extends Controller
 {
     public function maps(){
+        $data_akun = User::all();
         $data_bencana = Bencana::all()->where('status_bencana', '=', 'Aktif');
         $data_bantuan = DB::table('bantuan')
         ->join('bencanas', 'bantuan.bencana_id', '=', 'bencanas.id')
@@ -21,13 +23,14 @@ class BencanaController extends Controller
         ->where('bencanas.status_bencana', '=', 'Aktif')
         ->get();
         $tabelbantuan = Bantuan::all();
-        return view('dashboard-admin.maps', ['data_bencana' => $data_bencana, 'data_bantuan' => $data_bantuan, 'tabelbantuan' => $tabelbantuan]); 
+        return view('dashboard-admin.maps', ['data_bencana' => $data_bencana, 'data_bantuan' => $data_bantuan, 'tabelbantuan' => $tabelbantuan, 'data_akun' => $data_akun]); 
     }
 
     public function index()
     {
+        $data_akun = User::all();
         $data_bencana = Bencana::all();
-        return view('dashboard-admin/databencana', ['data_bencana' => $data_bencana]); 
+        return view('dashboard-admin/databencana', ['data_bencana' => $data_bencana, 'data_akun' => $data_akun]); 
     }
 
 

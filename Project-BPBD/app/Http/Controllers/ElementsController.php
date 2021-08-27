@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Storage;
 use App\Models\Element;
 use App\Models\Bantuan;
+use App\Models\User;
 // use RealRashid\SweetAlert\Facades\Alert;
 
 
@@ -15,8 +16,9 @@ class ElementsController extends Controller
 {
     public function index()
     {
+        $data_akun = User::all();
         $data_elemen = Element::all();
-        return view('dashboard-admin/dataelemen', ['data_elemen' => $data_elemen]);
+        return view('dashboard-admin/dataelemen', ['data_elemen' => $data_elemen, 'data_akun' => $data_akun]);
     }
 
 

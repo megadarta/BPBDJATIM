@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Models\Bencana;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
@@ -14,7 +15,8 @@ class AdminController extends Controller
     }
     public function indexhome()
     {
-        return view('dashboard-admin/home'); 
+        $data_akun = User::all();
+        return view('dashboard-admin/home', ['data_akun' => $data_akun]); 
     }
 
     function homesearch(Request $request)
