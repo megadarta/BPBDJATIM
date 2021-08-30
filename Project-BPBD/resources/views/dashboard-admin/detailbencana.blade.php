@@ -2,6 +2,14 @@
 
 @section('style')
     <link rel="stylesheet" type="text/css" href="{{ asset('css/detail-bencana.css') }}"></link>
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/admin-bencana.css') }}"></link>
+    <!-- data table  -->
+    <!-- <link href="https://cdn.datatables.net/buttons/2.0.0/css/buttons.dataTables.min.css" rel="stylesheet">
+    <link href="https://cdn.datatables.net/1.11.0/css/jquery.dataTables.min.css" rel="stylesheet"> -->
+@endsection
+
+@section('navbar')
+<x-navbaradmin />
 @endsection
 
 @section('sidebar-admin')
@@ -62,6 +70,7 @@
 <div class="content-bawah"> 
 <div>
   <div class="bencana-atas">
+        <input type="hidden" id="nama-bencana" value="{{$bencana->nama_bencana}}">
         <div class="judul-detail">{{$bencana->nama_bencana}}</div>
         <div class="info-detail">
         Waktu   : {{$bencana->tanggal}} <br>                 
@@ -70,7 +79,8 @@
   </div>
 
   <div class="table-responsive">
-  <table class="table table-bencana">
+    <div class="text-export">Export : </div>
+  <table class="table table-bencana" id="detail-bencana" >
   <thead>
     <tr>
       <th scope="col">No</th>
@@ -80,17 +90,56 @@
     </tr>
   </thead>
   <tbody>
+    <?php 
+        $i = 1;
+    ?>
     @foreach($bantuan as $item)
     <tr>
-      <th scope="row">1</th>
+      <th scope="row">{{$i}}</th>
       <td>{{$item->nama_instansi}}</td>
       <td>{{$item->nama_element}}</td>
       <td>{{$item->kuantitas}}</td>
     </tr>
+    <?php $i++; ?>
    @endforeach
   </tbody>
 </table>
 </div>
 </div>
 </div>
+@endsection
+
+@section('script')
+<!-- data table -->
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script src="https://cdn.datatables.net/1.11.0/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/2.0.0/js/dataTables.buttons.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+<script src="https://cdn.datatables.net/buttons/2.0.0/js/buttons.html5.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/2.0.0/js/buttons.print.min.js"></script>
+
+
+<script>
+$(document).ready(function() {
+    var namabencana =  document.getElementById("nama-bencana").value;
+    console.log(namabencana);
+    $('#detail-bencana').DataTable( {
+        dom: 'Bfrtip',
+        buttons : [
+            {
+                extend : 'excel',
+                title : namabencana,
+                download : 'open'
+            },
+            {
+                extend : 'pdf',
+                title : namabencana,
+                download : 'open'
+            }
+        ]
+    } );
+} );
+</script>
 @endsection

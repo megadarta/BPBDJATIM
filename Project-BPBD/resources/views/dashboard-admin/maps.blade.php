@@ -14,6 +14,10 @@
     
 @endsection
 
+@section('navbar')
+<x-navbaradminmaps />
+@endsection
+
 @section('sidebar-admin')
 <div class="list-unstyled components kotak-elemen">
 

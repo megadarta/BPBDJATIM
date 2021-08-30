@@ -14,6 +14,10 @@
                 </div>
 @endsection
 
+@section('navbar')
+<x-navbaradmin />
+@endsection
+
 @section('sidebar-admin')
 <ul class="list-unstyled components">
             <li>

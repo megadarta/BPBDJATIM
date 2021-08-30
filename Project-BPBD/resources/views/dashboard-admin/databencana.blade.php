@@ -8,6 +8,10 @@
     integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
 @endsection
 
+@section('navbar')
+<x-navbaradmin />
+@endsection
+
 @section('sidebar-admin')
 <ul class="list-unstyled components">
             <li>

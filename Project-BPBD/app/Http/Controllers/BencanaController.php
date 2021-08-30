@@ -58,6 +58,7 @@ class BencanaController extends Controller
 
     public function show($id)
     {
+        $data_akun = User::all();
         $bencana = Bencana::find($id);  
         $bantuan = DB::table('bantuan')
         ->join('bencanas', 'bantuan.bencana_id', '=', 'bencanas.id')
@@ -68,7 +69,7 @@ class BencanaController extends Controller
         ->get();
         // $tampilbantuan = $bantuan::all()->where('bencana_id', '=', $bencana);
         // echo $bantuan;
-        return view('dashboard-admin/detailbencana', ['bencana' => $bencana, 'bantuan' => $bantuan]);
+        return view('dashboard-admin/detailbencana', ['bencana' => $bencana, 'bantuan' => $bantuan, 'data_akun' => $data_akun]);
     }
 
     public function edit($id)

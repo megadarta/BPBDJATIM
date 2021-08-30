@@ -34,6 +34,7 @@ class AkunController extends Controller
     }
 
     public function profile(){
-        return view('dashboard-admin/profile');
+        $data_akun = User::all();
+        return view('dashboard-admin/profile', ['data_akun' => $data_akun]);
     }
 }

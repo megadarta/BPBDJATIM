@@ -6,6 +6,10 @@
         
 @endsection
 
+@section('navbar')
+<x-navbaradmin />
+@endsection
+
 @section('dashboard-admin')
 <div class="container">
     <div class="profile isi-profile justify-content-center">

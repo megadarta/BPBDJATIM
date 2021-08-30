@@ -4,6 +4,10 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('css/admin-home.css') }}"></link>
 @endsection
 
+@section('navbar')
+<x-navbaradmin />
+@endsection
+
 @section('sidebar-admin')
 <ul class="list-unstyled components">
             <li class="active">

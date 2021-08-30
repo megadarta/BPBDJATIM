@@ -27,6 +27,8 @@
 
         <link rel="stylesheet" type="text/css" href="{{ asset('css/status-online.css') }}"></link>
 
+
+        
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@200;300;400&display=swap" rel="stylesheet">
@@ -43,7 +45,7 @@
     </head>
     <body>
     
-    <x-navbaradmin />
+    @yield('navbar')
     
     <div class="navbar-online-off" id="navbar-online-off">
         <div class="status-online">    
