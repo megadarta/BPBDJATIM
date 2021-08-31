@@ -2,7 +2,7 @@
 
 @section('style')
     <link rel="stylesheet" type="text/css" href="{{ asset('css/detail-bencana.css') }}"></link>
-    <link rel="stylesheet" type="text/css" href="{{ asset('css/admin-bencana.css') }}"></link>
+    <!-- <link rel="stylesheet" type="text/css" href="{{ asset('css/admin-bencana.css') }}"></link> -->
     <!-- data table  -->
     <!-- <link href="https://cdn.datatables.net/buttons/2.0.0/css/buttons.dataTables.min.css" rel="stylesheet">
     <link href="https://cdn.datatables.net/1.11.0/css/jquery.dataTables.min.css" rel="stylesheet"> -->

@@ -38,3 +38,29 @@
     border-left: 0px!important;
     border-right: 0px!important;
 }
+
+
+/* export */
+.buttons-excel, .buttons-pdf, .buttons-pdf:hover, .buttons-excel:hover{
+    background: #FE5E32!important;
+    color: white!important;
+    border-radius: 5px!important;
+    text-align-last: center!important;
+    border: none!important;
+}
+
+.paginate_button{
+    box-sizing: border-box;
+    display: inline-block;
+    min-width: 1.5em;
+    padding: .5em 1em;
+    margin-left: 2px;
+    text-align: center;
+    text-decoration: none !important;
+    cursor: pointer;
+}
+
+.current, .current:hover{
+    background: #0d6efd;
+    color: white;
+}
