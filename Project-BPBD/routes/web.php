@@ -79,6 +79,7 @@ Route::middleware(['auth','admin'])->group(function () {
 Route::middleware(['auth'])->group(function () {
     Route::get('/element/search', [ElementsController::class, 'mapssearch'])->name('maps.element.search');
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('user');
+    Route::get('/user/data/profile', [HomeController::class, 'profile']);
     Route::get('/home/search', [AdminController::class, 'homesearch'])->name('home.search');
     //action bantuan 
     Route::post('/bantuan/store', [App\Http\Controllers\ElementsController::class, 'bantuan'])->name('simpan bantuan');
