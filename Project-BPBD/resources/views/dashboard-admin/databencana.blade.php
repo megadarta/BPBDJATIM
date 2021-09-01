@@ -94,7 +94,7 @@
                     <td>{{$item->lokasi}}</td>
                     <td>{{$item->status_bencana}}</td>
                     <td>
-                        <a href="{{ url('bencana/delete', $item->id)}}"><img src="{{asset('assets/delete.png')}}" width="20px" ></a>
+                        <a onclick="return confirm('Apakan Anda Yakin Untuk Menghapus Bencana Ini?')" href="{{ url('bencana/delete', $item->id)}}"><img src="{{asset('assets/delete.png')}}" width="20px" ></a>
                         <a class="buttonedit" type="button" id="buttonedit" data-bs-toggle="modal" data-bs-target="#modaledit" data-mynama="{{$item->nama_bencana}}" data-lokasi="{{$item->lokasi}}" data-tanggal="{{$item->tanggal}}" data-status="{{$item->status}}" data-longitude="{{$item->longitude}}" data-latitude="{{$item->latitude}}" data-id="{{$item->id}}" ><img src="{{asset('assets/edit.png')}}" width="20px" ></a>
                     </td>
                     </tr>

@@ -84,7 +84,7 @@
         <td>{{$row->no_telepon}}</td>
         <td>{{$row->role}}</td>
         <td>
-            <a href="{{url('akun/delete', $row->id)}}"><img src="{{asset('assets/delete.png')}}" width="20px" ></a>
+            <a onclick="return confirm('Apakan Anda Yakin Untuk Menghapus Akun Ini?')" href="{{url('akun/delete', $row->id)}}"><img src="{{asset('assets/delete.png')}}" width="20px" ></a>
             <a class="editakun" data-bs-toggle="modal" data-bs-target="#modaledit" data-nama="{{$row->nama_instansi}}" data-email="{{$row->email}}" data-notelp="{{$row->no_telepon}}" data-id="{{$row->id}}"><img src="{{asset('assets/edit.png')}}" width="20px" ></a>
         </td>
     </tr>

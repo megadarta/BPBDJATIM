@@ -91,7 +91,7 @@
             <td><img src="{{url('assets/icon/', $row->icon)}}" width="20px" style="margin-left: 13px;"></td>
             <td>{{$row->nama_element}}</td>
             <td>
-            <a href="{{url('elemen/delete', $row->id)}}"><img src="{{asset('assets/delete.png')}}" width="20px" ></a>
+            <a onclick="return confirm('Apakan Anda Yakin Untuk Menghapus Sumber Daya Ini?')" href="{{url('elemen/delete', $row->id)}}"><img src="{{asset('assets/delete.png')}}" width="20px" ></a>
             <a href="" class="editelemen" data-bs-toggle="modal" data-bs-target="#modaledit" data-nama="{{$row->nama_element}}" data-icon="{{$row->icon}}" data-idelement="{{$row->id}}"><img src="{{asset('assets/edit.png')}}" width="20px" ></a>
             </td>
         </tr>
