@@ -33,6 +33,7 @@
 }
 .navbar-kanan{
     color: white;
+    margin-right: 50px;
 }
 .nav-link-p{
     color: white!important;
@@ -43,5 +44,13 @@
 .menu-navbar-admin{
     color: white;
 }
-
+.logo-bpbd-navbar-user, .logo-bpbd-navbar-user:hover{
+    text-decoration-line:none ;
+}
 /* .navbar-active{} */
+@media (max-width: 556px)
+{
+    .nama-atas-navbar{
+        display: none;
+    }
+}
