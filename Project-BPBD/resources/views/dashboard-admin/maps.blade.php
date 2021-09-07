@@ -181,7 +181,7 @@
                 <td>{{$bantuan->nama_element}}</td>
                 <td>{{$bantuan->kuantitas}}</td>
                 <td>
-                    <a href="{{ url('bantuan/delete', $bantuan->id) }}"><button type="button"  class="btn btn-danger klikelemen" width="100%">Hapus</button></a>
+                    <a onclick="return confirm('Apakan Anda Yakin Untuk Menghapus Bantuan Ini?')" href="{{ url('bantuan/delete', $bantuan->id) }}"><button type="button"  class="btn btn-danger klikelemen" width="100%">Hapus</button></a>
                 </td>
             </tr>
             <?php

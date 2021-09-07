@@ -68,9 +68,14 @@
                 <td>{{$bantuan->nama_instansi}}</td>
                 <td>{{$bantuan->nama_element}}</td>
                 <td>{{$bantuan->kuantitas}}</td>
+                @if ($bantuan->nama_instansi == Auth::user()->nama_instansi)
                 <td>
-                    <a href="{{ url('bantuan/delete', $bantuan->id) }}"><button type="button"  class="btn btn-danger klikelemen" width="100%">Hapus</button></a>
+                    <a onclick="return confirm('Apakan Anda Yakin Untuk Menghapus Bantuan Ini?')" href="{{ url('bantuan/delete', $bantuan->id) }}"><button type="button"  class="btn btn-danger klikelemen" width="100%">Hapus</button></a>
                 </td>
+                @else
+                <td></td>
+                @endif
+                
             </tr>
             <?php
             $i++;
@@ -180,16 +185,6 @@
             }
         });
     });
-
-    //function modal
-    function tambahbencana(){
-        document.getElementById('titik1').value = document.getElementById('latitude').value        
-        document.getElementById('titik2').value = document.getElementById('longitude').value
-        document.getElementById('lokasi').value = document.getElementById('tempat').value
-        $('#inputbencana').modal('show');
-    }
-
-
 </script>
 
 <!-- Memunculkan titik bencana  -->
@@ -212,7 +207,7 @@
             var popup2 = L.popup()
             .setContent(bencana[i].nama_bencana);
         
-            circle.bindPopup(popup2).openPopup();
+            marker.bindPopup(popup2).openPopup();
         }
     })
 </script>
@@ -220,16 +215,37 @@
 <!-- memunculkan bantuan -->
 <script>
    $( document ).ready(function() {
-        var bantuan = JSON.parse(document.getElementById('data_bantuan').value);
-        var j = 0.001;
+    var bantuan = JSON.parse(document.getElementById('data_bantuan').value);
+        console.log(bantuan);
+        var j = 0.0001;
+        var k = 0;
         for(i=0; i<=bantuan.length; i++){
-            // console.log(i);
             var iconbantuan = L.icon({
-                iconUrl: 'http://127.0.0.1:8000/assets/icon/' + bantuan[i].icon,
+                iconUrl: '{{ url('/assets/icon') }}/' + bantuan[i].icon,
                 iconSize: [30,30]
             })
-            var marker2 =  L.marker([bantuan[i].latitude,bantuan[i].longitude-j], {icon:iconbantuan}).addTo(mymap);
-            j = j + 0.001;
+            if(i % 3 == 0){
+                var marker2 =  L.marker([bantuan[i].latitude,bantuan[i].longitude-j], {icon:iconbantuan}).addTo(mymap);                
+                
+            }else if(i % 3 == 1){
+                var marker2 =  L.marker([bantuan[i].latitude-j,bantuan[i].longitude-j], {icon:iconbantuan}).addTo(mymap);
+                
+            }else{
+                var marker2 =  L.marker([bantuan[i].latitude-j,bantuan[i].longitude], {icon:iconbantuan}).addTo(mymap);
+                if(k == 0){
+                    j = j * (-1);
+                    console.log(k);
+                    k++;
+                }
+                else{
+                    j = (j * (-1)) + 0.00008;
+                    k = 0;
+                }           
+            }            
+            var popup_bantuan = L.popup()
+            .setContent(bantuan[i].kuantitas + " " + bantuan[i].nama_element + " dari " + bantuan[i].nama_instansi);
+        
+            marker2.bindPopup(popup_bantuan).openPopup();            
         }
     })
 </script>
