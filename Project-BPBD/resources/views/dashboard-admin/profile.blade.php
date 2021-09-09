@@ -23,23 +23,23 @@
             <div class="form-edit-profile">
 
                 <!-- form  -->
-            <form action="{{ url('/admin/data/profile/update', 'test') }}" method="post" id="editprofile">
+            <form action="{{ url('/profile/update', 'test') }}" method="post" id="editprofile">
                 {{csrf_field()}}
                 
                 <input type="hidden" name="id" id="id" value="{{Auth::user()->id}}">  
                 <div class="mb-3">
                     <label for="nama_instansi" class="form-label">Nama Instansi</label><br>
-                    <input value="{{Auth::user()->nama_instansi}}" type="text" class="nama_instansi" id="nama_instansi" aria-describedby="Masukkan nama instansi">
+                    <input name="nama_instansi" value="{{Auth::user()->nama_instansi}}" type="text" class="nama_instansi" id="nama_instansi" aria-describedby="Masukkan nama instansi">
                 </div>
 
                 <div class="mb-3">
                     <label for="email" class="form-label">Email</label><br>
-                    <input value="{{Auth::user()->email}}" type="email" class="email" id="email" aria-describedby="Masukkan email">
+                    <input name="email" value="{{Auth::user()->email}}" type="email" class="email" id="email" aria-describedby="Masukkan email">
                 </div>
 
                 <div class="mb-3">
                     <label for="no_telepon" class="form-label">Nomor Telepon</label><br>
-                    <input value="{{Auth::user()->no_telepon}}" type="text" class="no_telepon" id="no_telepon" aria-describedby="Masukkan no HP">
+                    <input name="no_telepon" value="{{Auth::user()->no_telepon}}" type="text" class="no_telepon" id="no_telepon" aria-describedby="Masukkan no HP">
                 </div>
                 
                 <!-- button  -->

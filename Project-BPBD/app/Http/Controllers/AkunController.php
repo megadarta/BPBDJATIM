@@ -47,6 +47,6 @@ class AkunController extends Controller
             
         ]);
 
-        // return back();
+        return back();
     }
 }
