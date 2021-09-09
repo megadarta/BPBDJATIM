@@ -37,4 +37,16 @@ class AkunController extends Controller
         $data_akun = User::all();
         return view('dashboard-admin/profile', ['data_akun' => $data_akun]);
     }
+
+    public function profile_update(Request $request){
+        $editprofile = \App\Models\User::findOrFail($request->id);   
+        $editprofile->update([
+            'nama_instansi' => $request->nama_instansi,
+            'email' => $request->email,
+            'no_telepon' => $request->no_telepon,
+            
+        ]);
+
+        // return back();
+    }
 }

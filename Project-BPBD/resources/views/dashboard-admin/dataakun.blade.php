@@ -85,7 +85,7 @@
         <td>{{$row->role}}</td>
         <td>
             <a onclick="return confirm('Apakan Anda Yakin Untuk Menghapus Akun Ini?')" href="{{url('akun/delete', $row->id)}}"><img src="{{asset('assets/delete.png')}}" width="20px" ></a>
-            <a class="editakun" data-bs-toggle="modal" data-bs-target="#modaledit" data-nama="{{$row->nama_instansi}}" data-email="{{$row->email}}" data-notelp="{{$row->no_telepon}}" data-id="{{$row->id}}"><img src="{{asset('assets/edit.png')}}" width="20px" ></a>
+            <a class="editakun" data-bs-toggle="modal" data-bs-target="#modaledit" data-nama="{{$row->nama_instansi}}" data-email="{{$row->email}}" data-no_telepon="{{$row->no_telepon}}" data-id="{{$row->id}}"><img src="{{asset('assets/edit.png')}}" width="20px" ></a>
         </td>
     </tr>
     <?php $i++ ?>
@@ -111,13 +111,13 @@
                     <input type="hidden" name="id" id="id" value="">      
                     <label class="form-label">Nama Intansi</label>
                     <input name="nama_instansi" id="nama_instansi" type="text" class="form-control" value="">
-
+                    <br>
                     <label class="form-label">Email</label>
                     <input name="email" id="email" type="text" class="form-control" value="">
-
+                    <br>
                     <label class="form-label">Nomor Telepon</label>
-                    <input name="notelp" id="notelp" type="text" class="form-control" value="">
-
+                    <input name="no_telepon" id="no_telepon" type="text" class="form-control" value="">
+                    <br>
                     <label class="form-label">Role</label>
                     <select class='form-select' aria-label='Default select example' name='role' id='role'>
                             <option value=''>Pilih Role</option>
@@ -144,13 +144,13 @@
      $('.editakun').on('click', function (){
         var nama = $(this).data('nama');
         var email = $(this).data('email');
-        var notelp = $(this).data('notelp');
+        var no_telepon = $(this).data('no_telepon');
         var id = $(this).data('id');
     
         var modal = $('#modaledit');
         modal.find('.modal-body #nama_instansi').val(nama);
         modal.find('.modal-body #email').val(email);
-        modal.find('.modal-body #notelp').val(notelp);
+        modal.find('.modal-body #no_telepon').val(no_telepon);
         modal.find('.modal-body #id').val(id);
         
     })

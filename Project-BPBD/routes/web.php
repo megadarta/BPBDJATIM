@@ -53,6 +53,8 @@ Route::middleware(['auth','admin'])->prefix('admin')->group(function () {
         
         //profile
         Route::get('profile', [AkunController::class, 'profile']);
+        Route::post('/profile/update/{id}', [App\Http\Controllers\AkunController::class, 'profile_update']);
+
     });
 
     //map

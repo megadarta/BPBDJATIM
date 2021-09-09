@@ -164,16 +164,17 @@
         var tanggal = $(this).data('tanggal');
         var longitude = $(this).data('longitude');
         var latitude = $(this).data('latitude');
-        console.log(latitude);
-        console.log(longitude);
-        
-        console.log(new Date(tanggal).toISOString());
-        console.log(tanggal);
+        console.log("tanggal :" +  tanggal);
+        // console.log(longitude);
+        var str = tanggal.replace(/\s/g, 'T');
+        console.log(str);
+        // console.log(new Date(tanggal).toISOString());
+        // console.log(tanggal);
         var modal = $('#modaledit');
         modal.find('.modal-body #nama_bencana').val(nama);
         modal.find('.modal-body #lokasi').val(lokasi);
         
-        modal.find('.modal-body #tanggal').val(new Date(tanggal).toISOString().slice(0,16));
+        modal.find('.modal-body #tanggal').val(str);
         modal.find('.modal-body #latitude').val(latitude);
         modal.find('.modal-body #longitude').val(longitude);
         modal.find('.modal-body #id').val(id);
