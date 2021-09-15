@@ -137,7 +137,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Tambah Data Sumber Daya</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Edit Data Sumber Daya</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <form action="{{ url('/elemen/update', 'test') }}" enctype="multipart/form-data" method="post" id="tambahelemenform">
@@ -167,12 +167,10 @@
     $('.editelemen').on('click', function (){
         // var button = $(event.releatedTarget)
         var nama = $(this).data('nama');
-        var icon = $(this).data('icon');
         var id = $(this).data('idelement');
         console.log(id);
         var modal = $('#modaledit');
         modal.find('.modal-body #nama_element').val(nama);
-        modal.find('.modal-body #icon').val(icon);
         modal.find('.modal-body #id').val(id);
         
     })

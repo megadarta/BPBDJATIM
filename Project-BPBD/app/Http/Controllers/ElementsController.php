@@ -79,7 +79,7 @@ class ElementsController extends Controller
     {
         $validated = Validator::make($request->all(),[
             'nama_element' => 'required',
-            'icon' => 'required',
+            'icon' => 'required|image|mimes:png,jpg,gif,svg|',
         ]);
         
         // Cek Validasi
@@ -102,12 +102,12 @@ class ElementsController extends Controller
         
     }
 
-    public function update(Request $request, Element $element)
+    public function update(Request $request)
     {
+        $element = Element::findOrFail($request->id);
 
         $validated = Validator::make($request->all(),[
             'nama_element' => 'required',
-            'icon' => 'required',
         ]);
 
         // Cek Validasi
@@ -115,7 +115,7 @@ class ElementsController extends Controller
             return back(); 
         } else {
             if($request->file('icon')){
-                Storage::disk('public_image')->delete('assets/icon/'.$element->icon);
+                Storage::disk('public_image')->delete('icon/'.$element->icon);
 
                 $extension = $request->file('icon')->extension();
                 $icon_name = request('nama_element').'.'.$extension;
@@ -123,11 +123,10 @@ class ElementsController extends Controller
                 
             }
             else{
-                $icon_name = $element->icon;
+                $extension = substr($element->icon,-4);
+                $icon_name = request('nama_element').$extension;
+                Storage::disk('public_image')->move('icon/'.$element->icon, 'icon/'.$icon_name);
             }
-            
-            // echo ($request->id);
-            // die();
 
             Element::Where('id', $request->id)->update([
                 'nama_element' => $request->nama_element,
@@ -135,7 +134,7 @@ class ElementsController extends Controller
             ]);
         
             return redirect()->back();
-            }        
+        }        
     }
 
     public function delete(Element $item)
