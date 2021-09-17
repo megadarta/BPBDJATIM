@@ -33,7 +33,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Tambah Data Elemen</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Tambah Data Sumber Daya</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <form action="{{ route('simpan bantuan') }}" enctype="multipart/form-data" method="post" id="tambahelemenform">
@@ -43,11 +43,11 @@
                     <label class="form-label">Nama Instansi</label>
                     <input name="nama_instansi" id="nama_instansi" type="text" class="form-control" value="{{ Auth::user()->nama_instansi }}" disabled>
                     <input name="id_instansi" id="id_instansi" type="hidden" class="form-control" value="{{ Auth::user()->id }}">
-
-                    <label class="form-label">Nama Elemen</label>
+                    <br>
+                    <label class="form-label">Nama Sumber Daya</label>
                     <input name="nama_element" id="nama_element" type="text" class="form-control" value="" disabled>
                     <input name="id_element" id="id_element" type="hidden" class="form-control" value="">
-
+                    <br>
                     <label class="form-label" id="statusselect">Nama Bencana</label>
                     <select class='form-select' aria-label='Default select example' name='id_bencana' id='id_bencana'>
                         <option value=''>Pilih bencana aktif</option>
@@ -55,10 +55,10 @@
                         <option value='{{$item->id}}'>{{$item->nama_bencana}}</option>
                         @endforeach
                     </select>
-
+                    <br>
                     <label class="form-label">Kuantitas</label>
                     <input name="kuantitas" id="kuantitas" type="text" class="form-control" value="">
-                
+                    <br>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -161,8 +161,9 @@
         <thead class="table-dark">
             <tr>
             <th scope="col">#</th>
+            <th scope="col">Jam</th>
             <th scope="col">Nama Instansi</th>
-            <th scope="col">Nama Elemen</th>
+            <th scope="col">Nama Sumber Daya</th>            
             <th scope="col">Jumlah</th>
             <th scope="col">Action</th>
             </tr>
@@ -177,8 +178,9 @@
             ?>
                 <tr>
                 <th scope="row">{{$i}}</th>
+                <td>{{date('H:i', strtotime($bantuan->created_at) + (7*60*60))}}</td>
                 <td>{{$bantuan->nama_instansi}}</td>
-                <td>{{$bantuan->nama_element}}</td>
+                <td>{{$bantuan->nama_element}}</td>                
                 <td>{{$bantuan->kuantitas}}</td>
                 <td>
                     <a onclick="return confirm('Apakan Anda Yakin Untuk Menghapus Bantuan Ini?')" href="{{ url('bantuan/delete', $bantuan->id) }}"><button type="button"  class="btn btn-danger klikelemen" width="100%">Hapus</button></a>

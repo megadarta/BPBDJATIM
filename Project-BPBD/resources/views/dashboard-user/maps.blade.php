@@ -49,8 +49,9 @@
         <thead class="table-dark">
             <tr>
             <th scope="col">#</th>
+            <th scope="col">Jam</th>
             <th scope="col">Nama Instansi</th>
-            <th scope="col">Nama Elemen</th>
+            <th scope="col">Nama Sumber Daya</th>
             <th scope="col">Jumlah</th>
             <th scope="col">Action</th>
             </tr>
@@ -65,6 +66,7 @@
             ?>
                 <tr>
                 <th scope="row">{{$i}}</th>
+                <td>{{date('H:i', strtotime($bantuan->created_at) + (7*60*60))}}</td>
                 <td>{{$bantuan->nama_instansi}}</td>
                 <td>{{$bantuan->nama_element}}</td>
                 <td>{{$bantuan->kuantitas}}</td>
@@ -95,7 +97,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Tambah Data Elemen</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Tambah Data Sumber Daya</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <form action="{{ route('simpan bantuan') }}" enctype="multipart/form-data" method="post" id="tambahelemenform">
@@ -106,7 +108,7 @@
                     <input name="nama_instansi" id="nama_instansi" type="text" class="form-control" value="{{ Auth::user()->nama_instansi }}" disabled>
                     <input name="id_instansi" id="id_instansi" type="hidden" class="form-control" value="{{ Auth::user()->id }}">
 
-                    <label class="form-label">Nama Elemen</label>
+                    <label class="form-label">Nama Sumber Daya</label>
                     <input name="nama_element" id="nama_element" type="text" class="form-control" value="" disabled>
                     <input name="id_element" id="id_element" type="hidden" class="form-control" value="">
 

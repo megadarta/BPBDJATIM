@@ -34,7 +34,8 @@ class HomeController extends Controller
         ->join('bencanas', 'bantuan.bencana_id', '=', 'bencanas.id')
         ->join('users', 'bantuan.user_id', '=', 'users.id')
         ->join('elements', 'bantuan.element_id', '=', 'elements.id')
-        ->select('elements.nama_element', 'elements.icon', 'bantuan.id', 'bantuan.bencana_id', 'bantuan.kuantitas', 'bencanas.nama_bencana', 'bencanas.latitude', 'bencanas.longitude', 'users.nama_instansi')
+        ->select('elements.nama_element', 'elements.icon', 'bantuan.id', 'bantuan.bencana_id', 'bantuan.kuantitas', 'bantuan.created_at', 'bencanas.nama_bencana', 'bencanas.latitude', 'bencanas.longitude', 'users.nama_instansi')
+        ->orderBy('nama_instansi')
         ->where('bencanas.status_bencana', '=', 'Aktif')
         ->get();
         $tabelbantuan = Bantuan::all();
