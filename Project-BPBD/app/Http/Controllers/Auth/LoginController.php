@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
 
 class LoginController extends Controller
 {
@@ -38,7 +39,26 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
     }
-    
+
+    protected function validateLogin(Request $request)
+    {
+        $request->validate([
+            $this->username() => 'required|string',
+            'password' => 'required|string',
+            'g-recaptcha-response' => function ($attribute, $value, $fail) {
+                $secretKey = config('services.recaptcha.secret');
+                $response = $value;
+                $url = "https://www.google.com/recaptcha/api/siteverify?secret=$secretKey&response=$response";
+                $response = \file_get_contents($url);
+                $response = json_decode($response);
+
+                if(!$response->success){
+                    $fail($attribute.'google reCaptcha failed');
+                }
+            },
+        ]);
+    }
+
     public function redirectTo()
     {
         $for = [

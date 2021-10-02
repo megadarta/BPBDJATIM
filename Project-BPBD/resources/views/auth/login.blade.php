@@ -30,6 +30,9 @@
                         <strong>{{ $message }}</strong>
                     </span>
                 @enderror
+                <br/>
+                <div class="g-recaptcha" data-sitekey="{{config('services.recaptcha.key')}}"></div>
+                
                 <div class="div-button-login">
                     <button type="submit" class="button-login"><b>Login</b></button>
                 </div>

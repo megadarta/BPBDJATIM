@@ -47,6 +47,9 @@
         @enderror
 
         <input id="password-confirm" type="password" placeholder="Confirm Password" class="form-control mt-4 input-regis-placeholder" name="password_confirmation" required autocomplete="new-password">
+        
+        <br/>
+        <div class="g-recaptcha" data-sitekey="{{config('services.recaptcha.key')}}"></div>
 
         <div class="div-button-regis">      
             <button class="button-regis"><b>Register</b></button>

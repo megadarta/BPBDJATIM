@@ -54,6 +54,17 @@ class RegisterController extends Controller
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'no_telepon' => ['required', 'string', 'min:9', 'max:13', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'g-recaptcha-response' => function ($attribute, $value, $fail) {
+                $secretKey = config('services.recaptcha.secret');
+                $response = $value;
+                $url = "https://www.google.com/recaptcha/api/siteverify?secret=$secretKey&response=$response";
+                $response = \file_get_contents($url);
+                $response = json_decode($response);
+
+                if(!$response->success){
+                    $fail($attribute.'google reCaptcha failed');
+                }
+            },
         ]);
     }
 

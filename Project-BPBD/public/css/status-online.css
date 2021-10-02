@@ -1,10 +1,10 @@
 .status-online{
     background-color: #FE5E32;
-    /* height: 75px; */
+    height: 100%;
     width: 250px;
     margin-left: auto;
     align-self: right;
-    margin-top: 70px;
+    margin-top: auto;
     margin-right: 3%;
     border-radius: 15px 15px 0px 0px;
     text-align: center;
